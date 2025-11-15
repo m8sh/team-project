@@ -1,0 +1,66 @@
+Index: src/main/java/entities/Question.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entities;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class Question {\r\n    private String prompt;\r\n    private List<String> choices;\r\n    private int correctIndex;\r\n    //We could potentially make an \"answer\" class with a \"correct\" boolean attribute\r\n\r\n    public Question(String prompt, List<String> choices, int correctIndex) {\r\n        this.prompt = prompt;\r\n        List<String> copy_choices = new ArrayList<>(choices);\r\n        if(copy_choices.size() < 2) {\r\n            while(copy_choices.size() < 2) {\r\n                copy_choices.add(\"Placeholder\");\r\n            }\r\n            // add placeholder answers until we get at least two answer options\r\n\r\n            System.out.println(\"Please enter a list of at least two answers when creating a question\");\r\n        }\r\n        if(correctIndex < 0 || correctIndex >= choices.size()) {\r\n            throw new IllegalArgumentException(\"Correct index is out of range for the provided choices.\");\r\n            //may want to change what happens when we input a correctIndex that does not work\r\n        }\r\n\r\n        this.correctIndex = correctIndex;\r\n        this.choices = copy_choices;\r\n\r\n        //The parameter answers can be empty and have any length\r\n    }\r\n    public String getPrompt() {\r\n        return prompt;\r\n    }\r\n    public ArrayList<String> getChoices() {\r\n        return new ArrayList<>(choices);\r\n    }\r\n    public int getCorrectIndex() {\r\n        return correctIndex;\r\n    }\r\n    public String getCorrectAnswer() {\r\n        return choices.get(correctIndex);\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/entities/Question.java b/src/main/java/entities/Question.java
+--- a/src/main/java/entities/Question.java	(revision bb5f6ba61d0e48c0c7b647c1c0b7217afdf1d69f)
++++ b/src/main/java/entities/Question.java	(date 1762914309467)
+@@ -4,17 +4,17 @@
+ import java.util.List;
+ 
+ public class Question {
+-    private String prompt;
+-    private List<String> choices;
+-    private int correctIndex;
++    private final String prompt;
++    private final List<String> choices;
++    private final int correctIndex;
+     //We could potentially make an "answer" class with a "correct" boolean attribute
+ 
+     public Question(String prompt, List<String> choices, int correctIndex) {
+         this.prompt = prompt;
+-        List<String> copy_choices = new ArrayList<>(choices);
+-        if(copy_choices.size() < 2) {
+-            while(copy_choices.size() < 2) {
+-                copy_choices.add("Placeholder");
++        List<String> copyChoices = new ArrayList<>(choices);
++        if(copyChoices.size() < 2) {
++            while(copyChoices.size() < 2) {
++                copyChoices.add("Placeholder");
+             }
+             // add placeholder answers until we get at least two answer options
+ 
+@@ -26,14 +26,14 @@
+         }
+ 
+         this.correctIndex = correctIndex;
+-        this.choices = copy_choices;
++        this.choices = copyChoices;
+ 
+         //The parameter answers can be empty and have any length
+     }
+     public String getPrompt() {
+         return prompt;
+     }
+-    public ArrayList<String> getChoices() {
++    public List<String> getChoices() {
+         return new ArrayList<>(choices);
+     }
+     public int getCorrectIndex() {
+Index: src/main/java/entities/Lobby.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entities;\r\n\r\npublic class Lobby {\r\n    \r\n\r\n}\r\n//Empty placeholder at the moment\r\n
+===================================================================
+diff --git a/src/main/java/entities/Lobby.java b/src/main/java/entities/Lobby.java
+--- a/src/main/java/entities/Lobby.java	(revision bb5f6ba61d0e48c0c7b647c1c0b7217afdf1d69f)
++++ b/src/main/java/entities/Lobby.java	(date 1762914109903)
+@@ -1,7 +1,6 @@
+ package entities;
+ 
+ public class Lobby {
+-    
+ 
+ }
+ //Empty placeholder at the moment

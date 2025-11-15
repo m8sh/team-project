@@ -1,0 +1,50 @@
+Index: src/test/java/entities/QuestionTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/entities/QuestionTest.java b/src/test/java/entities/QuestionTest.java
+new file mode 100644
+--- /dev/null	(date 1762978338761)
++++ b/src/test/java/entities/QuestionTest.java	(date 1762978338761)
+@@ -0,0 +1,9 @@
++package entities;
++
++import org.junit.jupiter.api.Test;
++import java.util.List;
++import static org.junit.jupiter.api.Assertions.*;
++
++
++public class QuestionTest {
++}
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>org.example</groupId>\r\n    <artifactId>TeamProject</artifactId>\r\n    <version>1.0-SNAPSHOT</version>\r\n\r\n    <properties>\r\n        <maven.compiler.source>11</maven.compiler.source>\r\n        <maven.compiler.target>11</maven.compiler.target>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n    </properties>\r\n\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision bb5f6ba61d0e48c0c7b647c1c0b7217afdf1d69f)
++++ b/pom.xml	(date 1762978338727)
+@@ -13,5 +13,19 @@
+         <maven.compiler.target>11</maven.compiler.target>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     </properties>
++    <dependencies>
++        <dependency>
++            <groupId>junit</groupId>
++            <artifactId>junit</artifactId>
++            <version>4.13.1</version>
++            <scope>test</scope>
++        </dependency>
++        <dependency>
++            <groupId>org.junit.jupiter</groupId>
++            <artifactId>junit-jupiter</artifactId>
++            <version>5.8.1</version>
++            <scope>test</scope>
++        </dependency>
++    </dependencies>
+ 
+ </project>
+\ No newline at end of file
