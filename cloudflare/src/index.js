@@ -3,9 +3,6 @@
 // the ones that start with a '!'. Those actually contain important info, everything else
 // is just so I remember what the code does when/if I come back to it later
 
-import {Room} from './room.js';
-export {Room};
-
 // this is just the standard lines for recieving a request
 export default {
   async fetch(request, env) {
@@ -13,6 +10,13 @@ export default {
     // making the url a URL obejct so that i can invoke things like .pathname without
     // needing to manually sort through it
     const url = new URL(request.url);
+
+    if (request.headers.get('Upgrade') === 'websocket' && url.pathname.startsWith('/ws/rooms/')){
+        const pin = url.pathname.slice('/ws/rooms/'.length);
+        const id = env.ROOMS_DO.idFromName(pin);
+        const stub = env.ROOMS_DO.get(id);
+        return stub.fetch(request);
+        }
 
     // ! the call here should be "shrill-forest-40bb.sw-william08.workers.dev/api/newRoom/<pin>"
     // ! and it should make the DO, save it to a PIN, and just push to the DO's 'actual' code
@@ -44,7 +48,7 @@ export default {
         return stub.fetch(request);
     }
 
-    return new Response(null);
+    return new Response('ok');
 
   }
 };
