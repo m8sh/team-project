@@ -3,17 +3,17 @@ package entities;
 public class User {
     private final String name;
     private int score;
-    private final String lobbyID;
-    public User(String name, String lobbyID) {
+    private final int lobbyPin;
+    public User(String name, int lobbyPin) {
         this.name = name;
         this.score = 0;
-        this.lobbyID = lobbyID;
+        this.lobbyPin = lobbyPin;
     }
     public String getName() {return this.name;
     }
     public int getScore() {
         return this.score;
     }
-    public String getLobbyID() {
-        return this.lobbyID;}
+    public int getLobbyPin() {
+        return this.lobbyPin;}
 }
