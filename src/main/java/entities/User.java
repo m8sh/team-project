@@ -16,4 +16,11 @@ public class User {
     }
     public int getLobbyPin() {
         return this.lobbyPin;}
+    public void incrementScore() {
+        this.score++;
+    }
+
+    public void resetScore() {
+        this.score = 0;
+    }
 }
