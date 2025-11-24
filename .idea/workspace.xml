@@ -14,15 +14,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Xander-Test-Lobby-DataAccessLayer-" />
+        <entry key="$PROJECT_DIR$" value="Xander-AddingMultLobbies-AddQuestion" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,7 +63,16 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.AddQuestionView.executor": "Run",
+    "Application.AppRunner.executor": "Run",
+    "Application.LobbyPrepView.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.StartScreenView.executor": "Run",
     "Application.gui.executor": "Run",
+    "JUnit.AddQuestionDataHolderTests.testGettersReturnCorrectValues.executor": "Run",
+    "JUnit.AddQuestionInteractorTest.executor": "Run",
+    "JUnit.AddQuestionInteractorTest.testAddQuestionUpdatesLobby.executor": "Run",
+    "JUnit.AddQuestionInteractorTest.testFailIfLobbyMissing.executor": "Debug",
     "JUnit.QuestionTest.executor": "Run",
     "JUnit.QuestionTest.testChoicesImmutable.executor": "Debug",
     "JUnit.QuestionTest.testEmptyPromptThrowsException.executor": "Run",
@@ -79,7 +88,7 @@
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "#5 on Xander-Add-Question",
     "kotlin-language-version-configured": "true"
   },
   "keyToStringList": {
@@ -95,85 +104,73 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="use_cases.AddQuestion" />
       <recent name="entities" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.QuestionTest.testEmptyPromptThrowsException">
-    <configuration name="QuestionTest.testEmptyPromptThrowsException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.AddQuestionInteractorTest">
+    <configuration name="LobbyPrepView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="use_cases.view.LobbyPrepView" />
       <module name="TeamProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="entities.*" />
+          <option name="PATTERN" value="use_cases.view.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="entities" />
-      <option name="MAIN_CLASS_NAME" value="entities.QuestionTest" />
-      <option name="METHOD_NAME" value="testEmptyPromptThrowsException" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui" />
+      <module name="TeamProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AddQuestionDataHolderTests.testGettersReturnCorrectValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TeamProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_cases.AddQuestion.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_cases.AddQuestion" />
+      <option name="MAIN_CLASS_NAME" value="use_cases.AddQuestion.AddQuestionDataHolderTests" />
+      <option name="METHOD_NAME" value="testGettersReturnCorrectValues" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="QuestionTest.testExceptionForInvalidCorrectIndex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AddQuestionInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TeamProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="entities.*" />
+          <option name="PATTERN" value="use_cases.AddQuestion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="entities" />
-      <option name="MAIN_CLASS_NAME" value="entities.QuestionTest" />
-      <option name="METHOD_NAME" value="testExceptionForInvalidCorrectIndex" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="use_cases.AddQuestion" />
+      <option name="MAIN_CLASS_NAME" value="use_cases.AddQuestion.AddQuestionInteractorTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="QuestionTest.testExceptionForTooFewChoices" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AddQuestionInteractorTest.testFailIfLobbyMissing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TeamProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="entities.*" />
+          <option name="PATTERN" value="use_cases.AddQuestion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="entities" />
-      <option name="MAIN_CLASS_NAME" value="entities.QuestionTest" />
-      <option name="METHOD_NAME" value="testExceptionForTooFewChoices" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="QuestionTest.testFactoryCreatesQuestion" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TeamProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="entities.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="entities" />
-      <option name="MAIN_CLASS_NAME" value="entities.QuestionTest" />
-      <option name="METHOD_NAME" value="testFactoryCreatesQuestion" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTest.testUserFactory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TeamProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="entities.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="entities" />
-      <option name="MAIN_CLASS_NAME" value="entities.UserTest" />
-      <option name="METHOD_NAME" value="testUserFactory" />
+      <option name="PACKAGE_NAME" value="use_cases.AddQuestion" />
+      <option name="MAIN_CLASS_NAME" value="use_cases.AddQuestion.AddQuestionInteractorTest" />
+      <option name="METHOD_NAME" value="testFailIfLobbyMissing" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -181,11 +178,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserTest.testUserFactory" />
-        <item itemvalue="JUnit.QuestionTest.testFactoryCreatesQuestion" />
-        <item itemvalue="JUnit.QuestionTest.testExceptionForInvalidCorrectIndex" />
-        <item itemvalue="JUnit.QuestionTest.testEmptyPromptThrowsException" />
-        <item itemvalue="JUnit.QuestionTest.testExceptionForTooFewChoices" />
+        <item itemvalue="JUnit.AddQuestionInteractorTest" />
+        <item itemvalue="JUnit.AddQuestionInteractorTest.testFailIfLobbyMissing" />
+        <item itemvalue="JUnit.AddQuestionDataHolderTests.testGettersReturnCorrectValues" />
+        <item itemvalue="Application.LobbyPrepView" />
+        <item itemvalue="Application.gui" />
       </list>
     </recent_temporary>
   </component>
@@ -205,11 +202,47 @@
       <option name="project" value="LOCAL" />
       <updated>1762914443270</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implemented use case of adding a question to a lobby. Added tests to assess the AddQuestion interactor and all use case classes. Added a LobbyPrep View and an addQuestionView.">
+      <option name="closed" value="true" />
+      <created>1763998807180</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763998807180</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added the entities Question, QuestionFactory, User, and UserFactory. Added a blank Lobby entity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the entities Question, QuestionFactory, User, and UserFactory. Added a blank Lobby entity." />
+    <MESSAGE value="Implemented use case of adding a question to a lobby. Added tests to assess the AddQuestion interactor and all use case classes. Added a LobbyPrep View and an addQuestionView" />
+    <MESSAGE value="Implemented use case of adding a question to a lobby. Added tests to assess the AddQuestion interactor and all use case classes. Added a LobbyPrep View and an addQuestionView." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented use case of adding a question to a lobby. Added tests to assess the AddQuestion interactor and all use case classes. Added a LobbyPrep View and an addQuestionView." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

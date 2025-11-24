@@ -1,5 +1,9 @@
 package use_cases.AddQuestion;
 
 public interface AddQuestionOutputBoundary {
-    void present(AddQuestionOutputData outputData);
+
+    void prepareSuccessView(AddQuestionOutputData outputData);
+
+
+    void prepareFailView(String errorMessage);
 }

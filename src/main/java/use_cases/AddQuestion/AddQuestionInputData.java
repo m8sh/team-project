@@ -7,7 +7,7 @@ public class AddQuestionInputData {
     private final int lobbyPin;
     private final List<String> choices;
     private final int correctIndex;
-    public AddQuestionInputData(String prompt, int lobbyPin, List<String> choices, int correctIndex) {
+    public AddQuestionInputData(String prompt, List<String> choices, int correctIndex, int lobbyPin) {
         this.prompt = prompt;
         this.lobbyPin = lobbyPin;
         this.choices = choices;

@@ -3,12 +3,19 @@ package data_access;
 import entities.Lobby;
 import use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInterface {
+
     private Lobby lobby;
 
-    public InMemoryDataAccessObject(Lobby lobby) {
-        this.lobby = lobby;
+    public InMemoryDataAccessObject() {
+        this.lobby = null;
         //currently only supports one lobby
+
+
+
     }
     @Override
     public Lobby getLobby() {
@@ -16,6 +23,22 @@ public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInter
     }
     @Override
     public void saveLobby(Lobby lobby) {
+//        System.out.println("DAO: saving lobby " + lobby.getPin()+ " with " + lobby.getQuestions().size() + " questions");
         this.lobby = lobby;
     }
 }
+
+
+//private Map<Integer, Lobby> PinToLobby;
+//public LobbyManager() {
+//    PinToLobby = new HashMap<Integer, Lobby>();
+//}
+//public void addLobby(Lobby lobby) {
+//    PinToLobby.put(lobby.getPin(), lobby);
+//}
+//public Lobby getLobby(int pin) {
+//    return PinToLobby.get(pin);
+//}
+//public void removeLobby(int pin) {
+//    PinToLobby.remove(pin);
+//}

@@ -7,14 +7,14 @@ import entities.QuestionFactory;
 import java.util.List;
 
 public class AddQuestionInteractor implements AddQuestionInputBoundary {
-    private final AddQuestionLobbyDataAccessInterface LobbyDataAccess;
+    private final AddQuestionLobbyDataAccessInterface lobbyDataAccess;
     private final AddQuestionOutputBoundary presenter;
     private final QuestionFactory questionFactory;
 
-    public AddQuestionInteractor(AddQuestionLobbyDataAccessInterface LobbyDataAccess,
+    public AddQuestionInteractor(AddQuestionLobbyDataAccessInterface lobbyDataAccess,
                                  AddQuestionOutputBoundary presenter,
                                  QuestionFactory questionFactory){
-        this.LobbyDataAccess = LobbyDataAccess;
+        this.lobbyDataAccess = lobbyDataAccess;
         this.presenter = presenter;
         this.questionFactory = questionFactory;
     }
@@ -26,21 +26,30 @@ public class AddQuestionInteractor implements AddQuestionInputBoundary {
         int lobbypin = inputData.getLobbyPin();
         List<String> choices = inputData.getChoices();
         int correctIndex = inputData.getCorrectIndex();
+/*        System.out.println("Interactor: execute called with prompt: " + prompt + "lobbypin: " + Integer.toString(lobbypin));*/
 
-        if(choices.size() < 2){
-            // Make the presenter notify the user that a question must have at least two answer choices
-        }
-        if (correctIndex < 0 || correctIndex >= choices.size()) {
-            //Correct answer index is invalid
-            //What to do in this scenario?
-        }
+
 
         Question question = questionFactory.createQuestion(prompt, choices, correctIndex);
-        Lobby lobby = LobbyDataAccess.getLobby();
-        lobby.addQuestion(question);
+        Lobby lobby = lobbyDataAccess.getLobby(); // Here get lobby by lobbyPin
+
+        if (lobby == null) {
+            presenter.prepareFailView("Lobby not found");
+            return;
+            //Change this if add multiple lobbies
+        }else {
+
+            lobby.addQuestion(question);
+            lobbyDataAccess.saveLobby(lobby);
+//            System.out.println("Question added: " + question.getPrompt());
+//            System.out.println("Question added: " + lobby.getQuestions().toString());
+
+            AddQuestionOutputData outputData = new AddQuestionOutputData("Question added successfully!");
+            presenter.prepareSuccessView(outputData);
+        }
+        //
         //Create Question from input data using Question Factory
         // Need to get Lobby object stored in MemoryDataAccessObject
-
-
+        //Now I need to make some output data
     }
 }

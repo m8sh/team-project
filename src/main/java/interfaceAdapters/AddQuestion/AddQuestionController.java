@@ -1,0 +1,20 @@
+package interfaceAdapters.AddQuestion;
+
+import use_cases.AddQuestion.AddQuestionInputBoundary;
+import use_cases.AddQuestion.AddQuestionInputData;
+
+import java.util.ArrayList;
+
+public class AddQuestionController {
+    private final AddQuestionInputBoundary addQuestionInteractor;
+
+    public AddQuestionController(AddQuestionInputBoundary addQuestionInteractor) {
+        this.addQuestionInteractor = addQuestionInteractor;
+    }
+
+    public void execute(String prompt, ArrayList<String> choices, int correctIndex, int lobbyPin) {
+        final AddQuestionInputData InputData = new AddQuestionInputData(prompt, choices, correctIndex, lobbyPin);
+        addQuestionInteractor.execute(InputData);
+        //how to mark correct index?
+    }
+}

@@ -7,7 +7,8 @@ import java.util.List;
 public class demo {
     public static void main(String[] args) {
         Lobby l =  new Lobby(123);
-        InMemoryDataAccessObject LobbyStorage = new InMemoryDataAccessObject(l);
+        InMemoryDataAccessObject LobbyStorage = new InMemoryDataAccessObject();
+
         UserFactory userFactory = new UserFactory();
         User bob = userFactory.makeUser("bob", 123);
         User john = userFactory.makeUser("john", 123);
