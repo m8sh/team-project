@@ -27,8 +27,8 @@ public class Lobby {
         return pin;
     }
 
-
-    
-
+    public List<User> getUsers() {
+        return new ArrayList<>(users);
+    }
 }
 //Empty placeholder at the moment
