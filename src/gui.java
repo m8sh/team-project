@@ -3,6 +3,7 @@ import java.awt.event.*;
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Arrays;
 public class gui {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -92,15 +93,12 @@ public class gui {
                     createPanel.add(Launch);
                     createPanel.add(Box.createVerticalStrut(10));
                     createPanel.add(addQuestion);
-                    Map<String, String[]> questionBank = QuestionBank.questionBank;
-                    for (Map.Entry<String, String[]> entry : QuestionBank.questionBank.entrySet()) {
-                        String question = entry.getKey();
-                        String[] answers = entry.getValue();
-                        String correctAnswer = answers[4]; // the actual correct answer string
 
-                        JLabel Qlabel = new JLabel("Q: " + question + ", A: " + correctAnswer, SwingConstants.CENTER);
-                        createPanel.add(Qlabel);
-                    }
+                    Question[] questions = new Question[] {
+                            new Question("What is 2 + 2?", Arrays.asList("3", "4", "5"), 1),
+                            new Question("What is the capital of France?", Arrays.asList("Paris", "Berlin", "Rome"), 0),
+                            new Question("Which language runs on the JVM?", Arrays.asList("Python", "Java", "C++"), 1)
+                    };
 
                     // Example action for the Add Question button
                     addQuestion.addActionListener(new ActionListener() {
@@ -195,12 +193,12 @@ public class gui {
                                             correctAnswer = savedA4[0];
                                             break;
                                     }
-
+                                    questions.add(new Question(savedQuestion[0], Arrays.asList(savedA1[0], savedA2[0], savedA3[0], savedA4[0]), pickBox.getSelectedIndex()));
                                     JLabel Qlabel = new JLabel("Q: " + savedQuestion[0] + ",  A: " + correctAnswer, SwingConstants.CENTER);
                                     createPanel.add(Qlabel);
                                     createPanel.revalidate();
                                     createPanel.repaint();
-                                    questionBank.put(savedQuestion[0], new String[]{savedA1[0], savedA2[0], savedA3[0], savedA4[0], correctAnswer});
+
                                     // Close the Edit Frame
                                     editFrame.dispose();
                                     answerframe.dispose();
