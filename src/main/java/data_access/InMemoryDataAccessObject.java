@@ -2,11 +2,12 @@ package data_access;
 
 import entities.Lobby;
 import use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface;
+import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInterface {
+public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInterface, NextQuestionLobbyDataAccessInterface {
 
     private Lobby lobby;
 
