@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import entities.Question;
 
 
 public class api_caller {
@@ -81,7 +82,7 @@ public class api_caller {
             questionsListString.append("{\"prompt\":\"");
             questionsListString.append(question.getPrompt());
             questionsListString.append("\",\"choices\":[");
-            ArrayList<String> choices = question.getChoices();
+            List<String> choices = question.getChoices();
             for (int j = 0; j < choices.size(); j++){
                 if (j > 0) questionsListString.append(",");
                 questionsListString.append("\"" + choices.get(j) + "\"");
