@@ -1,0 +1,174 @@
+@startuml
+class use_cases.view.AddQuestionView {
+- JTextArea questionArea
+- JTextArea answer1Area
+- JTextArea answer2Area
+- JTextArea answer3Area
+- JTextArea answer4Area
+- JButton saveButton
+- JRadioButton correct1
+- JRadioButton correct2
+- JRadioButton correct3
+- JRadioButton correct4
+- ButtonGroup correctGroup
+- AddQuestionController controller
+- int lobbyPin
++ int getCorrectAnswerIndex()
+}
+
+
+class use_cases.AddQuestion.AddQuestionInteractor {
+- AddQuestionLobbyDataAccessInterface lobbyDataAccess
+- AddQuestionOutputBoundary presenter
+- QuestionFactory questionFactory
++ void execute(AddQuestionInputData)
+}
+
+
+class entities.Question {
+- String prompt
+- List<String> choices
+- int correctIndex
++ String getPrompt()
++ List<String> getChoices()
++ int getCorrectIndex()
++ String getCorrectAnswer()
+}
+
+
+class app.Main {
+}
+class entities.User {
+- String name
+- int score
+- int lobbyPin
++ String getName()
++ int getScore()
++ int getLobbyPin()
++ void incrementScore()
++ void resetScore()
+}
+
+
+class use_cases.AddQuestion.AddQuestionInputData {
+- String prompt
+- int lobbyPin
+- List<String> choices
+- int correctIndex
+~ String getPrompt()
+~ int getLobbyPin()
+~ List<String> getChoices()
+~ int getCorrectIndex()
+}
+
+
+class use_cases.view.StartScreenView {
++ {static} void main(String[])
+}
+
+interface use_cases.AddQuestion.AddQuestionOutputBoundary {
+~ void prepareSuccessView(AddQuestionOutputData)
+~ void prepareFailView(String)
+}
+
+class data_access.InMemoryDataAccessObject {
+- Lobby lobby
++ Lobby getLobby()
++ void saveLobby(Lobby)
+}
+
+
+class use_cases.view.LobbyPrepView {
+- LobbyPrepViewModel viewModel
+- AddQuestionController controller
+- JLabel pinLabel
+- JLabel questionCountLabel
+- JButton addQuestionButton
+- void refreshQuestionCount()
++ {static} void main(String[])
+}
+
+
+class gui {
++ {static} void main(String[])
+}
+
+interface use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface {
+~ Lobby getLobby()
+~ void saveLobby(Lobby)
+}
+
+class interfaceAdapters.AddQuestion.AddQuestionController {
+- AddQuestionInputBoundary addQuestionInteractor
++ void execute(String,ArrayList<String>,int,int)
+}
+
+
+class entities.UserFactory {
++ User makeUser(String,int)
+}
+
+interface use_cases.AddQuestion.AddQuestionInputBoundary {
+~ void execute(AddQuestionInputData)
+}
+
+class interfaceAdapters.AddQuestion.AddQuestionPresenter {
+
+}
+
+
+class use_cases.view.ViewManager {
+}
+class entities.Lobby {
+
+}
+
+
+class interfaceAdapters.AddQuestion.LobbyPrepViewModel {
+
+}
+
+
+class use_cases.AddQuestion.AddQuestionOutputData {
+
+}
+
+
+class use_cases.view.GameFrameView {
+
+}
+
+
+class entities.QuestionFactory {
++ Question createQuestion(String,List<String>,int)
+}
+
+class app.AppRunner {
++ {static} void main(String[])
+}
+
+class demo {
++ {static} void main(String[])
+}
+
+class TestGame {
++ {static} void main(String[])
+}
+
+class data_access.LobbyManager {
+- Map<Integer,Lobby> PinToLobby
++ void addLobby(Lobby)
++ Lobby getLobby(int)
++ void removeLobby(int)
+}
+
+
+
+
+use_cases.view.JFrame <|-- use_cases.view.AddQuestionView
+use_cases.AddQuestion.AddQuestionInputBoundary <|.. use_cases.AddQuestion.AddQuestionInteractor
+use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface <|.. data_access.InMemoryDataAccessObject
+use_cases.view.JFrame <|-- use_cases.view.LobbyPrepView
+use_cases.AddQuestion.AddQuestionOutputBoundary <|.. interfaceAdapters.AddQuestion.AddQuestionPresenter
+use_cases.view.JFrame <|-- use_cases.view.GameFrameView
+@enduml

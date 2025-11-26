@@ -17,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="backenddev1" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,6 +54,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.AppRunner.executor": "Run",
     "Application.LobbyPrepView.executor": "Run",
     "Application.StartScreenView.executor": "Run",
     "Application.gui.executor": "Run",
@@ -62,17 +63,18 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true"
+    "git-widget-placeholder": "xander-will-merge",
+    "kotlin-language-version-configured": "true",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="LobbyPrepView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="use_cases.view.LobbyPrepView" />
+  <component name="RunManager" selected="Application.AppRunner">
+    <configuration name="AppRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.AppRunner" />
       <module name="TeamProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="use_cases.view.*" />
+          <option name="PATTERN" value="app.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,19 +136,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="TeamProject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AppRunner" />
         <item itemvalue="Application.gui" />
         <item itemvalue="JUnit.AddQuestionInteractorTest.testFailIfLobbyMissing" />
         <item itemvalue="JUnit.AddQuestionInteractorTest" />
         <item itemvalue="JUnit.AddQuestionDataHolderTests.testGettersReturnCorrectValues" />
-        <item itemvalue="Application.LobbyPrepView" />
       </list>
     </recent_temporary>
   </component>
@@ -194,17 +190,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
-          <line>46</line>
+          <line>48</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
-          <line>41</line>
+          <line>43</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
-          <line>42</line>
+          <line>44</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

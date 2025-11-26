@@ -1,9 +1,11 @@
 package use_cases.AddQuestion;
 
+import api_caller.api_caller;
 import entities.Lobby;
 import entities.Question;
 import entities.QuestionFactory;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class AddQuestionInteractor implements AddQuestionInputBoundary {
@@ -47,9 +49,20 @@ public class AddQuestionInteractor implements AddQuestionInputBoundary {
             AddQuestionOutputData outputData = new AddQuestionOutputData("Question added successfully!");
             presenter.prepareSuccessView(outputData);
         }
+
         //
         //Create Question from input data using Question Factory
         // Need to get Lobby object stored in MemoryDataAccessObject
         //Now I need to make some output data
+    }
+
+    @Override
+    public void sendQuestions(int lobbyPin) throws MalformedURLException {
+        api_caller apiCaller = new api_caller();
+        Lobby lobby = lobbyDataAccess.getLobby();
+        //Need to update Get lobby with pin
+        Question[] Questions = lobby.getQuestions().toArray(new Question[0]);
+        apiCaller.sendQuestions(String.valueOf(lobbyPin), Questions);
+
     }
 }

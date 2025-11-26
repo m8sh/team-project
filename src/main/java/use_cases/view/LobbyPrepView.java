@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+
 
 public class LobbyPrepView extends JFrame {
 
@@ -45,12 +47,46 @@ public class LobbyPrepView extends JFrame {
             AddQuestionView popup = new AddQuestionView(viewModel.getLobbyPin(), controller);
             popup.setVisible(true);
         });
+        // Button to start the session
+        JButton startSessionButton = new JButton("Start Session");
+
+        startSessionButton.addActionListener(e2 -> {
+
+            if(viewModel.getQuestionCount() == 0){
+                JFrame noQuestionFrame = new JFrame("No questions added");
+                JPanel noQuestionPanel = new JPanel();
+                noQuestionPanel.add(new JLabel("Please add at least one question before starting a session"));
+
+                noQuestionFrame.add(noQuestionPanel);
+                noQuestionFrame.setMinimumSize(new java.awt.Dimension(300, 150));
+                noQuestionFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                noQuestionFrame.pack();
+                noQuestionFrame.setLocationRelativeTo(this);
+                noQuestionFrame.setVisible(true);
+                return;
+
+            }
+            try {
+                controller.sendQuestions(viewModel.getLobbyPin());
+            } catch (MalformedURLException e) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Failed to start session",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
+            JOptionPane.showMessageDialog(this,
+                    "Session starting... (not implemented yet)");
+        });
 
         panel.add(pinLabel);
         panel.add(Box.createVerticalStrut(10));
         panel.add(questionCountLabel);
         panel.add(Box.createVerticalStrut(10));
         panel.add(addQuestionButton);
+        panel.add(startSessionButton);
 
         //Listener here
         viewModel.addPropertyChangeListener(evt -> {
