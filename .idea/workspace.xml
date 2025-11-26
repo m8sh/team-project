@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="quicksave">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="small bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api_caller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_caller/api_caller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/view/StartScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/view/StartScreenView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,12 +165,21 @@
       <option name="project" value="LOCAL" />
       <updated>1764180342985</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="small bug fix">
+      <option name="closed" value="true" />
+      <created>1764180891156</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1764180891156</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="quicksave" />
-    <option name="LAST_COMMIT_MESSAGE" value="quicksave" />
+    <MESSAGE value="small bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="small bug fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
