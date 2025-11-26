@@ -1,6 +1,4 @@
-import entities.Lobby;
-import entities.Question;
-import entities.User;
+package entities;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,11 +11,11 @@ public class GameFrame extends JFrame {
     private final User currentUser;  // single player for now
     private final CardLayout cardLayout;
     private final JPanel cards;
-
+    private int chosen = -1;
     private JPanel questionPanel;
     private JLabel questionLabel;
     private JButton[] choiceButtons;
-
+    private JRadioButton[] radioButtons;
     private int currentQuestionIndex = 0;
     private Question currentQuestion;
 
@@ -36,10 +34,29 @@ public class GameFrame extends JFrame {
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
 
+
         createQuestionPanel();
         cards.add(questionPanel, "QUESTION");
 
-        setContentPane(cards);
+        // --- Make a parent container with BorderLayout ---
+        JPanel root = new JPanel(new BorderLayout());
+
+// --- Top-right info bar ---
+        JPanel infoBar = new JPanel(new BorderLayout());
+        infoBar.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        String infoText = "PIN: " + lobby.getPin() + "   |   User: " + currentUser.getName();
+        JLabel infoLabel = new JLabel(infoText, SwingConstants.RIGHT);
+
+        infoBar.add(infoLabel, BorderLayout.EAST);
+
+// Add top and center panels
+        root.add(infoBar, BorderLayout.NORTH);
+        root.add(cards, BorderLayout.CENTER);
+
+// Set the frame’s content
+        setContentPane(root);
+
 
         loadNextQuestionOrEnd();
     }
@@ -55,21 +72,49 @@ public class GameFrame extends JFrame {
         questionPanel.add(questionLabel);
         questionPanel.add(Box.createVerticalStrut(10));
 
-        choiceButtons = new JButton[4]; // up to 4 choices
-        for (int i = 0; i < choiceButtons.length; i++) {
-            final int idx = i;
-            JButton btn = new JButton("Choice " + i);
-            btn.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btn.addActionListener((ActionEvent e) -> handleAnswer(idx));
-            choiceButtons[i] = btn;
-            questionPanel.add(btn);
+        // --- RADIO BUTTONS ---
+        ButtonGroup group = new ButtonGroup();
+        JRadioButton[] radios = new JRadioButton[4];
+
+        for (int i = 0; i < radios.length; i++) {
+            radios[i] = new JRadioButton("Choice " + i);
+            radios[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+            radios[i].setVisible(false);
+            group.add(radios[i]);
+            questionPanel.add(radios[i]);
             questionPanel.add(Box.createVerticalStrut(5));
         }
+
+        // store radio array in place of choiceButtons reference
+        // but without breaking other code:
+        choiceButtons = new JButton[0]; // disable old buttons
+        this.radioButtons = radios;     // ADD THIS ARRAY FIELD TO CLASS
+
+        // --- NEXT QUESTION BUTTON ---
+        JButton nextBtn = new JButton("Next Question");
+        nextBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nextBtn.addActionListener(e -> handleRadioAnswer());
+        questionPanel.add(Box.createVerticalStrut(15));
+        questionPanel.add(nextBtn);
     }
 
     // When a choice is clicked
-    private void handleAnswer(int chosenIndex) {
-        if (currentQuestion != null && chosenIndex == currentQuestion.getCorrectIndex()) {
+    private void handleRadioAnswer() {
+        chosen = -1;
+
+        for (int i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].isVisible() && radioButtons[i].isSelected()) {
+                chosen = i;
+                break;
+            }
+        }
+
+        if (chosen == -1) {
+            JOptionPane.showMessageDialog(this, "Please select an answer.");
+            return;
+        }
+
+        if (chosen == currentQuestion.getCorrectIndex()) {
             currentUser.incrementScore();
             JOptionPane.showMessageDialog(this, "Correct!");
         } else {
@@ -80,6 +125,7 @@ public class GameFrame extends JFrame {
         currentQuestionIndex++;
         loadNextQuestionOrEnd();
     }
+
 
     // Decide: next question or end screen
     private void loadNextQuestionOrEnd() {
@@ -93,16 +139,18 @@ public class GameFrame extends JFrame {
         currentQuestion = questions.get(currentQuestionIndex);
 
         questionLabel.setText(currentQuestion.getPrompt());
-
         List<String> choices = currentQuestion.getChoices();
-        for (int i = 0; i < choiceButtons.length; i++) {
+        for (int i = 0; i < radioButtons.length; i++) {
             if (i < choices.size()) {
-                choiceButtons[i].setText(choices.get(i));
-                choiceButtons[i].setVisible(true);
+                radioButtons[i].setText(choices.get(i));
+                radioButtons[i].setVisible(true);
+                radioButtons[i].setSelected(false);
             } else {
-                choiceButtons[i].setVisible(false);
+                radioButtons[i].setVisible(false);
+                radioButtons[i].setSelected(false);
             }
         }
+
 
         cardLayout.show(cards, "QUESTION");
     }
@@ -132,11 +180,13 @@ public class GameFrame extends JFrame {
         playAgainButton.addActionListener(e -> resetGame());
         endPanel.add(playAgainButton);
 
-        JButton exitButton = new JButton("Exit");
-        exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        exitButton.addActionListener(e -> dispose());
+        JButton submitButton = new JButton("Submit");
+        submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        submitButton.addActionListener(e -> {
+
+        });
         endPanel.add(Box.createVerticalStrut(10));
-        endPanel.add(exitButton);
+        endPanel.add(submitButton);
 
         cards.add(endPanel, "END");
         cardLayout.show(cards, "END");
