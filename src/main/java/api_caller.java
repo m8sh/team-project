@@ -217,8 +217,8 @@ public class api_caller {
             if (ch == '"' && previous != '\\') inString = !inString;
             if (!inString){
                 if (ch == '[') depth++;
-                else if (ch == '{') {
-                    depth++;
+                else if (ch == ']') {
+                    depth--;
                     if (depth == 0){
                         arrEndIndex = i;
                         break;
@@ -231,6 +231,9 @@ public class api_caller {
 
         String body = json.substring(arrStartIndex + 1, arrEndIndex);
         if (body.isEmpty()) return new Object[0];
+
+        depth = 0;
+        inString = false;
 
         List<String> out = new ArrayList<>();
         for (int i = 0; i < body.length(); i++){
@@ -246,6 +249,7 @@ public class api_caller {
                         depth--;
                         if (depth == 0) {
                             out.add(body.substring(start, i+1));
+                            break;
                         }
                     }
                 }
