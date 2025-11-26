@@ -1,3 +1,4 @@
+import entities.GameFrame;
 import entities.Lobby;
 import entities.Question;
 import entities.User;

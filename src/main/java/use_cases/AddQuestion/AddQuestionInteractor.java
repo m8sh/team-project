@@ -49,7 +49,6 @@ public class AddQuestionInteractor implements AddQuestionInputBoundary {
             AddQuestionOutputData outputData = new AddQuestionOutputData("Question added successfully!");
             presenter.prepareSuccessView(outputData);
         }
-
         //
         //Create Question from input data using Question Factory
         // Need to get Lobby object stored in MemoryDataAccessObject
