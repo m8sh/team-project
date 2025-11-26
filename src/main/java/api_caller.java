@@ -90,7 +90,7 @@ public class api_caller {
 
             questionsListString.append("\"correctIndex\":" + question.getCorrectIndex() + "}");
 
-            questionsListString.append('"').append(questionList[i].toString()).append('"');
+            questionsListString.append('"').append(questionList[i]).append('"');
         }
 
         questionsListString.append("]");
