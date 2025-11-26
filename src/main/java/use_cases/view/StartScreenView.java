@@ -3,7 +3,11 @@ package use_cases.view;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.security.SecureRandom;
+import api_caller.api_caller;
 
 public class StartScreenView {
     public static void main(String[] args) {
@@ -71,12 +75,6 @@ public class StartScreenView {
                     createFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     createFrame.setSize(800, 600);
                     mainframe.setVisible(false);
-
-                    // Create a panel for the session window
-                    JPanel createPanel = new JPanel();
-                    createPanel.setLayout(new BoxLayout(createPanel, BoxLayout.Y_AXIS));
-
-                    // Label and Add Question button
                     String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                     SecureRandom random = new SecureRandom();
                     StringBuilder pin = new StringBuilder();
@@ -85,6 +83,19 @@ public class StartScreenView {
                         int index = random.nextInt(letters.length());
                         pin.append(letters.charAt(index));
                     }
+                    try {
+                        api_caller apiCaller = new api_caller();
+                        apiCaller.createRoom(pin.toString());
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                    // Take the api into the itamar's screen
+
+
+                    // Create a panel for the session window
+                    JPanel createPanel = new JPanel();
+                    createPanel.setLayout(new BoxLayout(createPanel, BoxLayout.Y_AXIS));
 
                     JLabel label = new JLabel("Session Window, PIN: " + pin, SwingConstants.CENTER);
                     JButton addQuestion = new JButton("Add Question");
