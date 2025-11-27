@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class ScoreboardPresenter implements ScoreboardOutputBoundary {
 
-    // 1) Talk to the *view model*, not directly to the state
     private final ScoreboardViewModel viewModel;
 
     public ScoreboardPresenter(ScoreboardViewModel viewModel) {
