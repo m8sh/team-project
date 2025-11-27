@@ -171,15 +171,16 @@ public class api_caller {
         }
         @Override
         public void onOpen(WebSocket webSocket) {
-            WebSocket.Listener.super.onOpen(webSocket);
-            System.out.println("opened");
             if (opened != null && !opened.isDone()){
                 opened.complete(null);
             }
+            WebSocket.Listener.super.onOpen(webSocket);
+            System.out.println("opened");
         }
         @Override
         public CompletableFuture<?> onText(WebSocket webSocket, CharSequence data, boolean last){
-            System.out.println("text received");
+            String stringData = data.toString();
+            System.out.println("text received: " + stringData);
             String string = data.toString();
 
             if (string.contains("\"type\":\"questions\"")){
@@ -194,8 +195,9 @@ public class api_caller {
         }
         @Override
         public void onError(WebSocket webSocket, Throwable t){
-            WebSocket.Listener.super.onError(webSocket,t);
             System.out.println("error");
+            t.printStackTrace();
+            WebSocket.Listener.super.onError(webSocket,t);
         }
         @Override
         public CompletableFuture<?> onClose(WebSocket webSocket, int statusCode, String reason){

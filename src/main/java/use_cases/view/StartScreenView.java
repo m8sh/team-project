@@ -87,6 +87,7 @@ public class StartScreenView {
                         api_caller apiCaller = new api_caller();
                         apiCaller.createRoom(pin.toString());
                     } catch (Exception ex) {
+                        ex.printStackTrace();
                         throw new RuntimeException(ex);
                     }
 
