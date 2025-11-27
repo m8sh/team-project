@@ -32,6 +32,7 @@ public class AppRunner {
             LobbyPrepView lobbyPrepView = new LobbyPrepView(viewModel, controller);
             //Need to figure out best way to give this a lobbyPin
             lobbyPrepView.setVisible(true);
+
         });
     }
 
