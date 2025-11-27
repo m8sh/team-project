@@ -191,7 +191,7 @@ public class api_caller {
                 receivedAnswers = extractJSON(string, "\"answers\"");
             }
 
-            return WebSocket.Listener.super.onText(webSocket,data,last).toCompletableFuture();
+            return CompletableFuture.completedFuture(null);
         }
         @Override
         public void onError(WebSocket webSocket, Throwable t){
