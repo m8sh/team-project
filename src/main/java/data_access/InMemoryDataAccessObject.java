@@ -6,10 +6,23 @@ import use_cases.scoreboard.ScoreboardDataAccessInterface;
 public class InMemoryDataAccessObject
         implements ScoreboardDataAccessInterface {
 
+import java.util.HashMap;
+import java.util.Map;
+
+public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInterface {
+
     private Lobby lobby;
 
     public InMemoryDataAccessObject() {
         this.lobby = null;
+        //currently only supports one lobby
+
+
+
+    }
+    @Override
+    public Lobby getLobby() {
+        return lobby;
     }
 
     // AddQuestionLobbyDataAccessInterface methods
@@ -23,5 +36,23 @@ public class InMemoryDataAccessObject
             return lobby;
         }
         return null;
+    public void saveLobby(Lobby lobby) {
+//        System.out.println("DAO: saving lobby " + lobby.getPin()+ " with " + lobby.getQuestions().size() + " questions");
+        this.lobby = lobby;
     }
 }
+
+
+//private Map<Integer, Lobby> PinToLobby;
+//public LobbyManager() {
+//    PinToLobby = new HashMap<Integer, Lobby>();
+//}
+//public void addLobby(Lobby lobby) {
+//    PinToLobby.put(lobby.getPin(), lobby);
+//}
+//public Lobby getLobby(int pin) {
+//    return PinToLobby.get(pin);
+//}
+//public void removeLobby(int pin) {
+//    PinToLobby.remove(pin);
+//}

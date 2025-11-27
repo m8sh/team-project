@@ -31,6 +31,7 @@ public class Question {
         if(prompt.isEmpty()){
             throw new IllegalArgumentException("Prompt is empty");
         }
+        //Handled in GUI
         this.prompt = prompt;
         this.choices = new ArrayList<>(choices);
         this.correctIndex = correctIndex;
@@ -53,10 +54,4 @@ public class Question {
 
     }
 
-    public static void main(String[] args) {
-        List<String> choices = Arrays.asList("1", "2", "3");
-        String prompt = "aaaa";
-        Question q = new Question(prompt, choices, 2);
-
-    }
 }

@@ -1,0 +1,20 @@
+{
+  "name": "shrill-forest-40bb",
+  "main": "src/index.js",
+  "compatibility_date": "2025-11-10",
+
+  "durable_objects": {
+    "bindings": [
+      { "name": "ROOMS_DO", "class_name": "Room" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1-room", "new_sqlite_classes": ["Room"] }
+  ],
+
+  "kv_namespaces": [
+    { "binding": "PIN_INDEX", "id": "7055d75633e94d47a50e0416c5ea24c9" },
+    { "binding": "QUESTION_POOL", "id": "bf15e878921d4fffa46c779cd8dfa45e" }
+  ]
+}
+
