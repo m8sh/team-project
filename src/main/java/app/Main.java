@@ -10,6 +10,7 @@ public class Main {
             builder.addScoreboardView()
                     .addScoreboardUseCase();
 // Add your View and UseCase here
+
             JFrame app = builder.build();
             app.pack();
             app.setVisible(true);

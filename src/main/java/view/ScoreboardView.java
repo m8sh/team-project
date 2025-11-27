@@ -28,7 +28,7 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
         this.scoreboardViewModel = scoreboardViewModel;
         this.scoreboardViewModel.addPropertyChangeListener(this);
 
-        // Layout for the whole panel: North (title), Center (table), South (error + button)
+        // Layout for the whole panel
         setLayout(new BorderLayout());
 
         // Title and Pin panel
@@ -112,7 +112,7 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
 
         public void setRows(List<ScoreboardRowViewModel> rows) {
             this.rows = new ArrayList<>(rows);
-            fireTableDataChanged(); // tells the JTable "redraw yourself"
+            fireTableDataChanged();
         }
 
         @Override

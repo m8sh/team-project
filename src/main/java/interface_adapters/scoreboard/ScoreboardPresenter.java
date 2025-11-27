@@ -1,6 +1,6 @@
 package interface_adapters.scoreboard;
 
-import interface_adapters.ViewModel; // if needed elsewhere
+import interface_adapters.ViewModel;
 import use_cases.scoreboard.ScoreboardOutputBoundary;
 import use_cases.scoreboard.ScoreboardOutputData;
 

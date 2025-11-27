@@ -67,7 +67,7 @@ public class AppBuilder {
 
         application.add(cardPanel);
 
-        // Start on scoreboard for now (later you’ll switch to lobby, etc.)
+        // Start on scoreboard for now
         viewManagerModel.setState(scoreboardView.getViewName());
         viewManagerModel.firePropertyChange();
 

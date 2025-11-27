@@ -1,7 +1,5 @@
 package interface_adapters.scoreboard;
 
-
-
 public class ScoreboardRowViewModel {
     private final int rank;
     private final String name;
