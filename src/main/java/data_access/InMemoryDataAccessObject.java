@@ -1,23 +1,24 @@
 package data_access;
 
 import entities.Lobby;
+import use_cases.scoreboard.ScoreboardDataAccessInterface;
 
-public class InMemoryDataAccessObject {
+public class InMemoryDataAccessObject
+        implements ScoreboardDataAccessInterface {
+
     private Lobby lobby;
 
-    public InMemoryDataAccessObject(Lobby lobby) {
-        this.lobby = lobby;
-        //currently only supports one lobby
-    }
-    public Lobby getLobby() {
-        return lobby;
+    public InMemoryDataAccessObject() {
+        this.lobby = null;
     }
 
-    public void saveLobby(Lobby lobby) {
-        this.lobby = lobby;
-    }
+    // AddQuestionLobbyDataAccessInterface methods
 
-    public Lobby getLobbyByPin(int pin) {
+
+    // ScoreboardDataAccessInterface method
+
+    @Override
+    public Lobby getLobby(int pin) {
         if (lobby != null && lobby.getPin() == pin) {
             return lobby;
         }

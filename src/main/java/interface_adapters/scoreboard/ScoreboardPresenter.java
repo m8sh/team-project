@@ -29,6 +29,7 @@ public class ScoreboardPresenter implements ScoreboardOutputBoundary {
         ScoreboardState state = viewModel.getState();
         state.setRows(rows);
         state.setErrorMessage(null);
+        state.setLobbyPin(data.getLobbyPin());
 
         viewModel.firePropertyChange();
     }

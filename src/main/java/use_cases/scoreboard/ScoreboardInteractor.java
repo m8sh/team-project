@@ -17,8 +17,8 @@ public class ScoreboardInteractor implements ScoreboardInputBoundary {
 
     @Override
     public void showScoreboard(ScoreboardInputData scoreboardInputData) {
-        int pin = scoreboardInputData.getLobbyPin();
-        Lobby lobby = DAO.getLobby(pin);
+        int lobbyPin = scoreboardInputData.getLobbyPin();
+        Lobby lobby = DAO.getLobby(lobbyPin);
         if (lobby == null) {
             presenter.prepareFailView("Lobby not found");
             return;
@@ -35,7 +35,7 @@ public class ScoreboardInteractor implements ScoreboardInputBoundary {
                     user.getScore()
             ));
         }
-        ScoreboardOutputData outputData = new ScoreboardOutputData(rows);
+        ScoreboardOutputData outputData = new ScoreboardOutputData(rows, lobbyPin);
         presenter.prepareSuccessView(outputData);
     }
 }

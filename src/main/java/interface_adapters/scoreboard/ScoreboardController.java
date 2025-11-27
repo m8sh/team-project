@@ -4,13 +4,20 @@ import use_cases.scoreboard.ScoreboardInputBoundary;
 import use_cases.scoreboard.ScoreboardInputData;
 
 public class ScoreboardController {
+
     private final ScoreboardInputBoundary interactor;
-    public ScoreboardController(ScoreboardInputBoundary interactor){
+
+    public ScoreboardController(ScoreboardInputBoundary interactor) {
         this.interactor = interactor;
     }
 
-    public void showScoreboard(int pin){
+    public void showScoreboard(int pin) {
         ScoreboardInputData scoreboardInputData = new ScoreboardInputData(pin);
         interactor.showScoreboard(scoreboardInputData);
     }
+
+    public void endSession() {
+        // Go back to Lobby
+    }
 }
+

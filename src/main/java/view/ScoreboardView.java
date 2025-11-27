@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapters.scoreboard.ScoreboardController;
 import interface_adapters.scoreboard.ScoreboardRowViewModel;
 import interface_adapters.scoreboard.ScoreboardState;
 import interface_adapters.scoreboard.ScoreboardViewModel;
@@ -20,6 +21,8 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
     private final ScoreboardTableModel tableModel;
     private final JLabel errorLabel;
     private final JButton endGameButton;
+    private final JLabel pinLabel;
+    private ScoreboardController scoreboardController;
 
     public ScoreboardView(ScoreboardViewModel scoreboardViewModel) {
         this.scoreboardViewModel = scoreboardViewModel;
@@ -28,9 +31,16 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
         // Layout for the whole panel: North (title), Center (table), South (error + button)
         setLayout(new BorderLayout());
 
-        // Title label
+        // Title and Pin panel
+        JPanel topPanel = new JPanel(new BorderLayout());
+
         JLabel title = new JLabel("Scoreboard");
-        add(title, BorderLayout.NORTH);
+        topPanel.add(title, BorderLayout.WEST);
+
+        pinLabel = new JLabel("");
+        topPanel.add(pinLabel, BorderLayout.EAST);
+
+        add(topPanel, BorderLayout.NORTH);
 
         // Table + scroll pane
         tableModel = new ScoreboardTableModel();
@@ -56,18 +66,23 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
         refreshFromState();
     }
 
+    public String getViewName() {
+        return ScoreboardViewModel.VIEW_NAME;
+    }
+
+    public void setScoreboardController(ScoreboardController scoreboardController) {
+        this.scoreboardController = scoreboardController;
+    }
+
     // Called once in constructor to attach behaviour to the button.
     private void wireActions() {
         endGameButton.addActionListener(e -> {
-            // Find the window this panel is inside, and close it.
-            Window window = SwingUtilities.getWindowAncestor(this);
-            if (window != null) {
-                window.dispose();
+            if (scoreboardController != null) {
+                    scoreboardController.endSession();
             }
         });
     }
 
-    // This runs whenever the ViewModel calls firePropertyChange("state", ...)
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ("state".equals(evt.getPropertyName())) {
@@ -90,7 +105,6 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
         errorLabel.setText(error == null ? "" : error);
     }
 
-    // HOW THE TABLE GETS ITS DATA
     private static class ScoreboardTableModel extends AbstractTableModel {
 
         private final String[] columns = {"Rank", "Name", "Score"};
