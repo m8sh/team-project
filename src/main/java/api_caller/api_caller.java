@@ -87,8 +87,6 @@ public class api_caller {
             questionsListString.append("],");
 
             questionsListString.append("\"correctIndex\":" + question.getCorrectIndex() + "}");
-
-            questionsListString.append('"').append(questionList[i].toString()).append('"');
         }
 
         questionsListString.append("]");
@@ -260,7 +258,6 @@ public class api_caller {
                     depth--;
                     if (depth == 0) {
                         out.add(body.substring(start, i+1));
-                        break;
                     }
                 }
             }
