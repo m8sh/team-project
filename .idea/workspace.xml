@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="small bug fix">
+    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Added a bunch of print statements for debugging.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api_caller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_caller/api_caller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/view/StartScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/view/StartScreenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api_caller/api_caller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_caller/api_caller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,19 +51,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.gui.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.StartScreenView.executor": "Run",
+    "Application.api_caller.executor": "Run",
+    "Application.gui.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "xander-will-merge",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.gui">
+}]]></component>
+  <component name="RunManager">
     <configuration name="LobbyPrepView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="use_cases.view.LobbyPrepView" />
       <module name="TeamProject" />
@@ -173,35 +174,62 @@
       <option name="project" value="LOCAL" />
       <updated>1764180891156</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Some Bug Fixes:&#10; - Fixed nesting issue in api_caller.extractJSON&#10; - Added necessary import to Game.java&#10; - Corrected the syntax for api_caller.sendQuestions">
+      <option name="closed" value="true" />
+      <created>1764269229726</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764269229726</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Some Bug Fixes:&#10; - Fixed api_caller.sendQuestions to correctly create a valid JSON&#10; - Removed an unnecessary break in api_caller.extractJSON">
+      <option name="closed" value="true" />
+      <created>1764269814699</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764269814699</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added a bunch of print statements for debugging.">
+      <option name="closed" value="true" />
+      <created>1764276451616</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1764276451616</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="quicksave" />
     <MESSAGE value="small bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="small bug fix" />
+    <MESSAGE value="Some Bug Fixes:&#10; - Fixed nesting issue in api_caller.extractJSON&#10; - Added necessary import to Game.java&#10; - Corrected the syntax for api_caller.sendQuestions" />
+    <MESSAGE value="Some Bug Fixes:&#10; - Fixed api_caller.sendQuestions to correctly create a valid JSON&#10; - Removed an unnecessary break in api_caller.extractJSON" />
+    <MESSAGE value="Added a bunch of print statements for debugging." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a bunch of print statements for debugging." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
-          <line>46</line>
+          <line>48</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
-          <line>41</line>
+          <line>43</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
-          <line>42</line>
+          <line>44</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java</url>
-          <line>25</line>
+          <line>26</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
