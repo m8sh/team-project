@@ -11,7 +11,7 @@ import use_cases.AddQuestion.AddQuestionInteractor;
 
 import javax.swing.*;
 
-public class AppRunner {
+public class AddQuestionAppRunner {
     //Go through each use case, set everything up
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
