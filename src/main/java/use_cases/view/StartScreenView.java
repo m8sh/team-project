@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.security.SecureRandom;
 import api_caller.api_caller;
+import app.Game;
 
 public class StartScreenView {
     public static void main(String[] args) {
@@ -51,16 +52,11 @@ public class StartScreenView {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     String enteredPin = pinField.getText();
-
+                    String username = nameField.getText();
                     // You can change this PIN check
-                    if (enteredPin.equals("1234")) {
-                        JFrame roomFrame = new JFrame("Room");
-                        JLabel label = new JLabel("Welcome to the Room, waiting to start", SwingConstants.CENTER);
-                        roomFrame.add(label);
-                        roomFrame.setSize(300, 200);
-                        roomFrame.setLocationRelativeTo(null);
-                        roomFrame.setVisible(true);
+                    if (enteredPin.equals("123456")) {
                         mainframe.setVisible(false);
+                        Game.start(username,enteredPin);
                     } else {
                         JOptionPane.showMessageDialog(mainframe, "Incorrect PIN!", "Error", JOptionPane.ERROR_MESSAGE);
                     }

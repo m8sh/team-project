@@ -139,17 +139,24 @@ public class GameFrame extends JFrame {
         currentQuestion = questions.get(currentQuestionIndex);
 
         questionLabel.setText(currentQuestion.getPrompt());
-        List<String> choices = currentQuestion.getChoices();
+        List<String> choices1 = currentQuestion.getChoices();
+
+        for (JRadioButton rb : radioButtons) {
+            rb.setSelected(false);
+            rb.getModel().setPressed(false);
+            rb.getModel().setArmed(false);
+        }
+
         for (int i = 0; i < radioButtons.length; i++) {
-            if (i < choices.size()) {
-                radioButtons[i].setText(choices.get(i));
+            if (i < choices1.size()) {
+                radioButtons[i].setText(choices1.get(i));
                 radioButtons[i].setVisible(true);
-                radioButtons[i].setSelected(false);
             } else {
                 radioButtons[i].setVisible(false);
-                radioButtons[i].setSelected(false);
             }
         }
+
+
 
 
         cardLayout.show(cards, "QUESTION");

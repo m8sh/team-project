@@ -13,18 +13,15 @@ import use_cases.NextQuestion.NextQuestionInteractor;
 import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 public class Game {
 
-    public static void main(String[] args) {
+    public static void start(String username, String lobbyPin) {
 
         SwingUtilities.invokeLater(() -> {
             try {
                 api_caller api = new api_caller();
-
-                String lobbyPin = "123456";
-                String username = "Player 1";
-
 
                 api.joinRoom(lobbyPin, username);
                 Object[] questionObjects = api.recieveQuestions(lobbyPin);
@@ -33,7 +30,6 @@ public class Game {
                 for (Object q : questionObjects) {
                     lobby.addQuestion((Question) q);
                 }
-
                 User player = new User(username, Integer.parseInt(lobbyPin));
                 lobby.addUser(player);
 
