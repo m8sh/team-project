@@ -16,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="backenddev1" />
+        <entry key="$PROJECT_DIR$" value="itamar" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,6 +53,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.AddQuestionAppRunner.executor": "Run",
+    "Application.AppRunner.executor": "Run",
     "Application.StartScreenView.executor": "Run",
     "Application.api_caller.executor": "Run",
     "Application.gui.executor": "Run",
@@ -62,7 +64,8 @@
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "git-widget-placeholder": "xander-will-merge",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RunManager">
@@ -135,11 +138,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.gui" />
         <item itemvalue="JUnit.AddQuestionInteractorTest.testFailIfLobbyMissing" />
         <item itemvalue="JUnit.AddQuestionInteractorTest" />
         <item itemvalue="JUnit.AddQuestionDataHolderTests.testGettersReturnCorrectValues" />
         <item itemvalue="Application.LobbyPrepView" />
+        <item itemvalue="Application.gui" />
       </list>
     </recent_temporary>
   </component>
