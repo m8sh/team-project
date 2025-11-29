@@ -12,13 +12,16 @@ public class AddQuestionInteractor implements AddQuestionInputBoundary {
     private final AddQuestionLobbyDataAccessInterface lobbyDataAccess;
     private final AddQuestionOutputBoundary presenter;
     private final QuestionFactory questionFactory;
+    private final api_caller apiCaller;
 
     public AddQuestionInteractor(AddQuestionLobbyDataAccessInterface lobbyDataAccess,
                                  AddQuestionOutputBoundary presenter,
-                                 QuestionFactory questionFactory){
+                                 QuestionFactory questionFactory, api_caller apiCaller) {
         this.lobbyDataAccess = lobbyDataAccess;
         this.presenter = presenter;
         this.questionFactory = questionFactory;
+        this.apiCaller = apiCaller;
+
     }
 
     // should make a question based on input data, make question entity that we want to add to the lobby
@@ -57,7 +60,6 @@ public class AddQuestionInteractor implements AddQuestionInputBoundary {
 
     @Override
     public void sendQuestions(int lobbyPin) throws MalformedURLException {
-        api_caller apiCaller = new api_caller();
         Lobby lobby = lobbyDataAccess.getLobby();
         //Need to update Get lobby with pin
         Question[] Questions = lobby.getQuestions().toArray(new Question[0]);

@@ -21,7 +21,7 @@ public class LobbyPrepView extends JFrame {
     private JButton addQuestionButton;
 
     public LobbyPrepView(LobbyPrepViewModel viewModel, AddQuestionController controller) {
-        super("Lobby Prep");
+        super("LobbyPrepView");
         this.viewModel = viewModel;
         this.controller = controller;
 
