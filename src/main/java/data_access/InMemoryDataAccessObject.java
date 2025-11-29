@@ -8,8 +8,7 @@ import use_cases.scoreboard.ScoreboardDataAccessInterface;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInterface, NextQuestionLobbyDataAccessInterface {
-public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInterface, ScoreboardDataAccessInterface {
+public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInterface, NextQuestionLobbyDataAccessInterface, ScoreboardDataAccessInterface {
 
     private Lobby lobby;
 

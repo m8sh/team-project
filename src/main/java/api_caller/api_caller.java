@@ -13,9 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import entities.Question;
+import use_cases.AddQuestion.SendQuestionsDataAccess;
 
 
-public class api_caller {
+public class api_caller implements SendQuestionsDataAccess {
 
     private final URL urlBase = new URL("https://shrill-forest-40bb.sw-william08.workers.dev");
     private final String wsBase = "wss://shrill-forest-40bb.sw-william08.workers.dev";
