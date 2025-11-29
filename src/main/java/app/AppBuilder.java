@@ -1,14 +1,25 @@
 package app;
 
 import data_access.InMemoryDataAccessObject;
+import entities.QuestionFactory;
+import interface_adapters.AddQuestion.AddQuestionController;
+import interface_adapters.AddQuestion.AddQuestionPresenter;
+import interface_adapters.AddQuestion.LobbyPrepViewModel;
 import interface_adapters.ViewManagerModel;
+
 import interface_adapters.scoreboard.ScoreboardController;
 import interface_adapters.scoreboard.ScoreboardPresenter;
 import interface_adapters.scoreboard.ScoreboardViewModel;
+
+import use_cases.addQuestion.AddQuestionInputBoundary;
+import use_cases.addQuestion.AddQuestionInteractor;
+import use_cases.addQuestion.AddQuestionOutputBoundary;
 import use_cases.scoreboard.ScoreboardDataAccessInterface;
 import use_cases.scoreboard.ScoreboardInputBoundary;
 import use_cases.scoreboard.ScoreboardInteractor;
 import use_cases.scoreboard.ScoreboardOutputBoundary;
+
+import view.LobbyPrepView;
 import view.ScoreboardView;
 import view.ViewManager;
 
@@ -31,11 +42,18 @@ public class AppBuilder {
     // (controller kept as a field in case another view needs it later)
     private ScoreboardController scoreboardController;
 
+    // AddQuestion
+    private LobbyPrepViewModel lobbyPrepViewModel;
+    private LobbyPrepView lobbyPrepView;
+    private AddQuestionController addQuestionController;
+
+
+
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
     }
 
-    // ---------- VIEWS ----------
+    // ----------SCOREBOARD VIEWS ----------
     public AppBuilder addScoreboardView() {
         scoreboardViewModel = new ScoreboardViewModel();
         scoreboardView = new ScoreboardView(scoreboardViewModel);
@@ -43,7 +61,7 @@ public class AppBuilder {
         return this;
     }
 
-    // ---------- USE CASES ----------
+    // ---------- SCOREBOARD USE CASES ----------
     public AppBuilder addScoreboardUseCase() {
         ScoreboardOutputBoundary outputBoundary =
                 new ScoreboardPresenter(scoreboardViewModel);
@@ -59,6 +77,51 @@ public class AppBuilder {
         return this;
     }
 
+
+    // ---------- ADDQUESTION VIEWS ----------
+    public AppBuilder addLobbyPrepView(int lobbyPin) {
+
+        lobbyPrepViewModel = new LobbyPrepViewModel(123456);
+
+
+        lobbyPrepView = new LobbyPrepView(lobbyPrepViewModel, addQuestionController, viewManagerModel ); // controller set below
+
+        cardPanel.add(lobbyPrepView, lobbyPrepView.getViewName());
+
+        return this;
+    }
+
+
+    // ---------- ADDQUESTION USE CASES ----------
+
+    public AppBuilder addAddQuestionUseCase() {
+
+        AddQuestionOutputBoundary outputBoundary =
+                new AddQuestionPresenter(lobbyPrepViewModel, viewManagerModel, scoreboardViewModel);
+        // ^ If you later extend AddQuestionPresenter to also take
+        //   ViewManagerModel + ScoreboardViewModel, you can switch
+        //   to scoreboard after saving a question.
+        //   For now, this keeps his existing behaviour only.
+        QuestionFactory questionFactory = new QuestionFactory();
+        AddQuestionInputBoundary interactor =
+                new AddQuestionInteractor(lobbyDataAccessObject, outputBoundary, questionFactory);
+
+        addQuestionController = new AddQuestionController(interactor);
+
+        // Give controller to LobbyPrepView so its "Add Question"
+        // button can open AddQuestionView and call controller.execute()
+        lobbyPrepView.setAddQuestionController(addQuestionController);
+
+        return this;                                             // QUESTION
+    }
+
+
+
+
+
+
+
+
     // ---------- BUILD FRAME ----------
 
     public JFrame build() {
@@ -68,7 +131,7 @@ public class AppBuilder {
         application.add(cardPanel);
 
         // Start on scoreboard for now
-        viewManagerModel.setState(scoreboardView.getViewName());
+        viewManagerModel.setState(lobbyPrepView.getViewName());
         viewManagerModel.firePropertyChange();
 
         return application;

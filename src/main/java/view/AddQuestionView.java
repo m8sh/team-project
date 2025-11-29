@@ -1,6 +1,6 @@
-package use_cases.view;
+package view;
 
-import interfaceAdapters.AddQuestion.AddQuestionController;
+import interface_adapters.AddQuestion.AddQuestionController;
 
 import javax.swing.*;
 import java.util.ArrayList;

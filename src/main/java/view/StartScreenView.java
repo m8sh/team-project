@@ -1,4 +1,4 @@
-package use_cases.view;
+package view;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

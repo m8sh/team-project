@@ -5,8 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="quicksave">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaceAdapters/AddQuestion/AddQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/AddQuestion/AddQuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaceAdapters/AddQuestion/AddQuestionPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/AddQuestion/AddQuestionPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaceAdapters/AddQuestion/LobbyPrepViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/AddQuestion/LobbyPrepViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionLobbyDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionLobbyDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionOutputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/view/AddQuestionView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AddQuestionView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/view/LobbyPrepView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LobbyPrepView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/view/StartScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StartScreenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/view/ViewManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_cases/AddQuestion/AddQuestionDataHolderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_cases/addQuestion/AddQuestionDataHolderTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_cases/AddQuestion/AddQuestionInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_cases/addQuestion/AddQuestionInteractorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="backenddev1" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,7 +48,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/m8sh/team-project.git&quot;,
-    &quot;accountId&quot;: &quot;6b0ba349-2ab8-415d-942f-61b2394a73a1&quot;
+    &quot;accountId&quot;: &quot;2d5286b3-b7aa-43e1-ac35-318c6ce25df5&quot;
   },
   &quot;recentNewPullRequestHead&quot;: {
     &quot;server&quot;: {
@@ -47,29 +65,63 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="361g8V82eWgcaIP455o0lB8yZ7S" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.AppRunner.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.StartScreenView.executor": "Run",
     "Application.gui.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true"
+    "git-widget-placeholder": "Merge",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "to.speed.mode.migration.done": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.gui">
-    <configuration name="LobbyPrepView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="use_cases.view.LobbyPrepView" />
+  <component name="RunManager" selected="Application.StartScreenView">
+    <configuration name="AppRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.AppRunner" />
       <module name="TeamProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="use_cases.view.*" />
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="TeamProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StartScreenView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.StartScreenView" />
+      <module name="TeamProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="view.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -84,66 +136,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AddQuestionDataHolderTests.testGettersReturnCorrectValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TeamProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="use_cases.AddQuestion.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="use_cases.AddQuestion" />
-      <option name="MAIN_CLASS_NAME" value="use_cases.AddQuestion.AddQuestionDataHolderTests" />
-      <option name="METHOD_NAME" value="testGettersReturnCorrectValues" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AddQuestionInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TeamProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="use_cases.AddQuestion.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="use_cases.AddQuestion" />
-      <option name="MAIN_CLASS_NAME" value="use_cases.AddQuestion.AddQuestionInteractorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AddQuestionInteractorTest.testFailIfLobbyMissing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TeamProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="use_cases.AddQuestion.*" />
+          <option name="PATTERN" value="use_cases.addQuestion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="use_cases.AddQuestion" />
-      <option name="MAIN_CLASS_NAME" value="use_cases.AddQuestion.AddQuestionInteractorTest" />
+      <option name="MAIN_CLASS_NAME" value="use_cases.addQuestion.AddQuestionInteractorTest" />
       <option name="METHOD_NAME" value="testFailIfLobbyMissing" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="TeamProject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StartScreenView" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.AppRunner" />
         <item itemvalue="Application.gui" />
         <item itemvalue="JUnit.AddQuestionInteractorTest.testFailIfLobbyMissing" />
-        <item itemvalue="JUnit.AddQuestionInteractorTest" />
-        <item itemvalue="JUnit.AddQuestionDataHolderTests.testGettersReturnCorrectValues" />
-        <item itemvalue="Application.LobbyPrepView" />
       </list>
     </recent_temporary>
   </component>
@@ -181,24 +196,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java</url>
           <line>46</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java</url>
           <line>41</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java</url>
           <line>42</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

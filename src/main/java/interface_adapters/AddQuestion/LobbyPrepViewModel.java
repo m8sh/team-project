@@ -1,4 +1,4 @@
-package interfaceAdapters.AddQuestion;
+package interface_adapters.AddQuestion;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
