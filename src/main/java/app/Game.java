@@ -6,14 +6,13 @@ import entities.GameFrame;
 import entities.Lobby;
 import entities.Question;
 import entities.User;
-import interfaceAdapters.NextQuestion.NextQuestionController;
-import interfaceAdapters.NextQuestion.NextQuestionPresenter;
-import interfaceAdapters.NextQuestion.NextQuestionViewModel;
+import interface_adapters.NextQuestion.NextQuestionController;
+import interface_adapters.NextQuestion.NextQuestionPresenter;
+import interface_adapters.NextQuestion.NextQuestionViewModel;
 import use_cases.NextQuestion.NextQuestionInteractor;
 import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
 
 import javax.swing.*;
-import java.util.Arrays;
 
 public class Game {
 
