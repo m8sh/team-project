@@ -1,7 +1,7 @@
 package data_access;
 
 import entities.Lobby;
-import use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface;
+import use_cases.addQuestion.AddQuestionLobbyDataAccessInterface;
 import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
 import use_cases.scoreboard.ScoreboardDataAccessInterface;
 

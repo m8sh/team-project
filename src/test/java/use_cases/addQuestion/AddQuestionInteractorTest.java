@@ -20,7 +20,7 @@ class AddQuestionInteractorTest {
     private QuestionFactory factory;
     private TestPresenter testPresenter;
     private AddQuestionInteractor interactor;
-    private SendQuestionsDataAccess apiCaller;
+    private use_cases.AddQuestion.SendQuestionsDataAccess apiCaller;
 
     static class TestPresenter implements AddQuestionOutputBoundary {
         boolean successCalled = false;

@@ -12,7 +12,6 @@ import java.net.MalformedURLException;
 public class LobbyPrepView extends JPanel {
 
     private final LobbyPrepViewModel viewModel;
-    private AddQuestionController controller;
     private final ViewManagerModel viewManagerModel;
     private AddQuestionController controller;
 
@@ -23,10 +22,9 @@ public class LobbyPrepView extends JPanel {
 
     public LobbyPrepView(LobbyPrepViewModel viewModel,
                           AddQuestionController controller, ViewManagerModel viewManagerModel) {
-    private String viewName;
+
 
         this.viewModel = viewModel;
-        this.viewName = "LobbyPrepView";
         this.viewManagerModel= viewManagerModel;
         this.controller = controller;
 

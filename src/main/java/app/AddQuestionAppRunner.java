@@ -7,10 +7,10 @@ import entities.QuestionFactory;
 import interface_adapters.AddQuestion.AddQuestionController;
 import interface_adapters.AddQuestion.AddQuestionPresenter;
 import interface_adapters.AddQuestion.LobbyPrepViewModel;
-import use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface;
+import use_cases.addQuestion.AddQuestionLobbyDataAccessInterface;
 import view.LobbyPrepView;
 
-import use_cases.AddQuestion.AddQuestionInteractor;
+import use_cases.addQuestion.AddQuestionInteractor;
 
 import javax.swing.*;
 import java.io.IOException;
