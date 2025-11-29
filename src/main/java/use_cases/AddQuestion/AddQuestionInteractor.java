@@ -1,6 +1,5 @@
 package use_cases.AddQuestion;
 
-import api_caller.api_caller;
 import entities.Lobby;
 import entities.Question;
 import entities.QuestionFactory;
@@ -12,15 +11,15 @@ public class AddQuestionInteractor implements AddQuestionInputBoundary {
     private final AddQuestionLobbyDataAccessInterface lobbyDataAccess;
     private final AddQuestionOutputBoundary presenter;
     private final QuestionFactory questionFactory;
-    private final api_caller apiCaller;
+    private final SendQuestionsDataAccess sendGateway;
 
     public AddQuestionInteractor(AddQuestionLobbyDataAccessInterface lobbyDataAccess,
                                  AddQuestionOutputBoundary presenter,
-                                 QuestionFactory questionFactory, api_caller apiCaller) {
+                                 QuestionFactory questionFactory, SendQuestionsDataAccess apiCaller) {
         this.lobbyDataAccess = lobbyDataAccess;
         this.presenter = presenter;
         this.questionFactory = questionFactory;
-        this.apiCaller = apiCaller;
+        this.sendGateway = apiCaller;
 
     }
 
@@ -63,7 +62,7 @@ public class AddQuestionInteractor implements AddQuestionInputBoundary {
         Lobby lobby = lobbyDataAccess.getLobby();
         //Need to update Get lobby with pin
         Question[] Questions = lobby.getQuestions().toArray(new Question[0]);
-        apiCaller.sendQuestions(String.valueOf(lobbyPin), Questions);
+        sendGateway.sendQuestions(String.valueOf(lobbyPin), Questions);
 
     }
 }
