@@ -1,6 +1,8 @@
 package app;
 
+import api_caller.api_caller;
 import data_access.InMemoryDataAccessObject;
+import entities.Lobby;
 import entities.QuestionFactory;
 import interface_adapters.AddQuestion.AddQuestionController;
 import interface_adapters.AddQuestion.AddQuestionPresenter;
@@ -14,6 +16,8 @@ import interface_adapters.scoreboard.ScoreboardViewModel;
 import use_cases.addQuestion.AddQuestionInputBoundary;
 import use_cases.addQuestion.AddQuestionInteractor;
 import use_cases.addQuestion.AddQuestionOutputBoundary;
+import use_cases.addQuestion.SendQuestionsDataAccess;
+
 import use_cases.scoreboard.ScoreboardDataAccessInterface;
 import use_cases.scoreboard.ScoreboardInputBoundary;
 import use_cases.scoreboard.ScoreboardInteractor;
@@ -25,6 +29,9 @@ import view.ViewManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 
 public class AppBuilder {
 
@@ -46,12 +53,19 @@ public class AppBuilder {
     private LobbyPrepViewModel lobbyPrepViewModel;
     private LobbyPrepView lobbyPrepView;
     private AddQuestionController addQuestionController;
-
-
+    private SendQuestionsDataAccess apiCaller;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
-    }
+
+        try {
+                api_caller caller = new api_caller();
+                caller.createRoom("123");
+                this.apiCaller = caller;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
 
     // ----------SCOREBOARD VIEWS ----------
     public AppBuilder addScoreboardView() {
@@ -81,7 +95,7 @@ public class AppBuilder {
     // ---------- ADDQUESTION VIEWS ----------
     public AppBuilder addLobbyPrepView(int lobbyPin) {
 
-        lobbyPrepViewModel = new LobbyPrepViewModel(123456);
+        lobbyPrepViewModel = new LobbyPrepViewModel(123);
 
 
         lobbyPrepView = new LobbyPrepView(lobbyPrepViewModel, addQuestionController, viewManagerModel ); // controller set below
@@ -98,21 +112,16 @@ public class AppBuilder {
 
         AddQuestionOutputBoundary outputBoundary =
                 new AddQuestionPresenter(lobbyPrepViewModel, viewManagerModel, scoreboardViewModel);
-        // ^ If you later extend AddQuestionPresenter to also take
-        //   ViewManagerModel + ScoreboardViewModel, you can switch
-        //   to scoreboard after saving a question.
-        //   For now, this keeps his existing behaviour only.
+
         QuestionFactory questionFactory = new QuestionFactory();
         AddQuestionInputBoundary interactor =
-                new AddQuestionInteractor(lobbyDataAccessObject, outputBoundary, questionFactory);
+                new AddQuestionInteractor(lobbyDataAccessObject, outputBoundary, questionFactory, apiCaller);
 
         addQuestionController = new AddQuestionController(interactor);
 
-        // Give controller to LobbyPrepView so its "Add Question"
-        // button can open AddQuestionView and call controller.execute()
         lobbyPrepView.setAddQuestionController(addQuestionController);
 
-        return this;                                             // QUESTION
+        return this;
     }
 
 

@@ -1,5 +1,8 @@
 package interface_adapters.NextQuestion;
 
+import interface_adapters.ViewManagerModel;
+import interface_adapters.scoreboard.ScoreboardState;
+import interface_adapters.scoreboard.ScoreboardViewModel;
 import use_cases.NextQuestion.NextQuestionOutputBoundary;
 import use_cases.NextQuestion.NextQuestionOutputData;
 import entities.Question;
@@ -7,16 +10,24 @@ import entities.Question;
 public class NextQuestionPresenter implements NextQuestionOutputBoundary {
 
     private final NextQuestionViewModel viewModel;
+    private  ViewManagerModel viewManagerModel;
+    private  ScoreboardViewModel scoreboardViewModel;
 
-    public NextQuestionPresenter(NextQuestionViewModel viewModel) {
+    public NextQuestionPresenter(NextQuestionViewModel viewModel, ViewManagerModel viewManagerModel,
+                                 ScoreboardViewModel scoreboardViewModel) {
         this.viewModel = viewModel;
+        this.viewManagerModel = viewManagerModel;
+        this.scoreboardViewModel = scoreboardViewModel;
     }
 
     public void prepareSuccessView(NextQuestionOutputData outputData) {
         Question nextQuestion = outputData.getQuestion();
         // Update the view model with the next question
         viewModel.setCurrentQuestion(nextQuestion);
-        viewModel.setPopupMessage(outputData.getMessage()); // optional message
+        viewModel.setPopupMessage(outputData.getMessage());// optional message
+        viewManagerModel.setState(ScoreboardViewModel.VIEW_NAME);
+        viewManagerModel.firePropertyChange();
+
     }
 
     @Override

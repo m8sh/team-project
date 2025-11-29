@@ -7,6 +7,11 @@
     <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Added a bunch of print statements for debugging.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api_caller/api_caller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_caller/api_caller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AddQuestionAppRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AddQuestionAppRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/NextQuestion/NextQuestionPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/NextQuestion/NextQuestionPresenter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +71,7 @@
   "keyToString": {
     "Application.AddQuestionAppRunner.executor": "Run",
     "Application.AppRunner.executor": "Run",
+    "Application.Main.executor": "Run",
     "Application.StartScreenView.executor": "Run",
     "Application.api_caller.executor": "Run",
     "Application.gui.executor": "Run",
@@ -74,7 +80,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "#12 on itamar",
+    "git-widget-placeholder": "XanderCareyMerge",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -90,13 +96,26 @@
     ]
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="LobbyPrepView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="use_cases.view.LobbyPrepView" />
+  <component name="RunManager" selected="Application.AddQuestionAppRunner">
+    <configuration name="AddQuestionAppRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.AddQuestionAppRunner" />
       <module name="TeamProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="use_cases.view.*" />
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="TeamProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,22 +126,6 @@
     <configuration name="gui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui" />
       <module name="TeamProject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AddQuestionDataHolderTests.testGettersReturnCorrectValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TeamProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="use_cases.AddQuestion.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="use_cases.AddQuestion" />
-      <option name="MAIN_CLASS_NAME" value="use_cases.AddQuestion.AddQuestionDataHolderTests" />
-      <option name="METHOD_NAME" value="testGettersReturnCorrectValues" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -160,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AddQuestionAppRunner" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.gui" />
         <item itemvalue="JUnit.AddQuestionInteractorTest.testFailIfLobbyMissing" />
         <item itemvalue="JUnit.AddQuestionInteractorTest" />
-        <item itemvalue="JUnit.AddQuestionDataHolderTests.testGettersReturnCorrectValues" />
-        <item itemvalue="Application.LobbyPrepView" />
       </list>
     </recent_temporary>
   </component>

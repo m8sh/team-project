@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import entities.Question;
-import use_cases.AddQuestion.SendQuestionsDataAccess;
+import use_cases.addQuestion.SendQuestionsDataAccess;
 
 
 public class api_caller implements SendQuestionsDataAccess {

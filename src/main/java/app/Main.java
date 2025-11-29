@@ -7,7 +7,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             AppBuilder builder = new AppBuilder();
 
-            builder.addLobbyPrepView(123456)
+            builder.addLobbyPrepView(123)
                     .addScoreboardView()
                     .addScoreboardUseCase();
 // Add your View and UseCase here
