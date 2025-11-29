@@ -3,7 +3,12 @@ package use_cases.view;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.security.SecureRandom;
+import api_caller.api_caller;
+import app.Game;
 
 public class StartScreenView {
     public static void main(String[] args) {
@@ -47,16 +52,11 @@ public class StartScreenView {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     String enteredPin = pinField.getText();
-
+                    String username = nameField.getText();
                     // You can change this PIN check
-                    if (enteredPin.equals("1234")) {
-                        JFrame roomFrame = new JFrame("Room");
-                        JLabel label = new JLabel("Welcome to the Room, waiting to start", SwingConstants.CENTER);
-                        roomFrame.add(label);
-                        roomFrame.setSize(300, 200);
-                        roomFrame.setLocationRelativeTo(null);
-                        roomFrame.setVisible(true);
+                    if (enteredPin.equals("123456")) {
                         mainframe.setVisible(false);
+                        Game.start(username,enteredPin);
                     } else {
                         JOptionPane.showMessageDialog(mainframe, "Incorrect PIN!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
@@ -71,12 +71,6 @@ public class StartScreenView {
                     createFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     createFrame.setSize(800, 600);
                     mainframe.setVisible(false);
-
-                    // Create a panel for the session window
-                    JPanel createPanel = new JPanel();
-                    createPanel.setLayout(new BoxLayout(createPanel, BoxLayout.Y_AXIS));
-
-                    // Label and Add Question button
                     String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                     SecureRandom random = new SecureRandom();
                     StringBuilder pin = new StringBuilder();
@@ -85,6 +79,20 @@ public class StartScreenView {
                         int index = random.nextInt(letters.length());
                         pin.append(letters.charAt(index));
                     }
+                    try {
+                        api_caller apiCaller = new api_caller();
+                        apiCaller.createRoom(pin.toString());
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        throw new RuntimeException(ex);
+                    }
+
+                    // Take the api into the itamar's screen
+
+
+                    // Create a panel for the session window
+                    JPanel createPanel = new JPanel();
+                    createPanel.setLayout(new BoxLayout(createPanel, BoxLayout.Y_AXIS));
 
                     JLabel label = new JLabel("Session Window, PIN: " + pin, SwingConstants.CENTER);
                     JButton addQuestion = new JButton("Add Question");

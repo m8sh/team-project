@@ -11,7 +11,7 @@ import use_cases.AddQuestion.AddQuestionInteractor;
 
 import javax.swing.*;
 
-public class AppRunner {
+public class AddQuestionAppRunner {
     //Go through each use case, set everything up
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -30,7 +30,9 @@ public class AppRunner {
             AddQuestionController controller = new AddQuestionController(interactor);
 
             LobbyPrepView lobbyPrepView = new LobbyPrepView(viewModel, controller);
+            //Need to figure out best way to give this a lobbyPin
             lobbyPrepView.setVisible(true);
+
         });
     }
 
