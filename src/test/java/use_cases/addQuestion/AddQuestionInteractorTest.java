@@ -1,5 +1,6 @@
 package use_cases.addQuestion;
 
+import api_caller.api_caller;
 import data_access.InMemoryDataAccessObject;
 import entities.Lobby;
 import entities.QuestionFactory;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +20,7 @@ class AddQuestionInteractorTest {
     private QuestionFactory factory;
     private TestPresenter testPresenter;
     private AddQuestionInteractor interactor;
+    private SendQuestionsDataAccess apiCaller;
 
     static class TestPresenter implements AddQuestionOutputBoundary {
         boolean successCalled = false;
@@ -37,13 +40,14 @@ class AddQuestionInteractorTest {
     }
 
     @BeforeEach
-    void setUp(){
+    void setUp() throws MalformedURLException {
         Lobby testLobby = new Lobby(123);
         dao = new InMemoryDataAccessObject();
         dao.saveLobby(testLobby);
         factory = new QuestionFactory();
         testPresenter = new TestPresenter();
-        interactor = new AddQuestionInteractor(dao, testPresenter, factory);
+        apiCaller = new api_caller();
+        interactor = new AddQuestionInteractor(dao, testPresenter, factory, apiCaller);
 
     }
     @Test

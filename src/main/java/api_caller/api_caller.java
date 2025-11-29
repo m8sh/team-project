@@ -1,3 +1,5 @@
+package api_caller;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -8,21 +10,20 @@ import java.net.http.HttpResponse;
 import java.net.URL;
 import java.net.http.WebSocket;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import entities.Question;
+import use_cases.AddQuestion.SendQuestionsDataAccess;
 
 
-public class api_caller {
+public class api_caller implements SendQuestionsDataAccess {
 
     private final URL urlBase = new URL("https://shrill-forest-40bb.sw-william08.workers.dev");
     private final String wsBase = "wss://shrill-forest-40bb.sw-william08.workers.dev";
     private final HttpClient http = HttpClient.newHttpClient();
-    private final Map<String, WebSocket> sockets =  new HashMap<>();
     private static Object[] receivedQuestions = null;
     private static Object[] receivedAnswers = null;
+    private WebSocket socket;
 
     public api_caller() throws MalformedURLException {
     }
@@ -39,9 +40,8 @@ public class api_caller {
         HttpRequest request = HttpRequest.newBuilder().uri(new URI(urlBase + "/api/newRoom/" + pin)).POST(HttpRequest.BodyPublishers.noBody()).build();
 
         HttpResponse<String> response = http.send(request, HttpResponse.BodyHandlers.ofString());
-        WebSocket ws = openSocket(pin);
-        ws.sendText("{\"type\":\"host/setHost\"}", true).join();
-        sockets.put(pin, ws);
+        socket = openSocket(pin);
+        socket.sendText("{\"type\":\"host/setHost\"}", true).join();
 
         System.out.println(response.body());
     }
@@ -51,9 +51,8 @@ public class api_caller {
     // also uploads the username to the server, so we know who is who
     public void joinRoom(String pin, String username){
         System.out.println("Joining Room");
-        WebSocket ws = openSocket(pin);
-        ws.sendText("{\"type\":\"client/join\",\"username\":\"" + username + "\"}", true).join();
-        sockets.put(pin, ws);
+        socket = openSocket(pin);
+        socket.sendText("{\"type\":\"client/join\",\"username\":\"" + username + "\"}", true).join();
     }
 
     // Pre:
@@ -61,9 +60,8 @@ public class api_caller {
     // or any other data
     public void endGame(String pin){
         System.out.println("Ending Game");
-        WebSocket ws = sockets.get(pin);
+        WebSocket ws = socket;
         ws.sendText("{\"type\":\"host/endGame\"}", true).join();
-        sockets.remove(pin);
     }
 
     // Pre: make the questionList contain an array of arrays, that contains a bunch of questions
@@ -71,7 +69,7 @@ public class api_caller {
     // Post: Sends those questions to the server
     public void sendQuestions(String pin, Question[] questionList){
         System.out.println("Sending Questions");
-        WebSocket ws = sockets.get(pin);
+        WebSocket ws = socket;
         StringBuilder questionsListString = new StringBuilder();
         questionsListString.append("[");
 
@@ -87,11 +85,9 @@ public class api_caller {
                 if (j > 0) questionsListString.append(",");
                 questionsListString.append("\"" + choices.get(j) + "\"");
             }
-            questionsListString.append("]");
+            questionsListString.append("],");
 
             questionsListString.append("\"correctIndex\":" + question.getCorrectIndex() + "}");
-
-            questionsListString.append('"').append(questionList[i].toString()).append('"');
         }
 
         questionsListString.append("]");
@@ -103,7 +99,7 @@ public class api_caller {
     // Post: it will return the set of questions in the same format that they were uploaded
     public Object[] recieveQuestions(String pin){
         System.out.println("Recieving Questions");
-        WebSocket ws = sockets.get(pin);
+        WebSocket ws = socket;
 
         receivedQuestions = null;
 
@@ -121,7 +117,7 @@ public class api_caller {
     // Post: sends the answers in a simple array of [<answer 1>, <answer 2>, etc.] to the server
     public void sendAnswers(String pin, String[] choicesList, String username){
         System.out.println("Sending Answers");
-        WebSocket ws = sockets.get(pin);
+        WebSocket ws = socket;
 
         StringBuilder answersListString = new StringBuilder();
         answersListString.append("[");
@@ -141,7 +137,7 @@ public class api_caller {
     // also returns username
     public Object[] recieveAnswers(String pin){
         System.out.println("Recieving Answers");
-        WebSocket ws = sockets.get(pin);
+        WebSocket ws = socket;
 
         receivedAnswers = null;
 
@@ -158,23 +154,34 @@ public class api_caller {
     // herlper functions
     private WebSocket openSocket(String pin) {
         String wsUrl = wsBase + "/ws/rooms/" + pin;
-        CompletableFuture<WebSocket> future = http.newWebSocketBuilder().buildAsync(URI.create(wsUrl), new LoggingListener(pin));
-        return future.join();
+        CompletableFuture<Void> opened = new CompletableFuture<>();
+        WebSocket ws = http.newWebSocketBuilder().buildAsync(URI.create(wsUrl),
+                new LoggingListener(pin, opened)).join();
+        opened.join();
+        return ws;
     }
 
     static class LoggingListener implements WebSocket.Listener {
         private final String pin;
-        public LoggingListener(String pin) {
+        private final CompletableFuture<Void> opened;
+
+
+        public LoggingListener(String pin, CompletableFuture<Void> opened) {
             this.pin = pin;
+            this.opened = opened;
         }
         @Override
         public void onOpen(WebSocket webSocket) {
+            if (opened != null && !opened.isDone()){
+                opened.complete(null);
+            }
             WebSocket.Listener.super.onOpen(webSocket);
             System.out.println("opened");
         }
         @Override
         public CompletableFuture<?> onText(WebSocket webSocket, CharSequence data, boolean last){
-            System.out.println("text received");
+            String stringData = data.toString();
+            System.out.println("text received: " + stringData);
             String string = data.toString();
 
             if (string.contains("\"type\":\"questions\"")){
@@ -185,12 +192,13 @@ public class api_caller {
                 receivedAnswers = extractJSON(string, "\"answers\"");
             }
 
-            return WebSocket.Listener.super.onText(webSocket,data,last).toCompletableFuture();
+            return CompletableFuture.completedFuture(null);
         }
         @Override
         public void onError(WebSocket webSocket, Throwable t){
-            WebSocket.Listener.super.onError(webSocket,t);
             System.out.println("error");
+            t.printStackTrace();
+            WebSocket.Listener.super.onError(webSocket,t);
         }
         @Override
         public CompletableFuture<?> onClose(WebSocket webSocket, int statusCode, String reason){
@@ -211,6 +219,7 @@ public class api_caller {
         int arrStartIndex = json.indexOf('[', index);
         if (arrStartIndex < 0) return new Object[0];
 
+        // this is just so that it doesn't stop at the first ] that it sees (which does happen otherwise)
         depth = 1;
         int arrEndIndex = -1;
         for (int i = arrStartIndex + 1; i < json.length(); i++){
@@ -235,6 +244,7 @@ public class api_caller {
 
         depth = 0;
         inString = false;
+        previous = '0';
 
         List<String> out = new ArrayList<>();
         for (int i = 0; i < body.length(); i++){
@@ -246,12 +256,11 @@ public class api_caller {
                         start = i;
                         depth++;
                     }
-                    else if  (ch == '}') {
-                        depth--;
-                        if (depth == 0) {
-                            out.add(body.substring(start, i+1));
-                            break;
-                        }
+                }
+                else if (ch == '}') {
+                    depth--;
+                    if (depth == 0) {
+                        out.add(body.substring(start, i+1));
                     }
                 }
             }

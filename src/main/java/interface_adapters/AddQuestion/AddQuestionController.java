@@ -3,6 +3,7 @@ package interface_adapters.AddQuestion;
 import use_cases.addQuestion.AddQuestionInputBoundary;
 import use_cases.addQuestion.AddQuestionInputData;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class AddQuestionController {
@@ -17,4 +18,8 @@ public class AddQuestionController {
         addQuestionInteractor.execute(InputData);
         //how to mark correct index?
     }
+    public void sendQuestions(int lobbyPin) throws MalformedURLException {
+        addQuestionInteractor.sendQuestions(lobbyPin);
+
+    };
 }

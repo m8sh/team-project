@@ -1,3 +1,4 @@
+import entities.GameFrame;
 import entities.Lobby;
 import entities.Question;
 import entities.User;
@@ -13,9 +14,7 @@ public class TestGame {
 
             // Add players
             User player1 = new User("Player 1", 123456);
-            User player2 = new User("Player 2", 123456);
             lobby.addUser(player1);
-            lobby.addUser(player2);
 
             // Add some questions
             lobby.addQuestion(new Question(

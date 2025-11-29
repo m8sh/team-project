@@ -4,19 +4,23 @@ import entities.Lobby;
 import entities.Question;
 import entities.QuestionFactory;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class AddQuestionInteractor implements AddQuestionInputBoundary {
     private final AddQuestionLobbyDataAccessInterface lobbyDataAccess;
     private final AddQuestionOutputBoundary presenter;
     private final QuestionFactory questionFactory;
+    private final SendQuestionsDataAccess sendGateway;
 
     public AddQuestionInteractor(AddQuestionLobbyDataAccessInterface lobbyDataAccess,
                                  AddQuestionOutputBoundary presenter,
-                                 QuestionFactory questionFactory){
+                                 QuestionFactory questionFactory, SendQuestionsDataAccess apiCaller) {
         this.lobbyDataAccess = lobbyDataAccess;
         this.presenter = presenter;
         this.questionFactory = questionFactory;
+        this.sendGateway = apiCaller;
+
     }
 
     // should make a question based on input data, make question entity that we want to add to the lobby
@@ -51,5 +55,14 @@ public class AddQuestionInteractor implements AddQuestionInputBoundary {
         //Create Question from input data using Question Factory
         // Need to get Lobby object stored in MemoryDataAccessObject
         //Now I need to make some output data
+    }
+
+    @Override
+    public void sendQuestions(int lobbyPin) throws MalformedURLException {
+        Lobby lobby = lobbyDataAccess.getLobby();
+        //Need to update Get lobby with pin
+        Question[] Questions = lobby.getQuestions().toArray(new Question[0]);
+        sendGateway.sendQuestions(String.valueOf(lobbyPin), Questions);
+
     }
 }

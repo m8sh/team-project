@@ -1,0 +1,45 @@
+@startuml
+class use_cases.AddQuestion.AddQuestionInteractor {
+- AddQuestionLobbyDataAccessInterface lobbyDataAccess
+- AddQuestionOutputBoundary presenter
+- QuestionFactory questionFactory
++ void execute(AddQuestionInputData)
+}
+
+
+class use_cases.AddQuestion.AddQuestionInputData {
+- String prompt
+- int lobbyPin
+- List<String> choices
+- int correctIndex
+~ String getPrompt()
+~ int getLobbyPin()
+~ List<String> getChoices()
+~ int getCorrectIndex()
+}
+
+
+interface use_cases.AddQuestion.AddQuestionOutputBoundary {
+~ void prepareSuccessView(AddQuestionOutputData)
+~ void prepareFailView(String)
+}
+
+class use_cases.AddQuestion.AddQuestionOutputData {
+- String message
++ String getMessage()
+}
+
+
+interface use_cases.AddQuestion.AddQuestionInputBoundary {
+~ void execute(AddQuestionInputData)
+}
+
+interface use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface {
+~ Lobby getLobby()
+~ void saveLobby(Lobby)
+}
+
+
+
+use_cases.AddQuestion.AddQuestionInputBoundary <|.. use_cases.AddQuestion.AddQuestionInteractor
+@enduml

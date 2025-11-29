@@ -1,11 +1,14 @@
 package data_access;
 
 import entities.Lobby;
-import use_cases.addQuestion.AddQuestionLobbyDataAccessInterface;
+import use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface;
+import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
 import use_cases.scoreboard.ScoreboardDataAccessInterface;
 
-public class InMemoryDataAccessObject
-        implements ScoreboardDataAccessInterface, AddQuestionLobbyDataAccessInterface {
+import java.util.HashMap;
+import java.util.Map;
+
+public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInterface, NextQuestionLobbyDataAccessInterface, ScoreboardDataAccessInterface {
 
     private Lobby lobby;
 
@@ -33,7 +36,6 @@ public class InMemoryDataAccessObject
         }
         return null;
     }
-
     public void saveLobby(Lobby lobby) {
 //        System.out.println("DAO: saving lobby " + lobby.getPin()+ " with " + lobby.getQuestions().size() + " questions");
         this.lobby = lobby;
