@@ -57,8 +57,8 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
 
         namePanel = new JPanel();
         nameField = new JTextField(10);
-        pinPanel.add(new JLabel("Username:"));
-        pinPanel.add(nameField);
+        namePanel.add(new JLabel("Username:"));
+        namePanel.add(nameField);
 
         buttonPanel = new JPanel();
         submit = new JButton("Join");
@@ -100,13 +100,25 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
         if (state.getPin() != null){
             pinField.setText(state.getPin());
         }
+
         if (state.getUsername() != null){
             nameField.setText(state.getUsername());
+        }
+
+        if (state.getPin() != null
+                && state.getUsername() != null
+                && !state.getPin().isEmpty()
+                && !state.getUsername().isEmpty()) {
+            Game.start(state.getUsername(), state.getPin());
         }
 
         if (state.getErrorMessage() == null || state.getErrorMessage().isEmpty()) {
             return;
             // go to next page or wtv
+        }
+
+        else {
+            System.out.println("Error message: " + state.getErrorMessage());
         }
 
     }

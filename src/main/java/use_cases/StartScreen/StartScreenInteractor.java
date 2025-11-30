@@ -37,12 +37,6 @@ public class StartScreenInteractor implements StartScreenInputBoundary {
             return;
         }
 
-        Lobby lobby = startScreenLobbyDataAccess.getLobby(pin);
-        if (lobby == null) {
-            startScreenOutputBoundary.prepareJoinFailureView("Lobby with that PIN does not exist.");
-            return;
-        }
-
         boolean joinedLobby = startScreenNetworkDataAccess.joinRemoteRoom(pin, username);
         if (!joinedLobby) {
             startScreenOutputBoundary.prepareJoinFailureView("Couldn't connect to server.");
