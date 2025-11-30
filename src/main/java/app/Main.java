@@ -8,10 +8,12 @@ public class Main {
 
             AppBuilder builder = new AppBuilder();
 
-            builder.addLobbyPrepView(123)
+            builder.addStartScreenView()
+                    .addLobbyPrepView(123)
                     .addScoreboardView()
-                    .addScoreboardUseCase();
-// Add your View and UseCase here
+                    .addScoreboardUseCase()
+                    .addAddQuestionUseCase();
+            // Add your View and UseCase here
 
             JFrame app = builder.build();
             app.pack();

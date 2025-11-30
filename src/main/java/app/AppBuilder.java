@@ -25,6 +25,7 @@ import use_cases.scoreboard.ScoreboardOutputBoundary;
 
 import view.LobbyPrepView;
 import view.ScoreboardView;
+import view.StartScreenView;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -44,6 +45,8 @@ public class AppBuilder {
     final InMemoryDataAccessObject lobbyDataAccessObject = new InMemoryDataAccessObject();
     // Add a fake lobby to this
 
+    // Start Screen
+    private StartScreenView startScreenView;
 
     // Scoreboard
     private ScoreboardViewModel scoreboardViewModel;
@@ -69,7 +72,12 @@ public class AppBuilder {
             }
         }
 
-
+    // -------- START SCREEN VIEW ----------
+    public AppBuilder addStartScreenView() {
+        startScreenView = new StartScreenView(viewManagerModel);
+        cardPanel.add(startScreenView, startScreenView.getViewName());
+        return this;
+    }
 
 
     // ----------SCOREBOARD VIEWS ----------
@@ -148,9 +156,20 @@ public class AppBuilder {
 
         application.add(cardPanel);
 
-        // Start on scoreboard for now
-        viewManagerModel.setState(lobbyPrepView.getViewName());
-        viewManagerModel.firePropertyChange();
+        // Start on the start screen if present, otherwise fall back to lobby prep or scoreboard
+        String initialViewName = null;
+        if (startScreenView != null) {
+            initialViewName = startScreenView.getViewName();
+        } else if (lobbyPrepView != null) {
+            initialViewName = lobbyPrepView.getViewName();
+        } else if (scoreboardView != null) {
+            initialViewName = scoreboardView.getViewName();
+        }
+
+        if (initialViewName != null) {
+            viewManagerModel.setState(initialViewName);
+            viewManagerModel.firePropertyChange();
+        }
 
         return application;
     }

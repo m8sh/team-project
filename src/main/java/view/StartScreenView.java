@@ -1,106 +1,104 @@
 package view;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.security.SecureRandom;
 import api_caller.api_caller;
 import app.Game;
+import interface_adapters.ViewManagerModel;
 
-public class StartScreenView {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            // --- Session creation panel ---
-            JPanel sesPanel = new JPanel();
-            JButton session = new JButton("Create Session");
-            sesPanel.add(session);
+import javax.swing.*;
+import java.awt.*;
+import java.security.SecureRandom;
 
-            // --- PIN entry panel ---
-            JPanel pinPanel = new JPanel();
-            JTextField pinField = new JTextField(10);
-            pinPanel.add(new JLabel("PIN:"));
-            pinPanel.add(pinField);
+public class StartScreenView extends JPanel {
 
-            JPanel namePanel = new JPanel();
-            JTextField nameField = new JTextField(10);
-            pinPanel.add(new JLabel("Username:"));
-            pinPanel.add(nameField);
+    private final ViewManagerModel viewManagerModel;
+    public static final String VIEW_NAME = "start screen";
 
-            // --- Join button panel ---
-            JPanel buttonPanel = new JPanel();
-            JButton submit = new JButton("Join");
-            buttonPanel.add(submit);
+    public StartScreenView(ViewManagerModel viewManagerModel) {
+        this.viewManagerModel = viewManagerModel;
 
+        // --- Panels ---
+        JPanel sessionPanel = new JPanel();
+        JButton createSessionButton = new JButton("Create Session");
+        sessionPanel.add(createSessionButton);
 
-            JPanel mainPanel = new JPanel();
-            mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-            mainPanel.add(sesPanel);
-            mainPanel.add(pinPanel);
-            mainPanel.add(buttonPanel);
+        JPanel pinPanel = new JPanel();
+        JTextField pinField = new JTextField(10);
+        pinPanel.add(new JLabel("Enter PIN:"));
+        pinPanel.add(pinField);
 
-            JFrame mainframe = new JFrame("Session Join");
-            mainframe.setContentPane(mainPanel);
-            mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            mainframe.pack();
-            mainframe.setVisible(true);
+        JPanel namePanel = new JPanel();
+        JTextField nameField = new JTextField(10);
+        namePanel.add(new JLabel("Username:"));
+        namePanel.add(nameField);
 
-            // --- Action for Join button ---
-            submit.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String enteredPin = pinField.getText();
-                    String username = nameField.getText();
-                    // You can change this PIN check
-                    if (enteredPin.equals("123456")) {
-                        mainframe.setVisible(false);
-                        Game.start(username,enteredPin);
-                    } else {
-                        JOptionPane.showMessageDialog(mainframe, "Incorrect PIN!", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            });
+        JPanel joinPanel = new JPanel();
+        JButton joinButton = new JButton("Join");
+        joinPanel.add(joinButton);
 
-            // --- Action for create session button ---
-            session.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JFrame createFrame = new JFrame("Create Session");
-                    createFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    createFrame.setSize(800, 600);
-                    mainframe.setVisible(false);
-                    String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                    SecureRandom random = new SecureRandom();
-                    StringBuilder pin = new StringBuilder();
+        // Layout for whole view
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        add(sessionPanel);
+        add(pinPanel);
+        add(namePanel);
+        add(joinPanel);
 
-                    for (int i = 0; i < 6; i++) {
-                        int index = random.nextInt(letters.length());
-                        pin.append(letters.charAt(index));
-                    }
-                    try {
-                        api_caller apiCaller = new api_caller();
-                        apiCaller.createRoom(pin.toString());
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                        throw new RuntimeException(ex);
-                    }
+        // --- JOIN SESSION ---
+        joinButton.addActionListener(e -> {
+            String enteredPin = pinField.getText();
+            String username = nameField.getText();
 
-                    // Take the api into the itamar's screen
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(StartScreenView.this);
 
-
-                    // Create a panel for the session window
-                    JPanel createPanel = new JPanel();
-                    createPanel.setLayout(new BoxLayout(createPanel, BoxLayout.Y_AXIS));
-
-                    JLabel label = new JLabel("Session Window, PIN: " + pin, SwingConstants.CENTER);
-                    JButton addQuestion = new JButton("Add Question");
-                    JButton Launch = new JButton("Launch Session");
-
-                    createPanel.add(label);
-                    createPanel.add(Launch);
-                    createPanel.add(Box.createVerticalStrut(10));
-                    createPanel.add(addQuestion);
-                }
-            });
+            if (enteredPin.equals("123456")) {
+                if (parentFrame != null) parentFrame.setVisible(false);
+                Game.start(username, enteredPin);
+            } else {
+                JOptionPane.showMessageDialog(
+                        parentFrame != null ? parentFrame : this,
+                        "Incorrect PIN!",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
+
+        // --- CREATE SESSION BUTTON ---
+        createSessionButton.addActionListener(e -> {
+
+            // (Optional) hide main window, your project handles this differently depending on setup
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(StartScreenView.this);
+            if (parentFrame != null) parentFrame.setVisible(true);
+
+            // ==== Generate PIN ====
+            String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            SecureRandom random = new SecureRandom();
+            StringBuilder pin = new StringBuilder();
+            for (int i = 0; i < 6; i++) {
+                pin.append(letters.charAt(random.nextInt(letters.length())));
+            }
+
+            // ==== API CALL ====
+            try {
+                api_caller caller = new api_caller();
+                caller.createRoom(pin.toString());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Failed to create room.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+
+            // ==== SWITCH TO EXISTING LOBBYPREPVIEW ====
+            viewManagerModel.setState("lobby prep");  // must match LobbyPrepView.getViewName()
+            viewManagerModel.firePropertyChange();
+        });
+    }
+
+    public String getViewName() {
+        return VIEW_NAME;
     }
 }
