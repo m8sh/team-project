@@ -3,104 +3,111 @@ package view;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.security.SecureRandom;
 import api_caller.api_caller;
 import app.Game;
+import interface_adapters.StartScreen.StartScreenController;
+import interface_adapters.StartScreen.StartScreenState;
+import interface_adapters.StartScreen.StartScreenViewModel;
 
-public class StartScreenView {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            // --- Session creation panel ---
-            JPanel sesPanel = new JPanel();
-            JButton session = new JButton("Create Session");
-            sesPanel.add(session);
+public class StartScreenView extends JPanel implements PropertyChangeListener {
 
-            // --- PIN entry panel ---
-            JPanel pinPanel = new JPanel();
-            JTextField pinField = new JTextField(10);
-            pinPanel.add(new JLabel("PIN:"));
-            pinPanel.add(pinField);
+    private final StartScreenViewModel viewModel;
+    private StartScreenController startScreenController;
 
-            JPanel namePanel = new JPanel();
-            JTextField nameField = new JTextField(10);
-            pinPanel.add(new JLabel("Username:"));
-            pinPanel.add(nameField);
+    private JPanel sesPanel;
+    private JButton session;
 
-            // --- Join button panel ---
-            JPanel buttonPanel = new JPanel();
-            JButton submit = new JButton("Join");
-            buttonPanel.add(submit);
+    private JPanel pinPanel;
+    private JTextField pinField;
 
+    private JPanel namePanel;
+    private JTextField nameField;
 
-            JPanel mainPanel = new JPanel();
-            mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-            mainPanel.add(sesPanel);
-            mainPanel.add(pinPanel);
-            mainPanel.add(buttonPanel);
+    private JPanel buttonPanel;
+    private JButton submit;
 
-            JFrame mainframe = new JFrame("Session Join");
-            mainframe.setContentPane(mainPanel);
-            mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            mainframe.pack();
-            mainframe.setVisible(true);
+    public StartScreenView(StartScreenViewModel viewModel) {
+        this.viewModel = viewModel;
+        this.viewModel.addPropertyChangeListener(this);
+        buildUI();
+    }
 
-            // --- Action for Join button ---
-            submit.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String enteredPin = pinField.getText();
-                    String username = nameField.getText();
-                    // You can change this PIN check
-                    if (enteredPin.equals("123456")) {
-                        mainframe.setVisible(false);
-                        Game.start(username,enteredPin);
-                    } else {
-                        JOptionPane.showMessageDialog(mainframe, "Incorrect PIN!", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+    public void setStartScreenController(StartScreenController controller) {
+        this.startScreenController = controller;
+    }
+
+    public String getViewName() {
+        return StartScreenViewModel.VIEW_NAME;
+    }
+
+    private void buildUI() {
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        sesPanel = new JPanel();
+        session = new JButton("Create Session");
+        sesPanel.add(session);
+
+        pinPanel = new JPanel();
+        pinField = new JTextField(10);
+        pinPanel.add(new JLabel("PIN:"));
+        pinPanel.add(pinField);
+
+        namePanel = new JPanel();
+        nameField = new JTextField(10);
+        pinPanel.add(new JLabel("Username:"));
+        pinPanel.add(nameField);
+
+        buttonPanel = new JPanel();
+        submit = new JButton("Join");
+        buttonPanel.add(submit);
+
+        this.add(sesPanel);
+        this.add(pinPanel);
+        this.add(namePanel);
+        this.add(buttonPanel);
+
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (startScreenController == null) {
+                    return;
                 }
-            });
-
-            // --- Action for create session button ---
-            session.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JFrame createFrame = new JFrame("Create Session");
-                    createFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    createFrame.setSize(800, 600);
-                    mainframe.setVisible(false);
-                    String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                    SecureRandom random = new SecureRandom();
-                    StringBuilder pin = new StringBuilder();
-
-                    for (int i = 0; i < 6; i++) {
-                        int index = random.nextInt(letters.length());
-                        pin.append(letters.charAt(index));
-                    }
-                    try {
-                        api_caller apiCaller = new api_caller();
-                        apiCaller.createRoom(pin.toString());
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                        throw new RuntimeException(ex);
-                    }
-
-                    // Take the api into the itamar's screen
-
-
-                    // Create a panel for the session window
-                    JPanel createPanel = new JPanel();
-                    createPanel.setLayout(new BoxLayout(createPanel, BoxLayout.Y_AXIS));
-
-                    JLabel label = new JLabel("Session Window, PIN: " + pin, SwingConstants.CENTER);
-                    JButton addQuestion = new JButton("Add Question");
-                    JButton Launch = new JButton("Launch Session");
-
-                    createPanel.add(label);
-                    createPanel.add(Launch);
-                    createPanel.add(Box.createVerticalStrut(10));
-                    createPanel.add(addQuestion);
-                }
-            });
+                String enteredPin = pinField.getText();
+                String username = nameField.getText();
+                startScreenController.onJoinRequested(enteredPin, username);
+            }
         });
+
+        session.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (startScreenController == null) {
+                    return;
+                }
+                System.out.println("Create Session button clicked");
+
+                startScreenController.onCreateSessionRequested();
+            }
+        });
+    }
+
+    public void propertyChange(PropertyChangeEvent evt) {
+        StartScreenState state = viewModel.getState();
+
+        if (state.getPin() != null){
+            pinField.setText(state.getPin());
+        }
+        if (state.getUsername() != null){
+            nameField.setText(state.getUsername());
+        }
+
+        if (state.getErrorMessage() == null || state.getErrorMessage().isEmpty()) {
+            return;
+            // go to next page or wtv
+        }
+
     }
 }
