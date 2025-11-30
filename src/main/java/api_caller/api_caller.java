@@ -14,9 +14,11 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import entities.Question;
 import use_cases.AddQuestion.SendQuestionsDataAccess;
+import use_cases.StartScreen.StartScreenNetworkDataAccessInterface;
+import use_cases.StartScreen.StartScreenOutputBoundary;
 
 
-public class api_caller implements SendQuestionsDataAccess {
+public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDataAccessInterface{
 
     private final URL urlBase = new URL("https://shrill-forest-40bb.sw-william08.workers.dev");
     private final String wsBase = "wss://shrill-forest-40bb.sw-william08.workers.dev";
@@ -267,6 +269,26 @@ public class api_caller implements SendQuestionsDataAccess {
             previous = body.charAt(i);
         }
         return out.toArray();
+    }
+
+    public boolean createRemoteRoom(int pin){
+        try {
+            createRoom(String.valueOf(pin));
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean joinRemoteRoom(int pin, String username){
+        try {
+            joinRoom(String.valueOf(pin), username);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 
 }
