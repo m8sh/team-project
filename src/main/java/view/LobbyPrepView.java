@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 
 
 public class LobbyPrepView extends JPanel {
+    // Change for AppBuilder, make your view a JPanel
 
     private final LobbyPrepViewModel viewModel;
     private final ViewManagerModel viewManagerModel;
@@ -115,6 +116,7 @@ public class LobbyPrepView extends JPanel {
     public String getViewName() {
         return "lobby prep";
     }
+    // Change for AppBuilder, add a get ViewName method
 
     public void setAddQuestionController(AddQuestionController addQuestionController) {
         this.controller = addQuestionController;

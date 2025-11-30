@@ -42,6 +42,8 @@ public class AppBuilder {
 
     // Shared DAO
     final InMemoryDataAccessObject lobbyDataAccessObject = new InMemoryDataAccessObject();
+    // Add a fake lobby to this
+
 
     // Scoreboard
     private ScoreboardViewModel scoreboardViewModel;
@@ -66,6 +68,9 @@ public class AppBuilder {
                 throw new RuntimeException(e);
             }
         }
+
+
+
 
     // ----------SCOREBOARD VIEWS ----------
     public AppBuilder addScoreboardView() {
@@ -94,15 +99,23 @@ public class AppBuilder {
 
     // ---------- ADDQUESTION VIEWS ----------
     public AppBuilder addLobbyPrepView(int lobbyPin) {
+        lobbyPrepViewModel = new LobbyPrepViewModel(lobbyPin);
 
-        lobbyPrepViewModel = new LobbyPrepViewModel(123);
 
+        AddQuestionOutputBoundary addQpresenter =
+                new AddQuestionPresenter(lobbyPrepViewModel, viewManagerModel, scoreboardViewModel);
+        QuestionFactory questionFactory = new QuestionFactory();
+        AddQuestionInputBoundary interactor = new AddQuestionInteractor(lobbyDataAccessObject, addQpresenter, questionFactory, apiCaller);
+
+        addQuestionController = new AddQuestionController(interactor);
 
         lobbyPrepView = new LobbyPrepView(lobbyPrepViewModel, addQuestionController, viewManagerModel ); // controller set below
 
         cardPanel.add(lobbyPrepView, lobbyPrepView.getViewName());
 
         return this;
+
+
     }
 
 
@@ -119,15 +132,11 @@ public class AppBuilder {
 
         addQuestionController = new AddQuestionController(interactor);
 
+
         lobbyPrepView.setAddQuestionController(addQuestionController);
 
         return this;
     }
-
-
-
-
-
 
 
 
