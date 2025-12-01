@@ -114,7 +114,7 @@ public class AppBuilder {
 
     // ---------- LOBBY PREP (VIEW ONLY) ----------
     public AppBuilder addLobbyPrepView(int lobbyPin) {
-        lobbyPrepViewModel = new LobbyPrepViewModel(lobbyPin);
+        lobbyPrepViewModel = new LobbyPrepViewModel();
 
         // controller is null for now; will be injected in addAddQuestionUseCase()
         lobbyPrepView = new LobbyPrepView(lobbyPrepViewModel, null, viewManagerModel);
