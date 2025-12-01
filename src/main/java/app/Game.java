@@ -10,9 +10,15 @@ import interface_adapters.NextQuestion.NextQuestionController;
 import interface_adapters.NextQuestion.NextQuestionPresenter;
 import interface_adapters.NextQuestion.NextQuestionViewModel;
 import interface_adapters.ViewManagerModel;
+import interface_adapters.scoreboard.ScoreboardController;
+import interface_adapters.scoreboard.ScoreboardPresenter;
 import interface_adapters.scoreboard.ScoreboardViewModel;
 import use_cases.NextQuestion.NextQuestionInteractor;
 import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
+import use_cases.scoreboard.ScoreboardDataAccessInterface;
+import use_cases.scoreboard.ScoreboardInputBoundary;
+import use_cases.scoreboard.ScoreboardInteractor;
+import use_cases.scoreboard.ScoreboardOutputBoundary;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -97,24 +103,35 @@ public class Game {
                 User player = new User(username, Integer.parseInt(lobbyPin));
                 lobby.addUser(player);
 
-                NextQuestionLobbyDataAccessInterface lobbyData = new InMemoryDataAccessObject();
-                lobbyData.saveLobby(lobby);
+                InMemoryDataAccessObject dao = new InMemoryDataAccessObject();
+                dao.saveLobby(lobby);
+
+                // Use it via both interfaces
+                NextQuestionLobbyDataAccessInterface nextQDao = dao;
+                ScoreboardDataAccessInterface scoreboardDao = dao;
 
                 NextQuestionViewModel viewModel = new NextQuestionViewModel();
                 ViewManagerModel viewManagerModel = new ViewManagerModel();
                 ScoreboardViewModel scoreboardViewModel = new ScoreboardViewModel();
+
                 NextQuestionPresenter presenter = new NextQuestionPresenter(viewModel, viewManagerModel,
                         scoreboardViewModel);
-
                 NextQuestionInteractor interactor =
-                        new NextQuestionInteractor(lobbyData, presenter);
+                        new NextQuestionInteractor(nextQDao, presenter);
                 NextQuestionController controller =
                         new NextQuestionController(interactor);
 
+                ScoreboardOutputBoundary scoreboardPresenter =
+                        new ScoreboardPresenter(scoreboardViewModel);
+                ScoreboardInputBoundary scoreboardInteractor =
+                        new ScoreboardInteractor(scoreboardDao, scoreboardPresenter);
+                ScoreboardController scoreboardController =
+                        new ScoreboardController(scoreboardInteractor);
                 GameFrame frame = new GameFrame(
                         lobby,
                         player,
-                        lobby.getQuestions().size()
+                        lobby.getQuestions().size(),
+                        scoreboardController
                 );
                 frame.setVisible(true);
 

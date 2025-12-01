@@ -1,5 +1,7 @@
 package entities;
 
+import interface_adapters.scoreboard.ScoreboardController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,13 +20,16 @@ public class GameFrame extends JFrame {
     private JRadioButton[] radioButtons;
     private int currentQuestionIndex = 0;
     private Question currentQuestion;
+    private final ScoreboardController scoreboardController;
 
     private final int maxQuestions; // how many questions until end
 
-    public GameFrame(Lobby lobby, User currentUser, int maxQuestions) {
+    public GameFrame(Lobby lobby, User currentUser, int maxQuestions,
+                     ScoreboardController scoreboardController) {
         this.lobby = lobby;
         this.currentUser = currentUser;
         this.maxQuestions = maxQuestions;
+        this.scoreboardController = scoreboardController;
 
         setTitle("Quiz Game");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -190,6 +195,8 @@ public class GameFrame extends JFrame {
         JButton submitButton = new JButton("Submit");
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         submitButton.addActionListener(e -> {
+            scoreboardController.showScoreboard(lobby.getPin());
+            dispose();
 
         });
         endPanel.add(Box.createVerticalStrut(10));

@@ -22,4 +22,13 @@ public class ScoreboardRowViewModel {
     public int getScore() {
         return score;
     }
+
+    public void setRank(int rank) {
+    }
+
+    public void setName(String name) {
+    }
+
+    public void setScore(int score) {
+    }
 }

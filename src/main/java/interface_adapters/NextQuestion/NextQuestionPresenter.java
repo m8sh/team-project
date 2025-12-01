@@ -1,11 +1,17 @@
 package interface_adapters.NextQuestion;
 
 import interface_adapters.ViewManagerModel;
+import interface_adapters.scoreboard.ScoreboardRowViewModel;
 import interface_adapters.scoreboard.ScoreboardState;
 import interface_adapters.scoreboard.ScoreboardViewModel;
 import use_cases.NextQuestion.NextQuestionOutputBoundary;
 import use_cases.NextQuestion.NextQuestionOutputData;
 import entities.Question;
+import interface_adapters.ViewModel;
+import use_cases.scoreboard.ScoreboardOutputData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NextQuestionPresenter implements NextQuestionOutputBoundary {
 
@@ -25,15 +31,32 @@ public class NextQuestionPresenter implements NextQuestionOutputBoundary {
         // Update the view model with the next question
         viewModel.setCurrentQuestion(nextQuestion);
         viewModel.setPopupMessage(outputData.getMessage());// optional message
+
+        // Scoreboard View Model
+        ScoreboardState state = scoreboardViewModel.getState();
+
+        List<ScoreboardRowViewModel> rowVMs = new ArrayList<>();
+        for (ScoreboardOutputData.Row row : outputData.getScoreboardRows()) {
+            // use your constructor: (rank, name, score)
+            ScoreboardRowViewModel rowVM =
+                    new ScoreboardRowViewModel(row.getRank(), row.getName(), row.getScore());
+            rowVMs.add(rowVM);
+        }
+
+        state.setRows(rowVMs);
+        scoreboardViewModel.setState(state);
+
+
         viewManagerModel.setState(ScoreboardViewModel.VIEW_NAME);
         viewManagerModel.firePropertyChange();
 
-    }
-
-    @Override
-    public void prepareNextQuestion(Question question) {
 
     }
+
+//    @Override
+//    public void prepareNextQuestion(Question question) {
+//
+//    }
 
     @Override
     public void prepareFailView(String errorMessage) {

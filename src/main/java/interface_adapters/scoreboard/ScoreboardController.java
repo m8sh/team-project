@@ -19,5 +19,10 @@ public class ScoreboardController {
     public void endSession() {
         // Go back to Lobby
     }
+
+    public void execute(int pin) {
+        ScoreboardInputData scoreboardInputData = new ScoreboardInputData(pin);
+        interactor.showScoreboard(scoreboardInputData);
+    }
 }
 
