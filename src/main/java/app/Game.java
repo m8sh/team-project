@@ -122,7 +122,7 @@ public class Game {
                         new NextQuestionController(interactor);
 
                 ScoreboardOutputBoundary scoreboardPresenter =
-                        new ScoreboardPresenter(scoreboardViewModel);
+                        new ScoreboardPresenter(scoreboardViewModel, viewManagerModel);
                 ScoreboardInputBoundary scoreboardInteractor =
                         new ScoreboardInteractor(scoreboardDao, scoreboardPresenter);
                 ScoreboardController scoreboardController =
