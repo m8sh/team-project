@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/AddQuestionView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AddQuestionView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LobbyPrepView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LobbyPrepView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/StartScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StartScreenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="StartScreen-CA-refactoring" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,7 +55,7 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="361g8V82eWgcaIP455o0lB8yZ7S" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -71,6 +68,7 @@
     "Application.AppRunner.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.StartScreenView.executor": "Run",
+    "Application.TestGame.executor": "Run",
     "Application.api_caller.executor": "Run",
     "Application.gui.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
