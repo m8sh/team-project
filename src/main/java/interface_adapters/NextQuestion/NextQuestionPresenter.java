@@ -22,9 +22,8 @@ public class NextQuestionPresenter implements NextQuestionOutputBoundary {
 
     public void prepareSuccessView(NextQuestionOutputData outputData) {
         Question nextQuestion = outputData.getQuestion();
-        // Update the view model with the next question
         viewModel.setCurrentQuestion(nextQuestion);
-        viewModel.setPopupMessage(outputData.getMessage());// optional message
+        viewModel.setPopupMessage(outputData.getMessage());
         viewManagerModel.setState(ScoreboardViewModel.VIEW_NAME);
         viewManagerModel.firePropertyChange();
 

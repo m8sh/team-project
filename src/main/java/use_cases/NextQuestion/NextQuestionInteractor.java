@@ -33,10 +33,8 @@ public class NextQuestionInteractor implements NextQuestionInputBoundary{
             return;
         }
 
-        // Example: pick first question
         Question nextQuestion = questions.get(0);
 
-        // Wrap it in OutputData
         NextQuestionOutputData outputData = new NextQuestionOutputData(nextQuestion, "Next question ready");
     }
 

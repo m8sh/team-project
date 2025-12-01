@@ -2,7 +2,7 @@ package app;
 
 import api_caller.api_caller;
 import data_access.InMemoryDataAccessObject;
-import entities.GameFrame;
+import view.GameFrameView;
 import entities.Lobby;
 import entities.Question;
 import entities.User;
@@ -26,8 +26,12 @@ public class Game {
 
                 api.joinRoom(lobbyPin, username);
                 Object[] questionObjects = api.recieveQuestions(lobbyPin);
-
+                System.out.println(questionObjects[0]);
                 Lobby lobby = new Lobby(Integer.parseInt(lobbyPin));
+                if (questionObjects == null || questionObjects.length == 0) {
+                    System.out.println("no questions received");
+                    return;
+                }
                 for (Object q : questionObjects) {
                     lobby.addQuestion((Question) q);
                 }
@@ -48,7 +52,7 @@ public class Game {
                 NextQuestionController controller =
                         new NextQuestionController(interactor);
 
-                GameFrame frame = new GameFrame(
+                GameFrameView frame = new GameFrameView(
                         lobby,
                         player,
                         lobby.getQuestions().size()

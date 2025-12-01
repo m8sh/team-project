@@ -1,11 +1,14 @@
-package entities;
+package view;
+
+import entities.Lobby;
+import entities.Question;
+import entities.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.List;
 
-public class GameFrame extends JFrame {
+public class GameFrameView extends JFrame {
 
     private final Lobby lobby;
     private final User currentUser;  // single player for now
@@ -21,7 +24,7 @@ public class GameFrame extends JFrame {
 
     private final int maxQuestions; // how many questions until end
 
-    public GameFrame(Lobby lobby, User currentUser, int maxQuestions) {
+    public GameFrameView(Lobby lobby, User currentUser, int maxQuestions) {
         this.lobby = lobby;
         this.currentUser = currentUser;
         this.maxQuestions = maxQuestions;
@@ -38,10 +41,9 @@ public class GameFrame extends JFrame {
         createQuestionPanel();
         cards.add(questionPanel, "QUESTION");
 
-        // --- Make a parent container with BorderLayout ---
         JPanel root = new JPanel(new BorderLayout());
 
-// --- Top-right info bar ---
+
         JPanel infoBar = new JPanel(new BorderLayout());
         infoBar.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
@@ -50,18 +52,17 @@ public class GameFrame extends JFrame {
 
         infoBar.add(infoLabel, BorderLayout.EAST);
 
-// Add top and center panels
         root.add(infoBar, BorderLayout.NORTH);
         root.add(cards, BorderLayout.CENTER);
 
-// Set the frame’s content
+
         setContentPane(root);
 
 
         loadNextQuestionOrEnd();
     }
 
-    // Build question UI
+
     private void createQuestionPanel() {
         questionPanel = new JPanel();
         questionPanel.setLayout(new BoxLayout(questionPanel, BoxLayout.Y_AXIS));
@@ -85,12 +86,10 @@ public class GameFrame extends JFrame {
             questionPanel.add(Box.createVerticalStrut(5));
         }
 
-        // store radio array in place of choiceButtons reference
-        // but without breaking other code:
+
         choiceButtons = new JButton[0]; // disable old buttons
         this.radioButtons = radios;     // ADD THIS ARRAY FIELD TO CLASS
 
-        // --- NEXT QUESTION BUTTON ---
         JButton nextBtn = new JButton("Next Question");
         nextBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         nextBtn.addActionListener(e -> handleRadioAnswer());
@@ -98,7 +97,6 @@ public class GameFrame extends JFrame {
         questionPanel.add(nextBtn);
     }
 
-    // When a choice is clicked
     private void handleRadioAnswer() {
         chosen = -1;
 
@@ -127,7 +125,6 @@ public class GameFrame extends JFrame {
     }
 
 
-    // Decide: next question or end screen
     private void loadNextQuestionOrEnd() {
         List<Question> questions = lobby.getQuestions();
 

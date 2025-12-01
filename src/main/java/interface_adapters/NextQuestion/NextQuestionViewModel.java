@@ -13,7 +13,6 @@ public class NextQuestionViewModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public NextQuestionViewModel() {
-        // start with no question
         this.currentQuestion = null;
         this.popupMessage = "";
     }

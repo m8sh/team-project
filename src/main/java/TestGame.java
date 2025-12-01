@@ -1,4 +1,4 @@
-import entities.GameFrame;
+import view.GameFrameView;
 import entities.Lobby;
 import entities.Question;
 import entities.User;
@@ -34,7 +34,7 @@ public class TestGame {
             ));
 
             // maxQuestions = 3 here, but you can set it to 2 etc.
-            GameFrame gameFrame = new GameFrame(lobby, player1, 3);
+            GameFrameView gameFrame = new GameFrameView(lobby, player1, 3);
             gameFrame.setVisible(true);
         });
     }

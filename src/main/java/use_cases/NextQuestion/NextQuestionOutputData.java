@@ -4,7 +4,7 @@ import entities.Question;
 
 public class NextQuestionOutputData {
     private final Question question;
-    private final String message; // optional, e.g., "No more questions"
+    private final String message;
 
     public NextQuestionOutputData(Question question, String message) {
         this.question = question;
