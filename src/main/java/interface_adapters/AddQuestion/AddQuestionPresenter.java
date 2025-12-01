@@ -28,8 +28,8 @@ public class AddQuestionPresenter implements AddQuestionOutputBoundary {
         lobbyPrepViewModel.setPopupMessage(outputData.getMessage());
         lobbyPrepViewModel.incrementQuestionCount();
 
-        viewManagerModel.setState(ScoreboardViewModel.VIEW_NAME);
-        viewManagerModel.firePropertyChange();
+//        viewManagerModel.setState(ScoreboardViewModel.VIEW_NAME);
+//        viewManagerModel.firePropertyChange();
 
 
     }

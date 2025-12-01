@@ -83,7 +83,7 @@ public class LobbyPrepView extends JPanel {
             }
 
             JOptionPane.showMessageDialog(this,
-                    "Session starting... (not implemented yet)");
+                    "Session starting!");
         });
 
         nextButton = new JButton("Next");
