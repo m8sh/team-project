@@ -1,5 +1,6 @@
 package interface_adapters.scoreboard;
 
+import interface_adapters.ViewManagerModel;
 import interface_adapters.ViewModel;
 import use_cases.scoreboard.ScoreboardOutputBoundary;
 import use_cases.scoreboard.ScoreboardOutputData;
@@ -10,9 +11,12 @@ import java.util.stream.Collectors;
 public class ScoreboardPresenter implements ScoreboardOutputBoundary {
 
     private final ScoreboardViewModel viewModel;
+    private final ViewManagerModel viewManagerModel;
 
-    public ScoreboardPresenter(ScoreboardViewModel viewModel) {
+    public ScoreboardPresenter(ScoreboardViewModel viewModel,
+                               ViewManagerModel viewManagerModel) {
         this.viewModel = viewModel;
+        this.viewManagerModel = viewManagerModel;
     }
 
     @Override
@@ -31,6 +35,8 @@ public class ScoreboardPresenter implements ScoreboardOutputBoundary {
         state.setLobbyPin(data.getLobbyPin());
 
         viewModel.firePropertyChange();
+        viewManagerModel.setState(viewModel.getViewName());
+        viewManagerModel.firePropertyChange();
     }
 
     @Override
@@ -40,6 +46,8 @@ public class ScoreboardPresenter implements ScoreboardOutputBoundary {
         state.setErrorMessage(error);
 
         viewModel.firePropertyChange();
+        viewManagerModel.setState(viewModel.getViewName());
+        viewManagerModel.firePropertyChange();
     }
 }
 

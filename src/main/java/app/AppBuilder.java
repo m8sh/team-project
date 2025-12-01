@@ -100,7 +100,7 @@ public class AppBuilder {
 
     public AppBuilder addScoreboardUseCase() {
         ScoreboardOutputBoundary outputBoundary =
-                new ScoreboardPresenter(scoreboardViewModel);
+                new ScoreboardPresenter(scoreboardViewModel, viewManagerModel);
 
         ScoreboardDataAccessInterface dao = lobbyDataAccessObject;
 

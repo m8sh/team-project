@@ -37,7 +37,6 @@ public class NextQuestionPresenter implements NextQuestionOutputBoundary {
 
         List<ScoreboardRowViewModel> rowVMs = new ArrayList<>();
         for (ScoreboardOutputData.Row row : outputData.getScoreboardRows()) {
-            // use your constructor: (rank, name, score)
             ScoreboardRowViewModel rowVM =
                     new ScoreboardRowViewModel(row.getRank(), row.getName(), row.getScore());
             rowVMs.add(rowVM);

@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before.">
+    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Integrate Scoreboard with NextQuestion flow &amp; update Game&#10;&#10;- Connect Scoreboard with NextQuestionUseCase (Interactor, Presenter, OutputBoundary, OutputData)&#10;- Update Game class to support scoreboard navigation&#10;- Fix minor issues in InMemoryDAO for proper state handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/StartScreen/StartScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/StartScreen/StartScreenPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/NextQuestion/NextQuestionPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/NextQuestion/NextQuestionPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/scoreboard/ScoreboardPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/scoreboard/ScoreboardPresenter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +57,7 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="361g8V82eWgcaIP455o0lB8yZ7S" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -97,7 +97,7 @@
     ]
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="AddQuestionAppRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.AddQuestionAppRunner" />
       <module name="TeamProject" />
@@ -153,9 +153,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.TestScoreboard" />
         <item itemvalue="Application.TestGame" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.AddQuestionAppRunner" />
         <item itemvalue="Application.gui" />
       </list>
@@ -225,7 +225,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764474758887</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Integrate Scoreboard with NextQuestion flow &amp; update Game&#10;&#10;- Connect Scoreboard with NextQuestionUseCase (Interactor, Presenter, OutputBoundary, OutputData)&#10;- Update Game class to support scoreboard navigation&#10;- Fix minor issues in InMemoryDAO for proper state handling">
+      <option name="closed" value="true" />
+      <created>1764564527477</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1764564527477</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,7 +257,8 @@
     <MESSAGE value="Some Bug Fixes:&#10; - Fixed api_caller.sendQuestions to correctly create a valid JSON&#10; - Removed an unnecessary break in api_caller.extractJSON" />
     <MESSAGE value="Added a bunch of print statements for debugging." />
     <MESSAGE value="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before." />
+    <MESSAGE value="Integrate Scoreboard with NextQuestion flow &amp; update Game&#10;&#10;- Connect Scoreboard with NextQuestionUseCase (Interactor, Presenter, OutputBoundary, OutputData)&#10;- Update Game class to support scoreboard navigation&#10;- Fix minor issues in InMemoryDAO for proper state handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrate Scoreboard with NextQuestion flow &amp; update Game&#10;&#10;- Connect Scoreboard with NextQuestionUseCase (Interactor, Presenter, OutputBoundary, OutputData)&#10;- Update Game class to support scoreboard navigation&#10;- Fix minor issues in InMemoryDAO for proper state handling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
