@@ -75,7 +75,8 @@ public class Game {
 
     }
 
-    public static void start(String username, String lobbyPin,InMemoryDataAccessObject lobbyDao) {
+    public static void start(String username, String lobbyPin,InMemoryDataAccessObject lobbyDao,
+                             ScoreboardController scoreboardController) {
 
         SwingUtilities.invokeLater(() -> {
             try {
@@ -119,12 +120,6 @@ public class Game {
                 NextQuestionController controller =
                         new NextQuestionController(interactor);
 
-                ScoreboardOutputBoundary scoreboardPresenter =
-                        new ScoreboardPresenter(scoreboardViewModel, viewManagerModel);
-                ScoreboardInputBoundary scoreboardInteractor =
-                        new ScoreboardInteractor(scoreboardDao, scoreboardPresenter);
-                ScoreboardController scoreboardController =
-                        new ScoreboardController(scoreboardInteractor);
                 GameFrame frame = new GameFrame(
                         lobby,
                         player,

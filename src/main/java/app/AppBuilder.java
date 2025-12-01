@@ -70,7 +70,8 @@ public class AppBuilder {
     public AppBuilder addStartScreenView() {
         startScreenViewModel = new StartScreenViewModel();
         startScreenView = new StartScreenView(startScreenViewModel, viewManagerModel,
-                lobbyDataAccessObject);
+                lobbyDataAccessObject,
+                scoreboardController);
         cardPanel.add(startScreenView, startScreenView.getViewName());
         return this;
     }

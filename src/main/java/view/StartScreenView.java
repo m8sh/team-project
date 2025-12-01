@@ -7,6 +7,7 @@ import interface_adapters.StartScreen.StartScreenController;
 import interface_adapters.StartScreen.StartScreenState;
 import interface_adapters.StartScreen.StartScreenViewModel;
 import interface_adapters.ViewManagerModel;
+import interface_adapters.scoreboard.ScoreboardController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
     private final ViewManagerModel viewManagerModel;
     private StartScreenController startScreenController;
     private final InMemoryDataAccessObject lobbyDao;
+    private final ScoreboardController scoreboardController;
 
     private JPanel sesPanel;
     private JButton session;
@@ -34,10 +36,12 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
     private JButton submit;
 
     public StartScreenView(StartScreenViewModel viewModel, ViewManagerModel viewManagerModel,
-                           InMemoryDataAccessObject lobbyDao) {
+                           InMemoryDataAccessObject lobbyDao,
+                           ScoreboardController scoreboardController) {
         this.viewModel = viewModel;
         this.viewManagerModel = viewManagerModel;
         this.lobbyDao = lobbyDao;
+        this.scoreboardController = scoreboardController;
         this.viewModel.addPropertyChangeListener(this);
         buildUI();
     }
@@ -133,7 +137,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
                 && username != null && !username.isEmpty()
                 && (error == null || error.isEmpty())) {
 
-            Game.start(username, pin, lobbyDao);
+            Game.start(username, pin, lobbyDao, scoreboardController);
             return;
         }
 
