@@ -1,20 +1,22 @@
 package view;
 
+import app.Game;
+import interface_adapters.StartScreen.StartScreenController;
+import interface_adapters.StartScreen.StartScreenState;
+import interface_adapters.StartScreen.StartScreenViewModel;
+import interface_adapters.ViewManagerModel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.security.SecureRandom;
-import api_caller.api_caller;
-import app.Game;
-import interface_adapters.StartScreen.StartScreenController;
-import interface_adapters.StartScreen.StartScreenState;
-import interface_adapters.StartScreen.StartScreenViewModel;
 
 public class StartScreenView extends JPanel implements PropertyChangeListener {
 
     private final StartScreenViewModel viewModel;
+    private final ViewManagerModel viewManagerModel;
     private StartScreenController startScreenController;
 
     private JPanel sesPanel;
@@ -29,8 +31,9 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
     private JPanel buttonPanel;
     private JButton submit;
 
-    public StartScreenView(StartScreenViewModel viewModel) {
+    public StartScreenView(StartScreenViewModel viewModel, ViewManagerModel viewManagerModel) {
         this.viewModel = viewModel;
+        this.viewManagerModel = viewManagerModel;
         this.viewModel.addPropertyChangeListener(this);
         buildUI();
     }
@@ -40,7 +43,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
     }
 
     public String getViewName() {
-        return StartScreenViewModel.VIEW_NAME;
+        return StartScreenViewModel.VIEW_NAME; // e.g., "start screen"
     }
 
     private void buildUI() {
@@ -69,6 +72,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
         this.add(namePanel);
         this.add(buttonPanel);
 
+        // JOIN button -> use controller
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,6 +85,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
             }
         });
 
+        // CREATE SESSION button -> use controller
         session.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,38 +93,52 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
                     return;
                 }
                 System.out.println("Create Session button clicked");
-
                 startScreenController.onCreateSessionRequested();
             }
         });
     }
 
+    @Override
     public void propertyChange(PropertyChangeEvent evt) {
         StartScreenState state = viewModel.getState();
 
-        if (state.getPin() != null){
-            pinField.setText(state.getPin());
+        String pin = state.getPin();
+        String username = state.getUsername();
+        String error = state.getErrorMessage();
+
+        if (pin != null) {
+            pinField.setText(pin);
         }
 
-        if (state.getUsername() != null){
-            nameField.setText(state.getUsername());
+        if (username != null) {
+            nameField.setText(username);
         }
 
-        if (state.getPin() != null
-                && state.getUsername() != null
-                && !state.getPin().isEmpty()
-                && !state.getUsername().isEmpty()) {
-            Game.start(state.getUsername(), state.getPin());
-        }
+        // If we have both pin and username (client join path), start the game
+        if (pin != null && !pin.isEmpty()
+                && username != null && !username.isEmpty()
+                && (error == null || error.isEmpty())) {
 
-        if (state.getErrorMessage() == null || state.getErrorMessage().isEmpty()) {
+            Game.start(username, pin);
             return;
-            // go to next page or wtv
         }
 
-        else {
-            System.out.println("Error message: " + state.getErrorMessage());
+        // If we have a pin but no username and no error -> likely host created a room
+        if (pin != null && !pin.isEmpty()
+                && (username == null || username.isEmpty())
+                && (error == null || error.isEmpty())) {
+
+            // Navigate to LobbyPrepView
+            viewManagerModel.setState("lobby prep");
+            viewManagerModel.firePropertyChange();
+            return;
         }
 
+        // If there's an error, you can show it (log or dialog)
+        if (error != null && !error.isEmpty()) {
+            System.out.println("StartScreen error: " + error);
+            // Optionally:
+            // JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

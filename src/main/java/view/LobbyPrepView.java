@@ -2,34 +2,35 @@ package view;
 
 import interface_adapters.AddQuestion.AddQuestionController;
 import interface_adapters.AddQuestion.LobbyPrepViewModel;
+import interface_adapters.ViewManagerModel;
+import interface_adapters.scoreboard.ScoreboardState;
 
 import javax.swing.*;
 import java.net.MalformedURLException;
 
 
-public class LobbyPrepView extends JFrame {
-// make this extend Jpanel
+public class LobbyPrepView extends JPanel {
+    // Change for AppBuilder, make your view a JPanel
 
     private final LobbyPrepViewModel viewModel;
-    private AddQuestionController controller = null;
+    private final ViewManagerModel viewManagerModel;
+    private AddQuestionController controller;
 
     private JLabel pinLabel;
     private JLabel questionCountLabel;
     private JButton addQuestionButton;
-    private String viewName;
+    private JButton nextButton;
 
-    public LobbyPrepView(LobbyPrepViewModel viewModel, AddQuestionController controller) {
-        super("LobbyPrepView");
-        this.viewName = "LobbyPrepView";
+    public LobbyPrepView(LobbyPrepViewModel viewModel,
+                          AddQuestionController controller, ViewManagerModel viewManagerModel) {
+
+
         this.viewModel = viewModel;
+        this.viewManagerModel= viewManagerModel;
         this.controller = controller;
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        // Lobby PIN display
         pinLabel = new JLabel("Lobby PIN: " + viewModel.getLobbyPin(),
                 SwingConstants.CENTER);
 
@@ -79,55 +80,47 @@ public class LobbyPrepView extends JFrame {
             JOptionPane.showMessageDialog(this,
                     "Session starting... (not implemented yet)");
         });
+        nextButton = new JButton("Next");
+        nextButton.addActionListener(e -> {
+            // here we just tell the global ViewManagerModel to switch
+            viewManagerModel.setState("scoreboard");
+            viewManagerModel.firePropertyChange();
+        });
 
-        panel.add(pinLabel);
-        panel.add(Box.createVerticalStrut(10));
-        panel.add(questionCountLabel);
-        panel.add(Box.createVerticalStrut(10));
-        panel.add(addQuestionButton);
-        panel.add(startSessionButton);
+        add(pinLabel);
+        add(Box.createVerticalStrut(10));
+        add(questionCountLabel);
+        add(Box.createVerticalStrut(10));
+        add(addQuestionButton);
+        add(startSessionButton);
+        add(nextButton);
 
         //Listener here
         viewModel.addPropertyChangeListener(evt -> {
             switch(evt.getPropertyName()) {
                 case "popup":
                     String msg = viewModel.getPopupMessage();
-                    System.out.println("View: popup message = " + msg);
                     if (msg != null && !msg.isEmpty()) {
                         JOptionPane.showMessageDialog(this, msg);
                     }
                     break;
                 case "questionCount":
                     System.out.println("View: updating question count label to " + viewModel.getQuestionCount());
-                    questionCountLabel.setText("Questions Added: " + viewModel.getQuestionCount());
+                    questionCountLabel.setText(
+                            "Questions Added: " + viewModel.getQuestionCount());
                     break;
             }
         });
-
-        add(panel);
-        pack();
-        setLocationRelativeTo(null);
     }
+
     public String getViewName() {
-        return  viewName;
+        return "lobby prep";
     }
+    // Change for AppBuilder, add a get ViewName method
 
-    private void refreshQuestionCount() {
-        questionCountLabel.setText(
-                "Questions Added: " + viewModel.getQuestionCount());
+    public void setAddQuestionController(AddQuestionController addQuestionController) {
+        this.controller = addQuestionController;
     }
-
-    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            LobbyPrepViewModel vm = new LobbyPrepViewModel(123456);
-//
-//            LobbyPrepView view = new LobbyPrepView(vm);
-//            view.setVisible(true);
-//        });
-
-
-    }
-
-
 }
+
 

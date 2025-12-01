@@ -1,6 +1,4 @@
-package use_cases.AddQuestion;
-
-import java.util.List;
+package use_cases.addQuestion;
 
 public class AddQuestionOutputData {
     private final String message;
