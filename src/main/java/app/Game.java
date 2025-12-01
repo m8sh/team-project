@@ -14,6 +14,7 @@ import interface_adapters.scoreboard.ScoreboardViewModel;
 import use_cases.NextQuestion.NextQuestionInteractor;
 import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.*;
@@ -74,9 +75,14 @@ public class Game {
         SwingUtilities.invokeLater(() -> {
             try {
                 api_caller api = new api_caller();
-
                 api.joinRoom(lobbyPin, username);
                 Object[] questionObjects = api.recieveQuestions(lobbyPin);
+
+                System.out.println(questionObjects == null);
+                if (questionObjects != null) {
+                    System.out.println(questionObjects.length);
+                }
+
 
                 Lobby lobby = new Lobby(Integer.parseInt(lobbyPin));
                 for (Object qRaw : questionObjects) {

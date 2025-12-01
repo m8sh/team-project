@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before.">
+    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Added a method in Game.java to parse the JSON (because it was sent as a JSON instead of a list of Question objects and I forgot about that my bad guys)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Game.java" afterDir="false" />
     </list>
@@ -231,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764474758887</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added a method in Game.java to parse the JSON (because it was sent as a JSON instead of a list of Question objects and I forgot about that my bad guys)">
+      <option name="closed" value="true" />
+      <created>1764556384953</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1764556384953</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,7 +263,8 @@
     <MESSAGE value="Some Bug Fixes:&#10; - Fixed api_caller.sendQuestions to correctly create a valid JSON&#10; - Removed an unnecessary break in api_caller.extractJSON" />
     <MESSAGE value="Added a bunch of print statements for debugging." />
     <MESSAGE value="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before." />
+    <MESSAGE value="Added a method in Game.java to parse the JSON (because it was sent as a JSON instead of a list of Question objects and I forgot about that my bad guys)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a method in Game.java to parse the JSON (because it was sent as a JSON instead of a list of Question objects and I forgot about that my bad guys)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
