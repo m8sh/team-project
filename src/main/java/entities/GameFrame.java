@@ -211,7 +211,6 @@ public class GameFrame extends JFrame {
             if (scoreboardController != null) {
                 System.out.println("[GameFrame] Submit clicked, calling saveResults + showScoreboard for pin "
                         + lobby.getPin());
-                // ✅ This sends username, lobbyPin, score to Supabase DAO,
                 // which assigns rank and persists.
                 scoreboardController.saveResults(lobby.getPin(), lobby.getUsers());
                 scoreboardController.showScoreboard(lobby.getPin());
