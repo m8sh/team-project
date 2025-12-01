@@ -1,6 +1,7 @@
-package use_cases.AddQuestion;
+package use_cases.addQuestion;
 
 import java.net.MalformedURLException;
+
 
 public interface AddQuestionInputBoundary {
     void execute(AddQuestionInputData inputData);

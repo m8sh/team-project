@@ -1,15 +1,24 @@
 package interface_adapters.AddQuestion;
 
-import use_cases.AddQuestion.AddQuestionOutputBoundary;
-import use_cases.AddQuestion.AddQuestionOutputData;
+import interface_adapters.ViewManagerModel;
+import interface_adapters.scoreboard.ScoreboardViewModel;
+import use_cases.addQuestion.AddQuestionOutputBoundary;
+import use_cases.addQuestion.AddQuestionOutputData;
 
 
 
 public class AddQuestionPresenter implements AddQuestionOutputBoundary {
     private final LobbyPrepViewModel lobbyPrepViewModel;
+    private final ViewManagerModel viewManagerModel;
+    private final ScoreboardViewModel scoreboardViewModel;
 
-    public AddQuestionPresenter(LobbyPrepViewModel lobbyPrepViewModel) {
+    public AddQuestionPresenter(LobbyPrepViewModel lobbyPrepViewModel,
+                                ViewManagerModel viewManagerModel,
+                                ScoreboardViewModel scoreboardViewModel
+    ) {
         this.lobbyPrepViewModel = lobbyPrepViewModel;
+        this.viewManagerModel = viewManagerModel;
+        this.scoreboardViewModel = scoreboardViewModel;
     }
 
     @Override
@@ -18,6 +27,9 @@ public class AddQuestionPresenter implements AddQuestionOutputBoundary {
 //        System.out.println("Presenter: prepareSuccessView called with message: " + outputData.getMessage());
         lobbyPrepViewModel.setPopupMessage(outputData.getMessage());
         lobbyPrepViewModel.incrementQuestionCount();
+
+        viewManagerModel.setState(ScoreboardViewModel.VIEW_NAME);
+        viewManagerModel.firePropertyChange();
 
 
     }

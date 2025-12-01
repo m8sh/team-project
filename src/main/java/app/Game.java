@@ -9,6 +9,8 @@ import entities.User;
 import interface_adapters.NextQuestion.NextQuestionController;
 import interface_adapters.NextQuestion.NextQuestionPresenter;
 import interface_adapters.NextQuestion.NextQuestionViewModel;
+import interface_adapters.ViewManagerModel;
+import interface_adapters.scoreboard.ScoreboardViewModel;
 import use_cases.NextQuestion.NextQuestionInteractor;
 import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
 
@@ -36,7 +38,10 @@ public class Game {
                 lobbyData.saveLobby(lobby);
 
                 NextQuestionViewModel viewModel = new NextQuestionViewModel();
-                NextQuestionPresenter presenter = new NextQuestionPresenter(viewModel);
+                ViewManagerModel viewManagerModel = new ViewManagerModel();
+                ScoreboardViewModel scoreboardViewModel = new ScoreboardViewModel();
+                NextQuestionPresenter presenter = new NextQuestionPresenter(viewModel, viewManagerModel,
+                        scoreboardViewModel);
 
                 NextQuestionInteractor interactor =
                         new NextQuestionInteractor(lobbyData, presenter);

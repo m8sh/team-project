@@ -12,13 +12,12 @@ import java.net.http.WebSocket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+
 import entities.Question;
-import use_cases.AddQuestion.SendQuestionsDataAccess;
+import use_cases.addQuestion.SendQuestionsDataAccess;
 import use_cases.StartScreen.StartScreenNetworkDataAccessInterface;
-import use_cases.StartScreen.StartScreenOutputBoundary;
 
-
-public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDataAccessInterface{
+public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDataAccessInterface {
 
     private final URL urlBase = new URL("https://shrill-forest-40bb.sw-william08.workers.dev");
     private final String wsBase = "wss://shrill-forest-40bb.sw-william08.workers.dev";
@@ -33,13 +32,15 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
     public static void main(String[] args) throws MalformedURLException {
         System.out.println("API Caller Started");
     }
+
     // Pre: pin is a String
-    // Post: Sends a message to "http://shrill-forest-40bb.sw-william08.workers.dev/api/newRoom/{pin}"
-    // The durable object is initialised and the PIN -> room mapping is made server-side
-    // All that to say - makes a server and connects the host computer to it
+    // Post: create a new room on the server and set this client as host
     public void createRoom(String pin) throws IOException, URISyntaxException, InterruptedException {
         System.out.println("Creating Room");
-        HttpRequest request = HttpRequest.newBuilder().uri(new URI(urlBase + "/api/newRoom/" + pin)).POST(HttpRequest.BodyPublishers.noBody()).build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(urlBase + "/api/newRoom/" + pin))
+                .POST(HttpRequest.BodyPublishers.noBody())
+                .build();
 
         HttpResponse<String> response = http.send(request, HttpResponse.BodyHandlers.ofString());
         socket = openSocket(pin);
@@ -48,34 +49,29 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
         System.out.println(response.body());
     }
 
-    // Pre:
-    // Post: Connects the client computer to the server that is associated with the given PIN
-    // also uploads the username to the server, so we know who is who
-    public void joinRoom(String pin, String username){
+    // Connect client to room and upload username
+    public void joinRoom(String pin, String username) {
         System.out.println("Joining Room");
         socket = openSocket(pin);
         socket.sendText("{\"type\":\"client/join\",\"username\":\"" + username + "\"}", true).join();
     }
 
-    // Pre:
-    // Post: Closes the server, making it so nobody can send or receive any questions or answers,
-    // or any other data
-    public void endGame(String pin){
+    // End game for host
+    public void endGame(String pin) {
         System.out.println("Ending Game");
         WebSocket ws = socket;
         ws.sendText("{\"type\":\"host/endGame\"}", true).join();
     }
 
-    // Pre: make the questionList contain an array of arrays, that contains a bunch of questions
-    // For example, ["how many sides in a square?", "what is the color of the sun?", etc.]
-    // Post: Sends those questions to the server
-    public void sendQuestions(String pin, Question[] questionList){
+    // Send questions to server
+    @Override
+    public void sendQuestions(String pin, Question[] questionList) {
         System.out.println("Sending Questions");
         WebSocket ws = socket;
         StringBuilder questionsListString = new StringBuilder();
         questionsListString.append("[");
 
-        for (int i = 0; i < questionList.length; i++){
+        for (int i = 0; i < questionList.length; i++) {
             Question question = questionList[i];
             if (i > 0) questionsListString.append(",");
 
@@ -83,23 +79,25 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
             questionsListString.append(question.getPrompt());
             questionsListString.append("\",\"choices\":[");
             List<String> choices = question.getChoices();
-            for (int j = 0; j < choices.size(); j++){
+            for (int j = 0; j < choices.size(); j++) {
                 if (j > 0) questionsListString.append(",");
-                questionsListString.append("\"" + choices.get(j) + "\"");
+                questionsListString.append("\"").append(choices.get(j)).append("\"");
             }
             questionsListString.append("],");
 
-            questionsListString.append("\"correctIndex\":" + question.getCorrectIndex() + "}");
+            questionsListString.append("\"correctIndex\":").append(question.getCorrectIndex()).append("}");
         }
 
         questionsListString.append("]");
 
-        ws.sendText("{\"type\":\"host/sendQuestions\",\"questions\":" + questionsListString.toString() + "}", true).join();
+        ws.sendText(
+                "{\"type\":\"host/sendQuestions\",\"questions\":" + questionsListString.toString() + "}",
+                true
+        ).join();
     }
 
-    // Pre: just put in the pin so it knows what server to talk to
-    // Post: it will return the set of questions in the same format that they were uploaded
-    public Object[] recieveQuestions(String pin){
+    // Receive questions as client
+    public Object[] recieveQuestions(String pin) {
         System.out.println("Recieving Questions");
         WebSocket ws = socket;
 
@@ -107,37 +105,38 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
 
         ws.sendText("{\"type\":\"client/receiveQuestions\"}", true).join();
 
-        while (receivedQuestions == null){
-            try{
+        while (receivedQuestions == null) {
+            try {
                 Thread.sleep(20);
-            } catch (InterruptedException e){}
+            } catch (InterruptedException e) { /* ignore */ }
         }
         return receivedQuestions;
     }
 
-    // Pre:
-    // Post: sends the answers in a simple array of [<answer 1>, <answer 2>, etc.] to the server
-    public void sendAnswers(String pin, String[] choicesList, String username){
+    // Send answers as client
+    public void sendAnswers(String pin, String[] choicesList, String username) {
         System.out.println("Sending Answers");
         WebSocket ws = socket;
 
         StringBuilder answersListString = new StringBuilder();
         answersListString.append("[");
-        for (int i = 0; i < choicesList.length; i++){
-            answersListString.append('"').append(choicesList[i].toString()).append('"');
-            if (i + 1 < choicesList.length){
+        for (int i = 0; i < choicesList.length; i++) {
+            answersListString.append('"').append(choicesList[i]).append('"');
+            if (i + 1 < choicesList.length) {
                 answersListString.append(",");
             }
         }
         answersListString.append("]");
 
-        ws.sendText("{\"type\":\"client/sendAnswers\",\"username\":\"" + username + "\",\"answers\":" + answersListString.toString() + "}",true).join();
+        ws.sendText(
+                "{\"type\":\"client/sendAnswers\",\"username\":\"" + username + "\",\"answers\":" +
+                        answersListString.toString() + "}",
+                true
+        ).join();
     }
 
-    // Pre:
-    // Post: returns the answers to the host, in the same fomat that they were originally given,
-    // also returns username
-    public Object[] recieveAnswers(String pin){
+    // Receive answers as host
+    public Object[] recieveAnswers(String pin) {
         System.out.println("Recieving Answers");
         WebSocket ws = socket;
 
@@ -145,20 +144,22 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
 
         ws.sendText("{\"type\":\"host/receiveAnswers\"}", true).join();
 
-        while (receivedAnswers == null){
-            try{
+        while (receivedAnswers == null) {
+            try {
                 Thread.sleep(20);
-            } catch (InterruptedException e){}
+            } catch (InterruptedException e) { /* ignore */ }
         }
         return receivedAnswers;
     }
 
-    // herlper functions
+    // helper: open websocket for a room
     private WebSocket openSocket(String pin) {
         String wsUrl = wsBase + "/ws/rooms/" + pin;
         CompletableFuture<Void> opened = new CompletableFuture<>();
-        WebSocket ws = http.newWebSocketBuilder().buildAsync(URI.create(wsUrl),
-                new LoggingListener(pin, opened)).join();
+        WebSocket ws = http.newWebSocketBuilder().buildAsync(
+                URI.create(wsUrl),
+                new LoggingListener(pin, opened)
+        ).join();
         opened.join();
         return ws;
     }
@@ -167,51 +168,54 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
         private final String pin;
         private final CompletableFuture<Void> opened;
 
-
         public LoggingListener(String pin, CompletableFuture<Void> opened) {
             this.pin = pin;
             this.opened = opened;
         }
+
         @Override
         public void onOpen(WebSocket webSocket) {
-            if (opened != null && !opened.isDone()){
+            if (opened != null && !opened.isDone()) {
                 opened.complete(null);
             }
             WebSocket.Listener.super.onOpen(webSocket);
             System.out.println("opened");
         }
+
         @Override
-        public CompletableFuture<?> onText(WebSocket webSocket, CharSequence data, boolean last){
+        public CompletableFuture<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
             String stringData = data.toString();
             System.out.println("text received: " + stringData);
             String string = data.toString();
 
-            if (string.contains("\"type\":\"questions\"")){
+            if (string.contains("\"type\":\"questions\"")) {
                 receivedQuestions = extractJSON(string, "\"questions\"");
             }
 
-            if (string.contains("\"type\":\"client/answers\"")){
+            if (string.contains("\"type\":\"client/answers\"")) {
                 receivedAnswers = extractJSON(string, "\"answers\"");
             }
 
             return CompletableFuture.completedFuture(null);
         }
+
         @Override
-        public void onError(WebSocket webSocket, Throwable t){
+        public void onError(WebSocket webSocket, Throwable t) {
             System.out.println("error");
             t.printStackTrace();
-            WebSocket.Listener.super.onError(webSocket,t);
+            WebSocket.Listener.super.onError(webSocket, t);
         }
+
         @Override
-        public CompletableFuture<?> onClose(WebSocket webSocket, int statusCode, String reason){
+        public CompletableFuture<?> onClose(WebSocket webSocket, int statusCode, String reason) {
             System.out.println("closed");
-            return WebSocket.Listener.super.onClose(webSocket,statusCode,reason).toCompletableFuture();
+            return WebSocket.Listener.super.onClose(webSocket, statusCode, reason).toCompletableFuture();
         }
     }
 
-    private static Object[] extractJSON(String json, String key){
+    private static Object[] extractJSON(String json, String key) {
         int index = json.indexOf(key);
-        int depth = 0;
+        int depth;
         int start = -1;
         boolean inString = false;
         char previous = '0';
@@ -221,22 +225,20 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
         int arrStartIndex = json.indexOf('[', index);
         if (arrStartIndex < 0) return new Object[0];
 
-        // this is just so that it doesn't stop at the first ] that it sees (which does happen otherwise)
         depth = 1;
         int arrEndIndex = -1;
-        for (int i = arrStartIndex + 1; i < json.length(); i++){
+        for (int i = arrStartIndex + 1; i < json.length(); i++) {
             char ch = json.charAt(i);
             if (ch == '"' && previous != '\\') inString = !inString;
-            if (!inString){
+            if (!inString) {
                 if (ch == '[') depth++;
                 else if (ch == ']') {
                     depth--;
-                    if (depth == 0){
+                    if (depth == 0) {
                         arrEndIndex = i;
                         break;
                     }
                 }
-
             }
             previous = ch;
         }
@@ -249,20 +251,19 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
         previous = '0';
 
         List<String> out = new ArrayList<>();
-        for (int i = 0; i < body.length(); i++){
+        for (int i = 0; i < body.length(); i++) {
             char ch = body.charAt(i);
             if (ch == '"' && previous != '\\') inString = !inString;
-            if (!inString){
-                if (ch == '{'){
-                    if (depth == 0){
+            if (!inString) {
+                if (ch == '{') {
+                    if (depth == 0) {
                         start = i;
                         depth++;
                     }
-                }
-                else if (ch == '}') {
+                } else if (ch == '}') {
                     depth--;
                     if (depth == 0) {
-                        out.add(body.substring(start, i+1));
+                        out.add(body.substring(start, i + 1));
                     }
                 }
             }
@@ -271,24 +272,25 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
         return out.toArray();
     }
 
-    public boolean createRemoteRoom(int pin){
+    // ---- StartScreenNetworkDataAccessInterface methods ----
+
+    @Override
+    public boolean createRemoteRoom(int pin) {
         try {
             createRoom(String.valueOf(pin));
             return true;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
-    public boolean joinRemoteRoom(int pin, String username){
+    @Override
+    public boolean joinRemoteRoom(int pin, String username) {
         try {
             joinRoom(String.valueOf(pin), username);
             return true;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-
 }

@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/StartScreen/StartScreenInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/StartScreen/StartScreenInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/AddQuestionView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AddQuestionView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/LobbyPrepView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LobbyPrepView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/StartScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StartScreenView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,27 +38,27 @@
     &quot;assignee&quot;: &quot;m8sh&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/m8sh/team-project.git",
-    "accountId": "6b0ba349-2ab8-415d-942f-61b2394a73a1"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/m8sh/team-project.git&quot;,
+    &quot;accountId&quot;: &quot;6b0ba349-2ab8-415d-942f-61b2394a73a1&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "m8sh",
-    "repository": "team-project"
+    &quot;owner&quot;: &quot;m8sh&quot;,
+    &quot;repository&quot;: &quot;team-project&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="361g8V82eWgcaIP455o0lB8yZ7S" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -76,7 +78,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "StartScreen-CA-refactoring",
+    "git-widget-placeholder": "DanialCareyMerge",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -93,12 +95,25 @@
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="LobbyPrepView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="use_cases.view.LobbyPrepView" />
+    <configuration name="AddQuestionAppRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.AddQuestionAppRunner" />
       <module name="TeamProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="use_cases.view.*" />
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="TeamProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -109,22 +124,6 @@
     <configuration name="gui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui" />
       <module name="TeamProject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AddQuestionDataHolderTests.testGettersReturnCorrectValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TeamProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="use_cases.AddQuestion.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="use_cases.AddQuestion" />
-      <option name="MAIN_CLASS_NAME" value="use_cases.AddQuestion.AddQuestionDataHolderTests" />
-      <option name="METHOD_NAME" value="testGettersReturnCorrectValues" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -162,11 +161,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AddQuestionAppRunner" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.gui" />
         <item itemvalue="JUnit.AddQuestionInteractorTest.testFailIfLobbyMissing" />
         <item itemvalue="JUnit.AddQuestionInteractorTest" />
-        <item itemvalue="JUnit.AddQuestionDataHolderTests.testGettersReturnCorrectValues" />
-        <item itemvalue="Application.LobbyPrepView" />
       </list>
     </recent_temporary>
   </component>
@@ -264,17 +263,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java</url>
           <line>52</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java</url>
           <line>47</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java</url>
           <line>48</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>

@@ -1,4 +1,4 @@
-package use_cases.AddQuestion;
+package use_cases.addQuestion;
 
 import entities.Question;
 

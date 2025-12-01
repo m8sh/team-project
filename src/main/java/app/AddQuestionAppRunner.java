@@ -7,10 +7,12 @@ import entities.QuestionFactory;
 import interface_adapters.AddQuestion.AddQuestionController;
 import interface_adapters.AddQuestion.AddQuestionPresenter;
 import interface_adapters.AddQuestion.LobbyPrepViewModel;
-import use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface;
+import interface_adapters.ViewManagerModel;
+import interface_adapters.scoreboard.ScoreboardViewModel;
+import use_cases.addQuestion.AddQuestionLobbyDataAccessInterface;
 import view.LobbyPrepView;
 
-import use_cases.AddQuestion.AddQuestionInteractor;
+import use_cases.addQuestion.AddQuestionInteractor;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -41,17 +43,21 @@ public class AddQuestionAppRunner {
 
             Lobby lobby = new Lobby(123);
             lobbyDataAccess.saveLobby(lobby);
+            ViewManagerModel viewManagerModel = new ViewManagerModel();
+            ScoreboardViewModel scoreboardViewModel = new ScoreboardViewModel();
 
 
-            LobbyPrepViewModel viewModel = new LobbyPrepViewModel(123);
-            AddQuestionPresenter presenter = new AddQuestionPresenter(viewModel);
+            LobbyPrepViewModel viewModel = new LobbyPrepViewModel();
+            viewModel.setLobbyPin(123);
+            AddQuestionPresenter presenter = new AddQuestionPresenter(viewModel, viewManagerModel,scoreboardViewModel);
 
 
             QuestionFactory questionFactory = new QuestionFactory();
             AddQuestionInteractor interactor = new AddQuestionInteractor(lobbyDataAccess, presenter, questionFactory, caller);
             AddQuestionController controller = new AddQuestionController(interactor);
 
-            LobbyPrepView lobbyPrepView = new LobbyPrepView(viewModel, controller);
+
+            LobbyPrepView lobbyPrepView = new LobbyPrepView(viewModel, controller, viewManagerModel);
             //Need to figure out best way to give this a lobbyPin
             lobbyPrepView.setVisible(true);
 
