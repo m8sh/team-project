@@ -46,7 +46,9 @@ public class AddQuestionAppRunner {
             ViewManagerModel viewManagerModel = new ViewManagerModel();
             ScoreboardViewModel scoreboardViewModel = new ScoreboardViewModel();
 
-            LobbyPrepViewModel viewModel = new LobbyPrepViewModel(123);
+
+            LobbyPrepViewModel viewModel = new LobbyPrepViewModel();
+            viewModel.setLobbyPin(123);
             AddQuestionPresenter presenter = new AddQuestionPresenter(viewModel, viewManagerModel,scoreboardViewModel);
 
 
