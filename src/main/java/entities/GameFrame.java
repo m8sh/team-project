@@ -196,7 +196,6 @@ public class GameFrame extends JFrame {
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         submitButton.addActionListener(e -> {
             scoreboardController.showScoreboard(lobby.getPin());
-            dispose();
 
         });
         endPanel.add(Box.createVerticalStrut(10));
