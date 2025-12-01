@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/StartScreen/StartScreenInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/StartScreen/StartScreenInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/StartScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StartScreenView.java" afterDir="false" />
-    </list>
+    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,22 +32,22 @@
     &quot;assignee&quot;: &quot;m8sh&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/m8sh/team-project.git",
-    "accountId": "6b0ba349-2ab8-415d-942f-61b2394a73a1"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/m8sh/team-project.git&quot;,
+    &quot;accountId&quot;: &quot;6b0ba349-2ab8-415d-942f-61b2394a73a1&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "m8sh",
-    "repository": "team-project"
+    &quot;owner&quot;: &quot;m8sh&quot;,
+    &quot;repository&quot;: &quot;team-project&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -76,7 +72,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "StartScreen-CA-refactoring",
+    "git-widget-placeholder": "DanialCareyMerge",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -261,17 +257,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java</url>
           <line>52</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java</url>
           <line>47</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java</url>
           <line>48</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
