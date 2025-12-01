@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.security.SecureRandom;
 
 public class StartScreenView extends JPanel implements PropertyChangeListener {
 
@@ -49,20 +48,24 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
     private void buildUI() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        // Create Session
         sesPanel = new JPanel();
         session = new JButton("Create Session");
         sesPanel.add(session);
 
+        // PIN input
         pinPanel = new JPanel();
         pinField = new JTextField(10);
         pinPanel.add(new JLabel("PIN:"));
         pinPanel.add(pinField);
 
+        // Username input
         namePanel = new JPanel();
         nameField = new JTextField(10);
         namePanel.add(new JLabel("Username:"));
         namePanel.add(nameField);
 
+        // Join button
         buttonPanel = new JPanel();
         submit = new JButton("Join");
         buttonPanel.add(submit);
@@ -72,7 +75,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
         this.add(namePanel);
         this.add(buttonPanel);
 
-        // JOIN button -> use controller
+        // JOIN SESSION: delegate to controller
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,7 +88,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
             }
         });
 
-        // CREATE SESSION button -> use controller
+        // CREATE SESSION: run use case, then navigate to LobbyPrepView
         session.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -93,7 +96,13 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
                     return;
                 }
                 System.out.println("Create Session button clicked");
+
+                // CA use case (create room, set pin in state, etc.)
                 startScreenController.onCreateSessionRequested();
+
+                // UI navigation: switch to LobbyPrepView card
+                viewManagerModel.setState("lobby prep"); // must match LobbyPrepView.getViewName()
+                viewManagerModel.firePropertyChange();
             }
         });
     }
@@ -114,7 +123,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
             nameField.setText(username);
         }
 
-        // If we have both pin and username (client join path), start the game
+        // Client JOIN flow – when both are filled successfully, start the game
         if (pin != null && !pin.isEmpty()
                 && username != null && !username.isEmpty()
                 && (error == null || error.isEmpty())) {
@@ -123,18 +132,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
             return;
         }
 
-        // If we have a pin but no username and no error -> likely host created a room
-        if (pin != null && !pin.isEmpty()
-                && (username == null || username.isEmpty())
-                && (error == null || error.isEmpty())) {
-
-            // Navigate to LobbyPrepView
-            viewManagerModel.setState("lobby prep");
-            viewManagerModel.firePropertyChange();
-            return;
-        }
-
-        // If there's an error, you can show it (log or dialog)
+        // Show/log errors if any
         if (error != null && !error.isEmpty()) {
             System.out.println("StartScreen error: " + error);
             // Optionally:

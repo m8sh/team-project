@@ -18,7 +18,8 @@ public class AddQuestionView extends JFrame {
     private JRadioButton correct4;
     private ButtonGroup correctGroup;
 
-    private final AddQuestionController controller;
+    // Make this non-final so it can be checked / potentially set later
+    private AddQuestionController controller;
     private final int lobbyPin;
 
     public AddQuestionView(int lobbyPin, AddQuestionController controller) {
@@ -26,6 +27,7 @@ public class AddQuestionView extends JFrame {
 
         this.controller = controller;
         this.lobbyPin = lobbyPin;
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel panel = new JPanel();
@@ -35,39 +37,39 @@ public class AddQuestionView extends JFrame {
         questionArea = new JTextArea(3, 40);
         panel.add(new JScrollPane(questionArea));
 
-        // Answers
+        // Answer 1
         panel.add(Box.createVerticalStrut(10));
         panel.add(new JLabel("Answer1:"));
         answer1Area = new JTextArea(3, 25);
         panel.add(new JScrollPane(answer1Area));
-
         correct1 = new JRadioButton("Correct");
         panel.add(correct1);
 
+        // Answer 2
         panel.add(Box.createVerticalStrut(10));
         panel.add(new JLabel("Answer2:"));
         answer2Area = new JTextArea(3, 25);
         panel.add(new JScrollPane(answer2Area));
-
         correct2 = new JRadioButton("Correct");
         panel.add(correct2);
 
+        // Answer 3
         panel.add(Box.createVerticalStrut(10));
         panel.add(new JLabel("Answer3:"));
         answer3Area = new JTextArea(3, 25);
         panel.add(new JScrollPane(answer3Area));
-
         correct3 = new JRadioButton("Correct");
         panel.add(correct3);
 
+        // Answer 4
         panel.add(Box.createVerticalStrut(10));
         panel.add(new JLabel("Answer4:"));
         answer4Area = new JTextArea(3, 25);
         panel.add(new JScrollPane(answer4Area));
-
         correct4 = new JRadioButton("Correct");
         panel.add(correct4);
 
+        // Radio group
         correctGroup = new ButtonGroup();
         correctGroup.add(correct1);
         correctGroup.add(correct2);
@@ -85,7 +87,6 @@ public class AddQuestionView extends JFrame {
             ArrayList<String> choices = new ArrayList<>();
             ArrayList<String> answerInput = new ArrayList<>();
             int correctIndex = getCorrectAnswerIndex();
-            // Need to figure out how to get lobbyPin from the actual lobby
 
             String ans1 = answer1Area.getText().trim();
             String ans2 = answer2Area.getText().trim();
@@ -98,19 +99,19 @@ public class AddQuestionView extends JFrame {
             answerInput.add(ans4);
 
             boolean gapFound = false;
-            if (!ans1.isEmpty()){choices.add(ans1);}
-            if (!ans2.isEmpty()){choices.add(ans2);;}
-            if (!ans3.isEmpty()){choices.add(ans3);}
-            if (!ans4.isEmpty()){choices.add(ans4);}
+            if (!ans1.isEmpty()) { choices.add(ans1); }
+            if (!ans2.isEmpty()) { choices.add(ans2); }
+            if (!ans3.isEmpty()) { choices.add(ans3); }
+            if (!ans4.isEmpty()) { choices.add(ans4); }
 
-            for(int i = 0; i < choices.size();i++){
-                if (answerInput.get(i).isEmpty()){
+            for (int i = 0; i < choices.size(); i++) {
+                if (answerInput.get(i).isEmpty()) {
                     gapFound = true;
                 }
-
             }
 
-            if (prompt.isEmpty()){
+            // --- validation checks ---
+            if (prompt.isEmpty()) {
                 JFrame noQuestionFrame = new JFrame("No question entered");
                 JPanel noQuestionPanel = new JPanel();
                 noQuestionPanel.add(new JLabel("Please enter a question prompt before saving"));
@@ -124,7 +125,8 @@ public class AddQuestionView extends JFrame {
 
                 return;
             }
-            if (choices.size() < 2){
+
+            if (choices.size() < 2) {
                 JFrame missingAnswerFrame = new JFrame("Not enough answers");
                 JPanel missingAnswerPanel = new JPanel();
                 missingAnswerPanel.add(new JLabel("Please add at least two answers"));
@@ -139,7 +141,7 @@ public class AddQuestionView extends JFrame {
                 return;
             }
 
-            if  (correctIndex == -1) {
+            if (correctIndex == -1) {
                 JFrame noCorrectFrame = new JFrame("No correct answer selected");
                 JPanel noCorrectPanel = new JPanel();
                 noCorrectPanel.add(new JLabel("Please select which answer is correct"));
@@ -153,6 +155,7 @@ public class AddQuestionView extends JFrame {
 
                 return;
             }
+
             if ((correct1.isSelected() && ans1.isEmpty()) ||
                     (correct2.isSelected() && ans2.isEmpty()) ||
                     (correct3.isSelected() && ans3.isEmpty()) ||
@@ -171,7 +174,8 @@ public class AddQuestionView extends JFrame {
 
                 return;
             }
-            if(gapFound) {
+
+            if (gapFound) {
                 JFrame emptyCorrectFrame = new JFrame("Invalid answer sequence");
                 JPanel emptyCorrectPanel = new JPanel();
                 emptyCorrectPanel.add(new JLabel("Please fill in the answers in order without skipping any options"));
@@ -185,21 +189,31 @@ public class AddQuestionView extends JFrame {
 
                 return;
             }
+
             System.out.println("Save button clicked and passed tests, controller called");
 
+            if (this.controller == null) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Internal error: AddQuestionController is not wired (null).",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+
+            // Call the use case
             this.controller.execute(prompt, choices, correctIndex, lobbyPin);
+
+            // Close the popup
             this.dispose();
-            // Close the panel/AddQuestion Popup
-
-
         });
 
         add(panel);
         pack();
         setLocationRelativeTo(null);
-
-
     }
+
     public int getCorrectAnswerIndex() {
         if (correct1.isSelected()) return 0;
         if (correct2.isSelected()) return 1;
@@ -207,7 +221,4 @@ public class AddQuestionView extends JFrame {
         if (correct4.isSelected()) return 3;
         return -1; // none selected
     }
-
-
 }
-

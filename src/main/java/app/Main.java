@@ -13,8 +13,7 @@ public class Main {
                     .addLobbyPrepView(123)
                     .addScoreboardView()
                     .addScoreboardUseCase()
-                    .addAddQuestionUseCase();
-            // Add your View and UseCase here
+                    .addAddQuestionUseCase();  // <- this is where controller gets injected
 
             JFrame app = builder.build();
             app.pack();

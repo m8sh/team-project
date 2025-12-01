@@ -3,12 +3,15 @@ package app;
 import api_caller.api_caller;
 import data_access.InMemoryDataAccessObject;
 import entities.QuestionFactory;
+
 import interface_adapters.AddQuestion.AddQuestionController;
 import interface_adapters.AddQuestion.AddQuestionPresenter;
 import interface_adapters.AddQuestion.LobbyPrepViewModel;
+
 import interface_adapters.StartScreen.StartScreenController;
 import interface_adapters.StartScreen.StartScreenPresenter;
 import interface_adapters.StartScreen.StartScreenViewModel;
+
 import interface_adapters.ViewManagerModel;
 
 import interface_adapters.scoreboard.ScoreboardController;
@@ -20,10 +23,7 @@ import use_cases.addQuestion.AddQuestionInputBoundary;
 import use_cases.addQuestion.AddQuestionInteractor;
 import use_cases.addQuestion.AddQuestionOutputBoundary;
 import use_cases.addQuestion.SendQuestionsDataAccess;
-import use_cases.scoreboard.ScoreboardDataAccessInterface;
-import use_cases.scoreboard.ScoreboardInputBoundary;
-import use_cases.scoreboard.ScoreboardInteractor;
-import use_cases.scoreboard.ScoreboardOutputBoundary;
+import use_cases.scoreboard.*;
 
 import view.LobbyPrepView;
 import view.ScoreboardView;
@@ -40,10 +40,7 @@ public class AppBuilder {
     final ViewManagerModel viewManagerModel = new ViewManagerModel();
     ViewManager viewManager = new ViewManager(cardPanel, cardLayout, viewManagerModel);
 
-    // Shared DAO
     final InMemoryDataAccessObject lobbyDataAccessObject = new InMemoryDataAccessObject();
-
-    // API caller shared between use cases
     private api_caller apiCaller;
 
     // StartScreen
@@ -51,30 +48,26 @@ public class AppBuilder {
     private StartScreenView startScreenView;
     private StartScreenController startScreenController;
 
+    // LobbyPrep / AddQuestion
+    private LobbyPrepViewModel lobbyPrepViewModel;
+    private LobbyPrepView lobbyPrepView;
+    private AddQuestionController addQuestionController;
+
     // Scoreboard
     private ScoreboardViewModel scoreboardViewModel;
     private ScoreboardView scoreboardView;
     private ScoreboardController scoreboardController;
 
-    // Lobby prep / AddQuestion
-    private LobbyPrepViewModel lobbyPrepViewModel;
-    private LobbyPrepView lobbyPrepView;
-    private AddQuestionController addQuestionController;
-
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
-
         try {
-            api_caller caller = new api_caller();
-            // Example: create a dummy room; the real PINs come from StartScreen / Lobby logic
-            caller.createRoom("123");
-            this.apiCaller = caller;
+            apiCaller = new api_caller();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    // -------- START SCREEN VIEW ----------
+    // ---------- START SCREEN ----------
     public AppBuilder addStartScreenView() {
         startScreenViewModel = new StartScreenViewModel();
         startScreenView = new StartScreenView(startScreenViewModel, viewManagerModel);
@@ -97,7 +90,7 @@ public class AppBuilder {
         return this;
     }
 
-    // ---------- SCOREBOARD VIEWS ----------
+    // ---------- SCOREBOARD ----------
     public AppBuilder addScoreboardView() {
         scoreboardViewModel = new ScoreboardViewModel();
         scoreboardView = new ScoreboardView(scoreboardViewModel);
@@ -105,7 +98,6 @@ public class AppBuilder {
         return this;
     }
 
-    // ---------- SCOREBOARD USE CASES ----------
     public AppBuilder addScoreboardUseCase() {
         ScoreboardOutputBoundary outputBoundary =
                 new ScoreboardPresenter(scoreboardViewModel);
@@ -120,26 +112,18 @@ public class AppBuilder {
         return this;
     }
 
-    // ---------- LOBBYPREP / ADDQUESTION VIEWS ----------
+    // ---------- LOBBY PREP (VIEW ONLY) ----------
     public AppBuilder addLobbyPrepView(int lobbyPin) {
         lobbyPrepViewModel = new LobbyPrepViewModel(lobbyPin);
 
-        AddQuestionOutputBoundary addQPresenter =
-                new AddQuestionPresenter(lobbyPrepViewModel, viewManagerModel, scoreboardViewModel);
-        QuestionFactory questionFactory = new QuestionFactory();
-        AddQuestionInputBoundary interactor =
-                new AddQuestionInteractor(lobbyDataAccessObject, addQPresenter, questionFactory, apiCaller);
-
-        addQuestionController = new AddQuestionController(interactor);
-
-        lobbyPrepView = new LobbyPrepView(lobbyPrepViewModel, addQuestionController, viewManagerModel);
+        // controller is null for now; will be injected in addAddQuestionUseCase()
+        lobbyPrepView = new LobbyPrepView(lobbyPrepViewModel, null, viewManagerModel);
         cardPanel.add(lobbyPrepView, lobbyPrepView.getViewName());
         return this;
     }
 
-    // ---------- ADDQUESTION USE CASES ----------
+    // ---------- ADD QUESTION USE CASE ----------
     public AppBuilder addAddQuestionUseCase() {
-
         AddQuestionOutputBoundary outputBoundary =
                 new AddQuestionPresenter(lobbyPrepViewModel, viewManagerModel, scoreboardViewModel);
 
@@ -149,19 +133,19 @@ public class AppBuilder {
 
         addQuestionController = new AddQuestionController(interactor);
 
-        lobbyPrepView.setAddQuestionController(addQuestionController);
-
+        // 🔵 This is the critical wiring step:
+        if (lobbyPrepView != null) {
+            lobbyPrepView.setAddQuestionController(addQuestionController);
+        }
         return this;
     }
 
-    // ---------- BUILD FRAME ----------
+    // ---------- BUILD ----------
     public JFrame build() {
         final JFrame application = new JFrame("Team Project");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         application.add(cardPanel);
 
-        // Start on the start screen if present, otherwise fall back to lobby prep or scoreboard
         String initialViewName = null;
         if (startScreenView != null) {
             initialViewName = startScreenView.getViewName();
