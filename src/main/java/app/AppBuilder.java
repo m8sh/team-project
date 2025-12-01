@@ -111,34 +111,29 @@ public class AppBuilder {
         scoreboardView.setScoreboardController(scoreboardController);
         return this;
     }
+    // ---------- ADD QUESTION USE CASE ----------
 
     // ---------- LOBBY PREP (VIEW ONLY) ----------
     public AppBuilder addLobbyPrepView(int lobbyPin) {
         lobbyPrepViewModel = new LobbyPrepViewModel();
+        AddQuestionOutputBoundary presenter =
+                new AddQuestionPresenter(lobbyPrepViewModel, viewManagerModel, scoreboardViewModel);
+
+        QuestionFactory questionFactory = new QuestionFactory();
+        AddQuestionInputBoundary interactor =
+                new AddQuestionInteractor(lobbyDataAccessObject, presenter, questionFactory, apiCaller);
+
+        addQuestionController = new AddQuestionController(interactor);
+
 
         // controller is null for now; will be injected in addAddQuestionUseCase()
-        lobbyPrepView = new LobbyPrepView(lobbyPrepViewModel, null, viewManagerModel);
+        lobbyPrepView = new LobbyPrepView(lobbyPrepViewModel, addQuestionController, viewManagerModel);
         cardPanel.add(lobbyPrepView, lobbyPrepView.getViewName());
         return this;
     }
 
     // ---------- ADD QUESTION USE CASE ----------
-    public AppBuilder addAddQuestionUseCase() {
-        AddQuestionOutputBoundary outputBoundary =
-                new AddQuestionPresenter(lobbyPrepViewModel, viewManagerModel, scoreboardViewModel);
 
-        QuestionFactory questionFactory = new QuestionFactory();
-        AddQuestionInputBoundary interactor =
-                new AddQuestionInteractor(lobbyDataAccessObject, outputBoundary, questionFactory, apiCaller);
-
-        addQuestionController = new AddQuestionController(interactor);
-
-        // 🔵 This is the critical wiring step:
-        if (lobbyPrepView != null) {
-            lobbyPrepView.setAddQuestionController(addQuestionController);
-        }
-        return this;
-    }
 
     // ---------- BUILD ----------
     public JFrame build() {
