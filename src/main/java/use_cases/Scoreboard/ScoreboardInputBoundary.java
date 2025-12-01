@@ -1,5 +1,10 @@
 package use_cases.Scoreboard;
 
 public interface ScoreboardInputBoundary {
-    void showScoreboard(ScoreboardInputData scoreboardInputData);
+
+    void showScoreboard(ScoreboardShowInputData inputData);
+
+    void saveResults(ScoreboardSaveInputData inputData);
+
+    void endSession();
 }

@@ -4,49 +4,64 @@ import interface_adapters.ViewManagerModel;
 import use_cases.Scoreboard.ScoreboardOutputBoundary;
 import use_cases.Scoreboard.ScoreboardOutputData;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ScoreboardPresenter implements ScoreboardOutputBoundary {
 
-    private final ScoreboardViewModel viewModel;
+    private final ScoreboardViewModel scoreboardViewModel;
     private final ViewManagerModel viewManagerModel;
 
-    public ScoreboardPresenter(ScoreboardViewModel viewModel,
+    public ScoreboardPresenter(ScoreboardViewModel scoreboardViewModel,
                                ViewManagerModel viewManagerModel) {
-        this.viewModel = viewModel;
+        this.scoreboardViewModel = scoreboardViewModel;
         this.viewManagerModel = viewManagerModel;
     }
 
     @Override
-    public void prepareSuccessView(ScoreboardOutputData data) {
-        List<ScoreboardRowViewModel> rows = data.getRows().stream()
-                .map(row -> new ScoreboardRowViewModel(
-                        row.getRank(),
-                        row.getName(),
-                        row.getScore()
-                ))
-                .collect(Collectors.toList());
+    public void prepareSuccessView(ScoreboardOutputData outputData) {
+        ScoreboardState state = scoreboardViewModel.getState();
+        if (state == null) {
+            state = new ScoreboardState();
+        }
 
-        ScoreboardState state = viewModel.getState();
-        state.setRows(rows);
+        // Convert use-case rows -> view-model rows
+        List<ScoreboardRowViewModel> viewRows = new ArrayList<>();
+        for (ScoreboardOutputData.Row r : outputData.getRows()) {
+            viewRows.add(new ScoreboardRowViewModel(
+                    r.getRank(),
+                    r.getName(),  // or getUsername() depending on your Row class
+                    r.getScore()
+            ));
+        }
+
+        state.setRows(viewRows);
         state.setErrorMessage(null);
-        state.setLobbyPin(data.getLobbyPin());
+        state.setLobbyPin(outputData.getLobbyPin());
 
-        viewModel.firePropertyChange();
-        viewManagerModel.setState(viewModel.getViewName());
+        scoreboardViewModel.setState(state);
+        scoreboardViewModel.firePropertyChange();
+
+        viewManagerModel.setState(ScoreboardViewModel.VIEW_NAME);
         viewManagerModel.firePropertyChange();
     }
 
     @Override
-    public void prepareFailView(String error) {
-        ScoreboardState state = viewModel.getState();
-        state.setRows(List.of());
-        state.setErrorMessage(error);
+    public void prepareFailView(String errorMessage) {
+        ScoreboardState state = scoreboardViewModel.getState();
+        if (state == null) {
+            state = new ScoreboardState();
+        }
 
-        viewModel.firePropertyChange();
-        viewManagerModel.setState(viewModel.getViewName());
+        state.setErrorMessage(errorMessage);
+
+        scoreboardViewModel.setState(state);
+        scoreboardViewModel.firePropertyChange();
+    }
+
+    @Override
+    public void endSession() {
+        viewManagerModel.setState("start");
         viewManagerModel.firePropertyChange();
     }
 }
-

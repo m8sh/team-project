@@ -9,9 +9,10 @@ public class Main {
             AppBuilder builder = new AppBuilder();
 
             builder.addStartScreenView()
+                    .addLobbyPrepView(123)
                     .addScoreboardView()
                     .addScoreboardUseCase()
-                    .addLobbyPrepView(123)      // creates LobbyPrepViewModel + controller
+                        // creates LobbyPrepViewModel + controller
                     .addStartScreenUseCase();   // presenter now gets non-null LobbyPrepViewModel
 
             JFrame app = builder.build();

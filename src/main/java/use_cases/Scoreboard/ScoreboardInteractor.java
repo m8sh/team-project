@@ -1,41 +1,54 @@
 package use_cases.Scoreboard;
 
-import entities.Lobby;
 import entities.User;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class ScoreboardInteractor implements ScoreboardInputBoundary {
+
+    private final ScoreboardDataAccessInterface dao;
     private final ScoreboardOutputBoundary presenter;
-    private final ScoreboardDataAccessInterface DAO;
-    public  ScoreboardInteractor(ScoreboardDataAccessInterface DAO,
-                                 ScoreboardOutputBoundary presenter) {
+
+    public ScoreboardInteractor(ScoreboardDataAccessInterface dao,
+                                ScoreboardOutputBoundary presenter) {
+        this.dao = dao;
         this.presenter = presenter;
-        this.DAO = DAO;
     }
 
     @Override
-    public void showScoreboard(ScoreboardInputData scoreboardInputData) {
-        int lobbyPin = scoreboardInputData.getLobbyPin();
-        Lobby lobby = DAO.getLobby(lobbyPin);
-        if (lobby == null) {
-            presenter.prepareFailView("Lobby not found");
-            return;
-        }
-        List<User> users = lobby.getUsers();
+    public void saveResults(ScoreboardSaveInputData inputData) {
+        dao.saveResults(inputData.getLobbyPin(), inputData.getUsers());
+    }
+
+    @Override
+    public void showScoreboard(ScoreboardShowInputData inputData) {
+        int lobbyPin = inputData.getLobbyPin();
+
+        List<User> loaded = dao.loadResults(lobbyPin);
+        List<User> users = new ArrayList<>(loaded);
+
+        System.out.println("[ScoreboardInteractor] showScoreboard for pin "
+                + lobbyPin + ", users=" + users.size());
+
         users.sort(Comparator.comparingInt(User::getScore).reversed());
 
         List<ScoreboardOutputData.Row> rows = new ArrayList<>();
         int rank = 1;
-        for (User user : users) {
-            rows.add(new ScoreboardOutputData.Row(
-                    rank++,
-                    user.getName(),
-                    user.getScore()
-            ));
+        for (User u : users) {
+            System.out.println("    rank " + rank + " -> " + u.getName()
+                    + " : " + u.getScore());
+            rows.add(new ScoreboardOutputData.Row(rank++, u.getName(), u.getScore()));
         }
+
+        // ★ Important: pass lobbyPin through so presenter/state can store it
         ScoreboardOutputData outputData = new ScoreboardOutputData(rows, lobbyPin);
         presenter.prepareSuccessView(outputData);
+    }
+
+    @Override
+    public void endSession() {
+        presenter.endSession();
     }
 }

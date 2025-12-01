@@ -1,34 +1,43 @@
 package data_access;
 
 import entities.Lobby;
+import entities.User;
+
+// ✅ Correct imports
 import use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface;
+
 import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
 import use_cases.StartScreen.StartScreenLobbyDataAccessInterface;
 import use_cases.Scoreboard.ScoreboardDataAccessInterface;
 
-public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInterface,
+import java.util.ArrayList;
+import java.util.List;
+
+public class InMemoryDataAccessObject implements
+        AddQuestionLobbyDataAccessInterface,
         NextQuestionLobbyDataAccessInterface,
-        ScoreboardDataAccessInterface, StartScreenLobbyDataAccessInterface {
+        ScoreboardDataAccessInterface,
+        StartScreenLobbyDataAccessInterface {
 
     private Lobby lobby;
+    private final List<User> scoreboardUsers = new ArrayList<>();
 
     public InMemoryDataAccessObject() {
         this.lobby = null;
-        //currently only supports one lobby
-
-
-
     }
+
+    // -------- AddQuestionLobbyDataAccessInterface --------
     @Override
     public Lobby getLobby() {
         return lobby;
     }
 
-    // AddQuestionLobbyDataAccessInterface methods
+    @Override
+    public void saveLobby(Lobby lobby) {
+        this.lobby = lobby;
+    }
 
-
-    // ScoreboardDataAccessInterface method
-
+    // -------- StartScreenLobbyDataAccessInterface --------
     @Override
     public Lobby getLobby(int pin) {
         if (lobby != null && lobby.getPin() == pin) {
@@ -37,25 +46,15 @@ public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInter
         return null;
     }
 
-    public void saveLobby(Lobby lobby) {
-//        System.out.println("DAO: saving lobby " + lobby.getPin()+ " with " + lobby.getQuestions().size() + " questions");
-        this.lobby = lobby;
+    // -------- ScoreboardDataAccessInterface --------
+    @Override
+    public void saveResults(int lobbyPin, List<User> users) {
+        scoreboardUsers.clear();
+        scoreboardUsers.addAll(users);
     }
 
-
+    @Override
+    public List<User> loadResults(int lobbyPin) {
+        return new ArrayList<>(scoreboardUsers);
+    }
 }
-
-
-//private Map<Integer, Lobby> PinToLobby;
-//public LobbyManager() {
-//    PinToLobby = new HashMap<Integer, Lobby>();
-//}
-//public void addLobby(Lobby lobby) {
-//    PinToLobby.put(lobby.getPin(), lobby);
-//}
-//public Lobby getLobby(int pin) {
-//    return PinToLobby.get(pin);
-//}
-//public void removeLobby(int pin) {
-//    PinToLobby.remove(pin);
-//}

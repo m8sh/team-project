@@ -6,31 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Fix the issue that Game.java and AppBuilder.java not using the same DAO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api_caller/api_caller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_caller/api_caller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/AddQuestionAppRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AddQuestionAppRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/AddQuestion/AddQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/AddQuestion/AddQuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/AddQuestion/AddQuestionPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/AddQuestion/AddQuestionPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/NextQuestion/NextQuestionPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/NextQuestion/NextQuestionPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Lobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Lobby.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/scoreboard/ScoreboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/scoreboard/ScoreboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/scoreboard/ScoreboardPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/scoreboard/ScoreboardPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionLobbyDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionLobbyDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/AddQuestionOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/addQuestion/SendQuestionsDataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/SendQuestionsDataAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_cases/addQuestion/AddQuestionDataHolderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_cases/AddQuestion/AddQuestionDataHolderTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_cases/addQuestion/AddQuestionInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_cases/AddQuestion/AddQuestionInteractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardInputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardOutputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/LobbyPrepView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LobbyPrepView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ScoreboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ScoreboardView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +57,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/m8sh/team-project.git&quot;,
-    &quot;accountId&quot;: &quot;2d5286b3-b7aa-43e1-ac35-318c6ce25df5&quot;
+    &quot;accountId&quot;: &quot;26f76175-4dd2-46fa-bb02-d53da0c2082a&quot;
   },
   &quot;recentNewPullRequestHead&quot;: {
     &quot;server&quot;: {
@@ -79,46 +74,47 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="361g8V82eWgcaIP455o0lB8yZ7S" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AddQuestionAppRunner.executor&quot;: &quot;Run&quot;,
-    &quot;Application.AppRunner.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StartScreenView.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestGame.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestScoreboard.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.api_caller.executor&quot;: &quot;Run&quot;,
-    &quot;Application.gui.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;DanialCareyMerge&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AddQuestionAppRunner.executor": "Run",
+    "Application.AppRunner.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.StartScreenView.executor": "Run",
+    "Application.TestGame.executor": "Run",
+    "Application.TestScoreboard.executor": "Debug",
+    "Application.api_caller.executor": "Run",
+    "Application.gui.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "#18 on DanialCareyMerge",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/dania",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="AddQuestionAppRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.AddQuestionAppRunner" />
@@ -186,10 +182,12 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
       </set>
     </attachedChunks>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="" />
@@ -198,6 +196,8 @@
       <option name="presentableId" value="Default" />
       <updated>1764179333632</updated>
       <workItem from="1764383672816" duration="1262000" />
+      <workItem from="1764614651374" duration="7330000" />
+      <workItem from="1764622668510" duration="4787000" />
     </task>
     <task id="LOCAL-00001" summary="quicksave">
       <option name="closed" value="true" />
@@ -308,26 +308,5 @@
     <MESSAGE value="a bit more fix" />
     <MESSAGE value="Fix the issue that Game.java and AppBuilder.java not using the same DAO" />
     <option name="LAST_COMMIT_MESSAGE" value="Fix the issue that Game.java and AppBuilder.java not using the same DAO" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/use_cases/AddQuestion/AddQuestionInteractor.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
