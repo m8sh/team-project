@@ -22,7 +22,6 @@ import use_cases.StartScreen.*;
 import use_cases.addQuestion.AddQuestionInputBoundary;
 import use_cases.addQuestion.AddQuestionInteractor;
 import use_cases.addQuestion.AddQuestionOutputBoundary;
-import use_cases.addQuestion.SendQuestionsDataAccess;
 import use_cases.scoreboard.*;
 
 import view.LobbyPrepView;
@@ -76,8 +75,9 @@ public class AppBuilder {
     }
 
     public AppBuilder addStartScreenUseCase() {
+        // 🔵 Pass LobbyPrepViewModel so presenter can push the pin into it
         StartScreenOutputBoundary outputBoundary =
-                new StartScreenPresenter(startScreenViewModel);
+                new StartScreenPresenter(startScreenViewModel, lobbyPrepViewModel);
 
         StartScreenLobbyDataAccessInterface lobbyDAI = lobbyDataAccessObject;
         StartScreenNetworkDataAccessInterface networkDAI = apiCaller;
@@ -111,11 +111,11 @@ public class AppBuilder {
         scoreboardView.setScoreboardController(scoreboardController);
         return this;
     }
-    // ---------- ADD QUESTION USE CASE ----------
 
-    // ---------- LOBBY PREP (VIEW ONLY) ----------
+    // ---------- LOBBY PREP (VIEW + ADD QUESTION) ----------
     public AppBuilder addLobbyPrepView(int lobbyPin) {
         lobbyPrepViewModel = new LobbyPrepViewModel();
+
         AddQuestionOutputBoundary presenter =
                 new AddQuestionPresenter(lobbyPrepViewModel, viewManagerModel, scoreboardViewModel);
 
@@ -125,15 +125,10 @@ public class AppBuilder {
 
         addQuestionController = new AddQuestionController(interactor);
 
-
-        // controller is null for now; will be injected in addAddQuestionUseCase()
         lobbyPrepView = new LobbyPrepView(lobbyPrepViewModel, addQuestionController, viewManagerModel);
         cardPanel.add(lobbyPrepView, lobbyPrepView.getViewName());
         return this;
     }
-
-    // ---------- ADD QUESTION USE CASE ----------
-
 
     // ---------- BUILD ----------
     public JFrame build() {

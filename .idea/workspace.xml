@@ -6,18 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Refactored the entire StartScreen to comply with CA.&#10;Made it the first screen that launches when you launch Main.java.&#10;Added the usecase to the AppBuilder, and slightly changed the api_caller.java in order to make it easier to comply with CA.&#10;&#10;The implementation of create session and all that still works perfectly, and any api calls you guys made from api_caller ought to still function in the exact same way they did before.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TestGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/NextQuestion/NextQuestionPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/NextQuestion/NextQuestionPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/StartScreen/StartScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/StartScreen/StartScreenPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/scoreboard/ScoreboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/scoreboard/ScoreboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/scoreboard/ScoreboardRowViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/scoreboard/ScoreboardRowViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardDataAccessInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +57,7 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="361g8V82eWgcaIP455o0lB8yZ7S" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -106,7 +97,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Application.TestScoreboard">
+  <component name="RunManager">
     <configuration name="AddQuestionAppRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.AddQuestionAppRunner" />
       <module name="TeamProject" />

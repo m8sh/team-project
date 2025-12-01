@@ -12,7 +12,7 @@ public class LobbyPrepView extends JPanel {
 
     private final LobbyPrepViewModel viewModel;
     private final ViewManagerModel viewManagerModel;
-    private AddQuestionController controller;   // <-- NOT final, will be set later
+    private AddQuestionController controller;   // injected by AppBuilder
 
     private JLabel pinLabel;
     private JLabel questionCountLabel;
@@ -39,7 +39,7 @@ public class LobbyPrepView extends JPanel {
 
         addQuestionButton = new JButton("Add Question");
         addQuestionButton.addActionListener(e -> {
-            // 🔴 If controller is not wired, stop and show error
+            // If controller is not wired, stop and show error
             if (this.controller == null) {
                 JOptionPane.showMessageDialog(
                         this,
@@ -68,6 +68,16 @@ public class LobbyPrepView extends JPanel {
                 noQuestionFrame.pack();
                 noQuestionFrame.setLocationRelativeTo(this);
                 noQuestionFrame.setVisible(true);
+                return;
+            }
+
+            if (this.controller == null) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Internal error: AddQuestionController is not wired in LobbyPrepView for Start Session.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
                 return;
             }
 
@@ -114,6 +124,10 @@ public class LobbyPrepView extends JPanel {
                     questionCountLabel.setText(
                             "Questions Added: " + viewModel.getQuestionCount());
                     break;
+                case "lobbyPin":
+                    System.out.println("View: updating lobby pin label to " + viewModel.getLobbyPin());
+                    pinLabel.setText("Lobby PIN: " + viewModel.getLobbyPin());
+                    break;
             }
         });
     }
@@ -122,7 +136,8 @@ public class LobbyPrepView extends JPanel {
         return "lobby prep";
     }
 
-    // 🔵 This is how AppBuilder will inject the controller
+    // This exists but in this wiring we don't actually need to call it;
+    // controller is passed via constructor.
     public void setAddQuestionController(AddQuestionController addQuestionController) {
         this.controller = addQuestionController;
     }

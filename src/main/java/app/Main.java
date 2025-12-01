@@ -9,11 +9,10 @@ public class Main {
             AppBuilder builder = new AppBuilder();
 
             builder.addStartScreenView()
-                    .addStartScreenUseCase()
-                    .addLobbyPrepView(123)
                     .addScoreboardView()
-                    .addScoreboardUseCase();
-//                    .addAddQuestionUseCase();  // <- this is where controller gets injected
+                    .addScoreboardUseCase()
+                    .addLobbyPrepView(123)      // creates LobbyPrepViewModel + controller
+                    .addStartScreenUseCase();   // presenter now gets non-null LobbyPrepViewModel
 
             JFrame app = builder.build();
             app.pack();
