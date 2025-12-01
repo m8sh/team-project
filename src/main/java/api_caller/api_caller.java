@@ -105,11 +105,21 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
 
         ws.sendText("{\"type\":\"client/receiveQuestions\"}", true).join();
 
-        while (receivedQuestions == null) {
+        long start = System.currentTimeMillis();
+        long timeoutMillis = 5000;
+
+        while (receivedQuestions == null && System.currentTimeMillis() - start < timeoutMillis) {
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) { /* ignore */ }
         }
+
+        if (receivedQuestions == null) {
+            System.out.println("Timeout - No questions received");
+            return new Object[0];
+        }
+
+        System.out.println("Recieved questions, returning to game");
         return receivedQuestions;
     }
 
