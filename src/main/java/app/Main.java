@@ -9,6 +9,7 @@ public class Main {
             AppBuilder builder = new AppBuilder();
 
             builder.addStartScreenView()
+                    .addStartScreenUseCase()
                     .addLobbyPrepView(123)
                     .addScoreboardView()
                     .addScoreboardUseCase()
