@@ -19,10 +19,10 @@ import interface_adapters.scoreboard.ScoreboardPresenter;
 import interface_adapters.scoreboard.ScoreboardViewModel;
 
 import use_cases.StartScreen.*;
-import use_cases.addQuestion.AddQuestionInputBoundary;
-import use_cases.addQuestion.AddQuestionInteractor;
-import use_cases.addQuestion.AddQuestionOutputBoundary;
-import use_cases.scoreboard.*;
+import use_cases.AddQuestion.AddQuestionInputBoundary;
+import use_cases.AddQuestion.AddQuestionInteractor;
+import use_cases.AddQuestion.AddQuestionOutputBoundary;
+import use_cases.Scoreboard.*;
 
 import view.LobbyPrepView;
 import view.ScoreboardView;
@@ -69,7 +69,8 @@ public class AppBuilder {
     // ---------- START SCREEN ----------
     public AppBuilder addStartScreenView() {
         startScreenViewModel = new StartScreenViewModel();
-        startScreenView = new StartScreenView(startScreenViewModel, viewManagerModel);
+        startScreenView = new StartScreenView(startScreenViewModel, viewManagerModel,
+                lobbyDataAccessObject);
         cardPanel.add(startScreenView, startScreenView.getViewName());
         return this;
     }

@@ -15,12 +15,11 @@ import interface_adapters.scoreboard.ScoreboardPresenter;
 import interface_adapters.scoreboard.ScoreboardViewModel;
 import use_cases.NextQuestion.NextQuestionInteractor;
 import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
-import use_cases.scoreboard.ScoreboardDataAccessInterface;
-import use_cases.scoreboard.ScoreboardInputBoundary;
-import use_cases.scoreboard.ScoreboardInteractor;
-import use_cases.scoreboard.ScoreboardOutputBoundary;
+import use_cases.Scoreboard.ScoreboardDataAccessInterface;
+import use_cases.Scoreboard.ScoreboardInputBoundary;
+import use_cases.Scoreboard.ScoreboardInteractor;
+import use_cases.Scoreboard.ScoreboardOutputBoundary;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.*;
@@ -76,7 +75,7 @@ public class Game {
 
     }
 
-    public static void start(String username, String lobbyPin) {
+    public static void start(String username, String lobbyPin,InMemoryDataAccessObject lobbyDao) {
 
         SwingUtilities.invokeLater(() -> {
             try {
@@ -103,12 +102,11 @@ public class Game {
                 User player = new User(username, Integer.parseInt(lobbyPin));
                 lobby.addUser(player);
 
-                InMemoryDataAccessObject dao = new InMemoryDataAccessObject();
-                dao.saveLobby(lobby);
+                lobbyDao.saveLobby(lobby);
 
                 // Use it via both interfaces
-                NextQuestionLobbyDataAccessInterface nextQDao = dao;
-                ScoreboardDataAccessInterface scoreboardDao = dao;
+                NextQuestionLobbyDataAccessInterface nextQDao = lobbyDao;
+                ScoreboardDataAccessInterface scoreboardDao = lobbyDao;
 
                 NextQuestionViewModel viewModel = new NextQuestionViewModel();
                 ViewManagerModel viewManagerModel = new ViewManagerModel();
