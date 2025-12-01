@@ -105,18 +105,10 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
 
         ws.sendText("{\"type\":\"client/receiveQuestions\"}", true).join();
 
-        long start = System.currentTimeMillis();
-        long timeoutMillis = 5000;
-
-        while (receivedQuestions == null && System.currentTimeMillis() - start < timeoutMillis) {
+        while (receivedQuestions == null) {
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) { /* ignore */ }
-        }
-
-        if (receivedQuestions == null) {
-            System.out.println("Timeout - No questions received");
-            return new Object[0];
         }
 
         System.out.println("Recieved questions, returning to game");
@@ -190,6 +182,8 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
             }
             WebSocket.Listener.super.onOpen(webSocket);
             System.out.println("opened");
+
+            webSocket.request(1);
         }
 
         @Override
@@ -205,6 +199,8 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
             if (string.contains("\"type\":\"client/answers\"")) {
                 receivedAnswers = extractJSON(string, "\"answers\"");
             }
+
+            webSocket.request(1);
 
             return CompletableFuture.completedFuture(null);
         }

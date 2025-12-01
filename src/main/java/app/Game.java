@@ -74,9 +74,13 @@ public class Game {
 
         SwingUtilities.invokeLater(() -> {
             try {
+                System.out.println("1");
                 api_caller api = new api_caller();
+                System.out.println("2");
                 api.joinRoom(lobbyPin, username);
+                System.out.println("3");
                 Object[] questionObjects = api.recieveQuestions(lobbyPin);
+                System.out.println("4");
 
                 System.out.println(questionObjects == null);
                 if (questionObjects != null) {
