@@ -7,8 +7,7 @@ import interface_adapters.scoreboard.ScoreboardViewModel;
 import use_cases.NextQuestion.NextQuestionOutputBoundary;
 import use_cases.NextQuestion.NextQuestionOutputData;
 import entities.Question;
-import interface_adapters.ViewModel;
-import use_cases.scoreboard.ScoreboardOutputData;
+import use_cases.Scoreboard.ScoreboardOutputData;
 
 import java.util.ArrayList;
 import java.util.List;

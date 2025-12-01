@@ -1,4 +1,4 @@
-package use_cases.scoreboard;
+package use_cases.Scoreboard;
 
 public interface ScoreboardOutputBoundary {
 

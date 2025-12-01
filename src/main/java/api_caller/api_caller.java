@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import entities.Question;
-import use_cases.addQuestion.SendQuestionsDataAccess;
+import use_cases.AddQuestion.SendQuestionsDataAccess;
 import use_cases.StartScreen.StartScreenNetworkDataAccessInterface;
 
 public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDataAccessInterface {

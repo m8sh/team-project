@@ -1,13 +1,10 @@
 package data_access;
 
 import entities.Lobby;
-import use_cases.addQuestion.AddQuestionLobbyDataAccessInterface;
+import use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface;
 import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
 import use_cases.StartScreen.StartScreenLobbyDataAccessInterface;
-import use_cases.scoreboard.ScoreboardDataAccessInterface;
-
-import java.util.HashMap;
-import java.util.Map;
+import use_cases.Scoreboard.ScoreboardDataAccessInterface;
 
 public class InMemoryDataAccessObject implements AddQuestionLobbyDataAccessInterface,
         NextQuestionLobbyDataAccessInterface,

@@ -1,7 +1,7 @@
 package interface_adapters.scoreboard;
 
-import use_cases.scoreboard.ScoreboardInputBoundary;
-import use_cases.scoreboard.ScoreboardInputData;
+import use_cases.Scoreboard.ScoreboardInputBoundary;
+import use_cases.Scoreboard.ScoreboardInputData;
 
 public class ScoreboardController {
 

@@ -3,7 +3,7 @@ package use_cases.NextQuestion;
 import entities.Lobby;
 import entities.Question;
 import entities.User;
-import use_cases.scoreboard.ScoreboardOutputData;
+import use_cases.Scoreboard.ScoreboardOutputData;
 
 import java.util.ArrayList;
 import java.util.Comparator;

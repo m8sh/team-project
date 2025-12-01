@@ -1,8 +1,6 @@
-package use_cases.scoreboard;
+package use_cases.Scoreboard;
 
 import entities.Lobby;
-
-import java.util.List;
 
 public interface ScoreboardDataAccessInterface {
     Lobby getLobby(int pin);

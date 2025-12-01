@@ -1,9 +1,8 @@
 package interface_adapters.scoreboard;
 
 import interface_adapters.ViewManagerModel;
-import interface_adapters.ViewModel;
-import use_cases.scoreboard.ScoreboardOutputBoundary;
-import use_cases.scoreboard.ScoreboardOutputData;
+import use_cases.Scoreboard.ScoreboardOutputBoundary;
+import use_cases.Scoreboard.ScoreboardOutputData;
 
 import java.util.List;
 import java.util.stream.Collectors;

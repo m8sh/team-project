@@ -1,7 +1,7 @@
 package use_cases.NextQuestion;
 
 import entities.Question;
-import use_cases.scoreboard.ScoreboardOutputData;
+import use_cases.Scoreboard.ScoreboardOutputData;
 
 import java.util.List;
 

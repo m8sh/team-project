@@ -1,4 +1,4 @@
-package use_cases.scoreboard;
+package use_cases.Scoreboard;
 import java.util.List;
 
 public class ScoreboardOutputData {

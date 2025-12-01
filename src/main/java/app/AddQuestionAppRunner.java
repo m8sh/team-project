@@ -9,10 +9,10 @@ import interface_adapters.AddQuestion.AddQuestionPresenter;
 import interface_adapters.AddQuestion.LobbyPrepViewModel;
 import interface_adapters.ViewManagerModel;
 import interface_adapters.scoreboard.ScoreboardViewModel;
-import use_cases.addQuestion.AddQuestionLobbyDataAccessInterface;
+import use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface;
 import view.LobbyPrepView;
 
-import use_cases.addQuestion.AddQuestionInteractor;
+import use_cases.AddQuestion.AddQuestionInteractor;
 
 import javax.swing.*;
 import java.io.IOException;
