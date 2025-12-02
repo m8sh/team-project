@@ -23,7 +23,8 @@ public class ScoreboardInteractor implements ScoreboardInputBoundary {
     }
 
     @Override
-    public void showScoreboard(ScoreboardShowInputData inputData) {
+    public void showScoreboard(ScoreboardInputData inputData)
+    {
         int lobbyPin = inputData.getLobbyPin();
 
         List<User> loaded = dao.loadResults(lobbyPin);
@@ -47,7 +48,6 @@ public class ScoreboardInteractor implements ScoreboardInputBoundary {
         presenter.prepareSuccessView(outputData);
     }
 
-    @Override
     public void endSession() {
         presenter.endSession();
     }

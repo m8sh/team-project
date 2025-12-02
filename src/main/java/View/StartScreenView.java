@@ -1,6 +1,5 @@
-package view;
+package View;
 
-import app.AppBuilder;
 import app.Game;
 import data_access.InMemoryDataAccessObject;
 import interface_adapters.StartScreen.StartScreenController;

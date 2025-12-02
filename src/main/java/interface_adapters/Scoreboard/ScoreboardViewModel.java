@@ -1,4 +1,4 @@
-package interface_adapters.scoreboard;
+package interface_adapters.Scoreboard;
 
 import interface_adapters.ViewModel;
 

@@ -1,7 +1,7 @@
 package interface_adapters.AddQuestion;
 
 import interface_adapters.ViewManagerModel;
-import interface_adapters.scoreboard.ScoreboardViewModel;
+import interface_adapters.Scoreboard.ScoreboardViewModel;
 import use_cases.AddQuestion.AddQuestionOutputBoundary;
 import use_cases.AddQuestion.AddQuestionOutputData;
 

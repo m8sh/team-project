@@ -15,10 +15,10 @@ import interface_adapters.StartScreen.StartScreenViewModel;
 
 import interface_adapters.ViewManagerModel;
 
-import interface_adapters.scoreboard.ScoreboardController;
-import interface_adapters.scoreboard.ScoreboardPresenter;
-import interface_adapters.scoreboard.ScoreboardState;
-import interface_adapters.scoreboard.ScoreboardViewModel;
+import interface_adapters.Scoreboard.ScoreboardController;
+import interface_adapters.Scoreboard.ScoreboardPresenter;
+import interface_adapters.Scoreboard.ScoreboardState;
+import interface_adapters.Scoreboard.ScoreboardViewModel;
 
 import use_cases.AddQuestion.AddQuestionInputBoundary;
 import use_cases.AddQuestion.AddQuestionInteractor;
@@ -34,10 +34,10 @@ import use_cases.StartScreen.StartScreenLobbyDataAccessInterface;
 import use_cases.StartScreen.StartScreenNetworkDataAccessInterface;
 import use_cases.StartScreen.StartScreenOutputBoundary;
 
-import view.LobbyPrepView;
-import view.ScoreboardView;
-import view.StartScreenView;
-import view.ViewManager;
+import View.LobbyPrepView;
+import View.ScoreboardView;
+import View.StartScreenView;
+import View.ViewManager;
 
 import javax.swing.*;
 import java.awt.*;

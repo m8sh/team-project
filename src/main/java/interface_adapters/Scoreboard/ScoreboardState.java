@@ -1,4 +1,4 @@
-package interface_adapters.scoreboard;
+package interface_adapters.Scoreboard;
 import java.util.List;
 
 public class ScoreboardState {
