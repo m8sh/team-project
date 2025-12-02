@@ -1,4 +1,4 @@
-package use_cases.addQuestion;
+package use_cases.AddQuestion;
 
 import org.junit.Test;
 

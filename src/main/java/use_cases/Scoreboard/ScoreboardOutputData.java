@@ -1,4 +1,5 @@
-package use_cases.scoreboard;
+package use_cases.Scoreboard;
+
 import java.util.List;
 
 public class ScoreboardOutputData {
@@ -13,16 +14,20 @@ public class ScoreboardOutputData {
             this.name = name;
             this.score = score;
         }
+
         public int getRank() {
             return rank;
         }
+
         public String getName() {
             return name;
         }
+
         public int getScore() {
             return score;
         }
     }
+
     private final List<Row> rows;
     private final int lobbyPin;
 
@@ -30,8 +35,12 @@ public class ScoreboardOutputData {
         this.rows = rows;
         this.lobbyPin = lobbyPin;
     }
+
     public List<Row> getRows() {
         return rows;
     }
-    public int getLobbyPin() {return lobbyPin;}
+
+    public int getLobbyPin() {
+        return lobbyPin;
+    }
 }

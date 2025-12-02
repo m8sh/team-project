@@ -2,64 +2,57 @@ package app;
 
 import api_caller.api_caller;
 import data_access.InMemoryDataAccessObject;
-import view.GameFrameView;
-import entities.Lobby;
-import entities.Question;
-import entities.User;
-import interface_adapters.NextQuestion.NextQuestionController;
-import interface_adapters.NextQuestion.NextQuestionPresenter;
-import interface_adapters.NextQuestion.NextQuestionViewModel;
-import interface_adapters.ViewManagerModel;
-import interface_adapters.scoreboard.ScoreboardViewModel;
-import use_cases.NextQuestion.NextQuestionInteractor;
-import use_cases.NextQuestion.NextQuestionLobbyDataAccessInterface;
 
 import javax.swing.*;
 
+/**
+ * Player-side game entry point.
+ * It uses the shared api_caller instance provided by AppBuilder.
+ * The GameFrame is created inside api_caller when the server
+ * sends the "questions" message over WebSocket.
+ */
 public class Game {
 
-    public static void start(String username, String lobbyPin) {
+    // Shared api_caller instance, set once by AppBuilder
+    private static api_caller apiCaller;
+
+    public static void setApiCaller(api_caller caller) {
+        apiCaller = caller;
+    }
+
+    /**
+     * @param username  the player's username
+     * @param lobbyPin  the lobby pin as a String
+     * @param lobbyDao  kept for compatibility; not used here anymore
+     */
+    public static void start(String username, String lobbyPin, InMemoryDataAccessObject lobbyDao) {
 
         SwingUtilities.invokeLater(() -> {
             try {
-                api_caller api = new api_caller();
+                System.out.println("1");
 
-                api.joinRoom(lobbyPin, username);
-                Object[] questionObjects = api.recieveQuestions(lobbyPin);
-                System.out.println(questionObjects[0]);
-                Lobby lobby = new Lobby(Integer.parseInt(lobbyPin));
-                if (questionObjects == null || questionObjects.length == 0) {
-                    System.out.println("no questions received");
-                    return;
+                if (apiCaller == null) {
+                    throw new IllegalStateException("Game.apiCaller has not been set. " +
+                            "Make sure AppBuilder calls Game.setApiCaller(...) in its constructor.");
                 }
-                for (Object q : questionObjects) {
-                    lobby.addQuestion((Question) q);
-                }
-                User player = new User(username, Integer.parseInt(lobbyPin));
-                lobby.addUser(player);
 
-                NextQuestionLobbyDataAccessInterface lobbyData = new InMemoryDataAccessObject();
-                lobbyData.saveLobby(lobby);
+                System.out.println("2");
+                int pinInt = Integer.parseInt(lobbyPin);
 
-                NextQuestionViewModel viewModel = new NextQuestionViewModel();
-                ViewManagerModel viewManagerModel = new ViewManagerModel();
-                ScoreboardViewModel scoreboardViewModel = new ScoreboardViewModel();
-                NextQuestionPresenter presenter = new NextQuestionPresenter(viewModel, viewManagerModel,
-                        scoreboardViewModel);
+                // Use the network interface method.
+                // This opens the WebSocket and asks the server to send questions.
+                apiCaller.joinRemoteRoom(pinInt, username);
 
-                NextQuestionInteractor interactor =
-                        new NextQuestionInteractor(lobbyData, presenter);
-                NextQuestionController controller =
-                        new NextQuestionController(interactor);
+                System.out.println("3 (joined via WebSocket, waiting for questions)");
 
-                GameFrameView frame = new GameFrameView(
-                        lobby,
-                        player,
-                        lobby.getQuestions().size()
-                );
-                frame.setVisible(true);
-
-                controller.execute(lobbyPin, lobby.getQuestions(), player);
+                // DO NOT:
+                // - call apiCaller.recieveQuestions(...)
+                // - parse questions manually
+                // - new GameFrame(...)
+                //
+                // The WebSocket listener in api_caller will receive the "questions"
+                // message, build Lobby + User, and call startGameIfNeeded(...)
+                // which creates the SINGLE GameFrame for this client.
 
             } catch (Exception e) {
                 e.printStackTrace();

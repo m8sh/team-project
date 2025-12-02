@@ -10,30 +10,39 @@ public class LobbyPrepViewModel {
     private String popupMessage;
 
     public LobbyPrepViewModel() {
-        this.lobbyPin = 0;
+        this.lobbyPin = 0; // default before a session is created
     }
+
     public void setPopupMessage(String message) {
         this.popupMessage = message;
         support.firePropertyChange("popup", null, popupMessage);
     }
+
     public String getPopupMessage() {
         return popupMessage;
     }
+
     public void incrementQuestionCount() {
         questionCount++;
         support.firePropertyChange("questionCount", null, questionCount);
     }
 
-
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
+
     public void setLobbyPin(int lobbyPin) {
+        int old = this.lobbyPin;
         this.lobbyPin = lobbyPin;
+        // 🔵 notify LobbyPrepView that the pin changed
+        support.firePropertyChange("lobbyPin", old, lobbyPin);
     }
 
-    public int getLobbyPin() { return lobbyPin; }
-    public int getQuestionCount() { return questionCount; }
+    public int getLobbyPin() {
+        return lobbyPin;
+    }
 
-
+    public int getQuestionCount() {
+        return questionCount;
+    }
 }

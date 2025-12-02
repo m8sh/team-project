@@ -3,16 +3,17 @@ package view;
 import interface_adapters.AddQuestion.AddQuestionController;
 import interface_adapters.AddQuestion.LobbyPrepViewModel;
 import interface_adapters.ViewManagerModel;
+import interface_adapters.scoreboard.ScoreboardController;
 
 import javax.swing.*;
 import java.net.MalformedURLException;
 
 public class LobbyPrepView extends JPanel {
-    // Change for AppBuilder, make your view a JPanel
 
     private final LobbyPrepViewModel viewModel;
     private final ViewManagerModel viewManagerModel;
-    private AddQuestionController controller;   // <-- NOT final, will be set later
+    private AddQuestionController controller;
+    private final ScoreboardController scoreboardController;
 
     private JLabel pinLabel;
     private JLabel questionCountLabel;
@@ -21,11 +22,13 @@ public class LobbyPrepView extends JPanel {
 
     public LobbyPrepView(LobbyPrepViewModel viewModel,
                          AddQuestionController controller,
-                         ViewManagerModel viewManagerModel) {
+                         ViewManagerModel viewManagerModel,
+                         ScoreboardController scoreboardController) {
 
         this.viewModel = viewModel;
         this.viewManagerModel = viewManagerModel;
         this.controller = controller;
+        this.scoreboardController = scoreboardController;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -39,7 +42,6 @@ public class LobbyPrepView extends JPanel {
 
         addQuestionButton = new JButton("Add Question");
         addQuestionButton.addActionListener(e -> {
-            // 🔴 If controller is not wired, stop and show error
             if (this.controller == null) {
                 JOptionPane.showMessageDialog(
                         this,
@@ -50,7 +52,6 @@ public class LobbyPrepView extends JPanel {
                 return;
             }
 
-            // Open the AddQuestionView popup with the lobby PIN + controller
             AddQuestionView popup = new AddQuestionView(viewModel.getLobbyPin(), this.controller);
             popup.setVisible(true);
         });
@@ -71,6 +72,16 @@ public class LobbyPrepView extends JPanel {
                 return;
             }
 
+            if (this.controller == null) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Internal error: AddQuestionController is not wired in LobbyPrepView for Start Session.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+
             try {
                 controller.sendQuestions(viewModel.getLobbyPin());
             } catch (MalformedURLException ex) {
@@ -83,13 +94,19 @@ public class LobbyPrepView extends JPanel {
             }
 
             JOptionPane.showMessageDialog(this,
-                    "Session starting... (not implemented yet)");
+                    "Session starting!");
         });
 
         nextButton = new JButton("Next");
         nextButton.addActionListener(e -> {
-            viewManagerModel.setState("scoreboard");
-            viewManagerModel.firePropertyChange();
+            if (scoreboardController != null) {
+                // When host clicks Next, load scoreboard only for this lobbyPin
+                scoreboardController.showScoreboard(viewModel.getLobbyPin());
+            } else {
+                // Fallback: old behaviour
+                viewManagerModel.setState("scoreboard");
+                viewManagerModel.firePropertyChange();
+            }
         });
 
         add(pinLabel);
@@ -114,6 +131,10 @@ public class LobbyPrepView extends JPanel {
                     questionCountLabel.setText(
                             "Questions Added: " + viewModel.getQuestionCount());
                     break;
+                case "lobbyPin":
+                    System.out.println("View: updating lobby pin label to " + viewModel.getLobbyPin());
+                    pinLabel.setText("Lobby PIN: " + viewModel.getLobbyPin());
+                    break;
             }
         });
     }
@@ -122,7 +143,6 @@ public class LobbyPrepView extends JPanel {
         return "lobby prep";
     }
 
-    // 🔵 This is how AppBuilder will inject the controller
     public void setAddQuestionController(AddQuestionController addQuestionController) {
         this.controller = addQuestionController;
     }

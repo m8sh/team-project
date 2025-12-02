@@ -1,7 +1,7 @@
 package interface_adapters.AddQuestion;
 
-import use_cases.addQuestion.AddQuestionInputBoundary;
-import use_cases.addQuestion.AddQuestionInputData;
+import use_cases.AddQuestion.AddQuestionInputBoundary;
+import use_cases.AddQuestion.AddQuestionInputData;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;

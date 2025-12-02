@@ -37,12 +37,6 @@ public class StartScreenInteractor implements StartScreenInputBoundary {
             return;
         }
 
-        boolean joinedLobby = startScreenNetworkDataAccess.joinRemoteRoom(pin, username);
-        if (!joinedLobby) {
-            startScreenOutputBoundary.prepareJoinFailureView("Couldn't connect to server.");
-            return;
-        }
-
         StartScreenOutputData outputData = new StartScreenOutputData(pin, username, false);
         startScreenOutputBoundary.prepareJoinSuccessView(outputData);
     }

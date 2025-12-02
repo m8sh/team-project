@@ -2,8 +2,8 @@ package interface_adapters.AddQuestion;
 
 import interface_adapters.ViewManagerModel;
 import interface_adapters.scoreboard.ScoreboardViewModel;
-import use_cases.addQuestion.AddQuestionOutputBoundary;
-import use_cases.addQuestion.AddQuestionOutputData;
+import use_cases.AddQuestion.AddQuestionOutputBoundary;
+import use_cases.AddQuestion.AddQuestionOutputData;
 
 
 
@@ -28,8 +28,8 @@ public class AddQuestionPresenter implements AddQuestionOutputBoundary {
         lobbyPrepViewModel.setPopupMessage(outputData.getMessage());
         lobbyPrepViewModel.incrementQuestionCount();
 
-        viewManagerModel.setState(ScoreboardViewModel.VIEW_NAME);
-        viewManagerModel.firePropertyChange();
+//        viewManagerModel.setState(ScoreboardViewModel.VIEW_NAME);
+//        viewManagerModel.firePropertyChange();
 
 
     }

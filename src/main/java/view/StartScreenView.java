@@ -1,6 +1,8 @@
 package view;
 
+import app.AppBuilder;
 import app.Game;
+import data_access.InMemoryDataAccessObject;
 import interface_adapters.StartScreen.StartScreenController;
 import interface_adapters.StartScreen.StartScreenState;
 import interface_adapters.StartScreen.StartScreenViewModel;
@@ -17,6 +19,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
     private final StartScreenViewModel viewModel;
     private final ViewManagerModel viewManagerModel;
     private StartScreenController startScreenController;
+    private final InMemoryDataAccessObject lobbyDao;
 
     private JPanel sesPanel;
     private JButton session;
@@ -30,9 +33,11 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
     private JPanel buttonPanel;
     private JButton submit;
 
-    public StartScreenView(StartScreenViewModel viewModel, ViewManagerModel viewManagerModel) {
+    public StartScreenView(StartScreenViewModel viewModel, ViewManagerModel viewManagerModel,
+                           InMemoryDataAccessObject lobbyDao) {
         this.viewModel = viewModel;
         this.viewManagerModel = viewManagerModel;
+        this.lobbyDao = lobbyDao;
         this.viewModel.addPropertyChangeListener(this);
         buildUI();
     }
@@ -128,7 +133,7 @@ public class StartScreenView extends JPanel implements PropertyChangeListener {
                 && username != null && !username.isEmpty()
                 && (error == null || error.isEmpty())) {
 
-            Game.start(username, pin);
+            Game.start(username, pin, lobbyDao);
             return;
         }
 
