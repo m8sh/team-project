@@ -1,12 +1,15 @@
-package entities;
+package View;
 
+import entities.Lobby;
+import entities.Question;
+import entities.User;
 import interface_adapters.Scoreboard.ScoreboardController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class GameFrame extends JFrame {
+public class GameFrameView extends JFrame {
 
     private final Lobby lobby;
     private final User currentUser;
@@ -23,10 +26,10 @@ public class GameFrame extends JFrame {
     private final ScoreboardController scoreboardController;
     private final int maxQuestions;
 
-    public GameFrame(Lobby lobby,
-                     User currentUser,
-                     int maxQuestions,
-                     ScoreboardController scoreboardController) {
+    public GameFrameView(Lobby lobby,
+                         User currentUser,
+                         int maxQuestions,
+                         ScoreboardController scoreboardController) {
         this.lobby = lobby;
         this.currentUser = currentUser;
         this.maxQuestions = maxQuestions;

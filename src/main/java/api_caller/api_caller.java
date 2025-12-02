@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 import javax.swing.SwingUtilities;
 
-import entities.GameFrame;
+import View.GameFrameView;
 import entities.Lobby;
 import entities.Question;
 import entities.User;
@@ -45,7 +45,7 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
     private ScoreboardController scoreboardController;
 
     // ---- GameFrame guard: ensure we only create ONE per join ----
-    private GameFrame gameFrame;
+    private GameFrameView gameFrameView;
     private boolean gameStarted = false;
 
     public api_caller() throws MalformedURLException {
@@ -64,7 +64,7 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
     private synchronized void resetGame() {
         System.out.println("[api_caller] Resetting game state");
         this.gameStarted = false;
-        this.gameFrame = null;
+        this.gameFrameView = null;
         this.lobby = null;
         this.currentUser = null;
         this.receivedQuestions = null;
@@ -77,7 +77,7 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
      * "questions" messages are received.
      */
     private synchronized void startGameIfNeeded(Lobby lobby, User user, List<Question> questions) {
-        if (gameStarted && gameFrame != null && gameFrame.isDisplayable()) {
+        if (gameStarted && gameFrameView != null && gameFrameView.isDisplayable()) {
             System.out.println("[api_caller] Game already running for lobby "
                     + lobby.getPin() + ", not creating another GameFrame");
             return;
@@ -88,7 +88,7 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
 
         ScoreboardController scForGame = this.scoreboardController;
 
-        gameFrame = new GameFrame(
+        gameFrameView = new GameFrameView(
                 lobby,
                 user,
                 questions.size(),
@@ -96,7 +96,7 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
         );
         gameStarted = true;
 
-        SwingUtilities.invokeLater(() -> gameFrame.setVisible(true));
+        SwingUtilities.invokeLater(() -> gameFrameView.setVisible(true));
     }
 
     // Pre: pin is a String

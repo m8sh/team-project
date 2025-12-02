@@ -1,4 +1,4 @@
-//import entities.GameFrame;
+//import View.GameFrame;
 //import entities.Lobby;
 //import entities.Question;
 //import entities.User;
