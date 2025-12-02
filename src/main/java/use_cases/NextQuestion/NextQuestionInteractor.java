@@ -31,7 +31,7 @@ public class NextQuestionInteractor implements NextQuestionInputBoundary{
         }
 
         List<Question> questions = inputData.getQuestions();
-        if (questions == null || questions.isEmpty()) {
+        if (questions.isEmpty()) {
             presenter.prepareFailView("No questions provided");
             return;
         }
@@ -44,6 +44,7 @@ public class NextQuestionInteractor implements NextQuestionInputBoundary{
 
         NextQuestionOutputData outputData = new NextQuestionOutputData(nextQuestion,
                 "Next question ready", rows);
+        presenter.prepareSuccessView(outputData);
     }
     // Helper: scoreboard rows
     private List<ScoreboardOutputData.Row> buildScoreboardRows(Lobby lobby) {

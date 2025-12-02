@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="CheckStyle clean up for Scoreboard InterfaceAdapters layer">
+    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Fix the issue that Game.java and AppBuilder.java not using the same DAO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionInteractor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,47 +62,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AddQuestionAppRunner.executor&quot;: &quot;Run&quot;,
-    &quot;Application.AppRunner.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StartScreenView.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestGame.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestScoreboard.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.api_caller.executor&quot;: &quot;Run&quot;,
-    &quot;Application.gui.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dania&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AddQuestionAppRunner.executor": "Run",
+    "Application.AppRunner.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.StartScreenView.executor": "Run",
+    "Application.TestGame.executor": "Run",
+    "Application.TestScoreboard.executor": "Debug",
+    "Application.api_caller.executor": "Run",
+    "Application.gui.executor": "Run",
+    "JUnit.NextQuestionInteractorTest.executor": "Coverage",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/dania",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="entities" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.NextQuestionInteractorTest">
     <configuration name="AddQuestionAppRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.AddQuestionAppRunner" />
       <module name="TeamProject" />
@@ -149,16 +150,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ScoreboardInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NextQuestionInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TeamProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="use_cases.Scoreboard.*" />
+          <option name="PATTERN" value="use_cases.NextQuestion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="use_cases.Scoreboard" />
-      <option name="MAIN_CLASS_NAME" value="use_cases.Scoreboard.ScoreboardInteractorTest" />
+      <option name="PACKAGE_NAME" value="use_cases.NextQuestion" />
+      <option name="MAIN_CLASS_NAME" value="use_cases.NextQuestion.NextQuestionInteractorTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -166,8 +167,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.NextQuestionInteractorTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.ScoreboardInteractorTest" />
         <item itemvalue="Application.TestScoreboard" />
         <item itemvalue="Application.TestGame" />
         <item itemvalue="Application.AddQuestionAppRunner" />
@@ -192,10 +193,6 @@
       <workItem from="1764383672816" duration="1262000" />
       <workItem from="1764614651374" duration="7330000" />
       <workItem from="1764622668510" duration="4787000" />
-      <workItem from="1764642926395" duration="1000" />
-      <workItem from="1764642934096" duration="2169000" />
-      <workItem from="1764646037975" duration="4014000" />
-      <workItem from="1764650146502" duration="2379000" />
     </task>
     <task id="LOCAL-00001" summary="quicksave">
       <option name="closed" value="true" />
@@ -277,39 +274,7 @@
       <option name="project" value="LOCAL" />
       <updated>1764578514318</updated>
     </task>
-    <task id="LOCAL-00011" summary="Add ScoreboardInteractorTest to ensure 100% code coverage.">
-      <option name="closed" value="true" />
-      <created>1764642391990</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1764642391990</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Name Change">
-      <option name="closed" value="true" />
-      <created>1764649794862</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1764649794862</updated>
-    </task>
-    <task id="LOCAL-00013" summary="CheckStyle clean up for Scoreboard UseCase layer">
-      <option name="closed" value="true" />
-      <created>1764651799355</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1764651799355</updated>
-    </task>
-    <task id="LOCAL-00014" summary="CheckStyle clean up for Scoreboard InterfaceAdapters layer">
-      <option name="closed" value="true" />
-      <created>1764652108984</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1764652108984</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,10 +302,22 @@
     <MESSAGE value="try to fix what is preventing scoreboard from showing" />
     <MESSAGE value="a bit more fix" />
     <MESSAGE value="Fix the issue that Game.java and AppBuilder.java not using the same DAO" />
-    <MESSAGE value="Add ScoreboardInteractorTest to ensure 100% code coverage." />
-    <MESSAGE value="Name Change" />
-    <MESSAGE value="CheckStyle clean up for Scoreboard UseCase layer" />
-    <MESSAGE value="CheckStyle clean up for Scoreboard InterfaceAdapters layer" />
-    <option name="LAST_COMMIT_MESSAGE" value="CheckStyle clean up for Scoreboard InterfaceAdapters layer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix the issue that Game.java and AppBuilder.java not using the same DAO" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionInteractor.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/team_project4$NextQuestionInteractorTest.ic" NAME="NextQuestionInteractorTest Coverage Results" MODIFIED="1764697288781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_cases.NextQuestion.*</FILTER>
+    </SUITE>
   </component>
 </project>
