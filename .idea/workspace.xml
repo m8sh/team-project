@@ -4,26 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Name Change">
-      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/InMemoryDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/SupabaseScoreboardDataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/SupabaseScoreboardDataAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/SupabaseScoreboardDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/SupabaseScoreboardDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/NextQuestion/NextQuestionPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/NextQuestion/NextQuestionPresenter.java" afterDir="false" />
+    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="CheckStyle clean up for Scoreboard UseCase layer">
       <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/Scoreboard/ScoreboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/Scoreboard/ScoreboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/Scoreboard/ScoreboardPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/Scoreboard/ScoreboardPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/NextQuestion/NextQuestionOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardSaveInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardSaveInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_cases/Scoreboard/ScoreboardShowInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_cases/scoreboard/ScoreboardShowInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_cases/Scoreboard/ScoreboardInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_cases/scoreboard/ScoreboardInteractorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +196,7 @@
       <workItem from="1764642926395" duration="1000" />
       <workItem from="1764642934096" duration="2169000" />
       <workItem from="1764646037975" duration="4014000" />
-      <workItem from="1764650146502" duration="1407000" />
+      <workItem from="1764650146502" duration="1707000" />
     </task>
     <task id="LOCAL-00001" summary="quicksave">
       <option name="closed" value="true" />
@@ -312,7 +294,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764649794862</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="CheckStyle clean up for Scoreboard UseCase layer">
+      <option name="closed" value="true" />
+      <created>1764651799355</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1764651799355</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,6 +332,7 @@
     <MESSAGE value="Fix the issue that Game.java and AppBuilder.java not using the same DAO" />
     <MESSAGE value="Add ScoreboardInteractorTest to ensure 100% code coverage." />
     <MESSAGE value="Name Change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Name Change" />
+    <MESSAGE value="CheckStyle clean up for Scoreboard UseCase layer" />
+    <option name="LAST_COMMIT_MESSAGE" value="CheckStyle clean up for Scoreboard UseCase layer" />
   </component>
 </project>
