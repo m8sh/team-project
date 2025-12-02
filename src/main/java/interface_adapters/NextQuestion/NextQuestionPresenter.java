@@ -1,9 +1,9 @@
 package interface_adapters.NextQuestion;
 
 import interface_adapters.ViewManagerModel;
-import interface_adapters.scoreboard.ScoreboardRowViewModel;
-import interface_adapters.scoreboard.ScoreboardState;
-import interface_adapters.scoreboard.ScoreboardViewModel;
+import interface_adapters.Scoreboard.ScoreboardRowViewModel;
+import interface_adapters.Scoreboard.ScoreboardState;
+import interface_adapters.Scoreboard.ScoreboardViewModel;
 import use_cases.NextQuestion.NextQuestionOutputBoundary;
 import use_cases.NextQuestion.NextQuestionOutputData;
 import entities.Question;

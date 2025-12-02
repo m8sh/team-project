@@ -19,7 +19,7 @@ import entities.GameFrame;
 import entities.Lobby;
 import entities.Question;
 import entities.User;
-import interface_adapters.scoreboard.ScoreboardController;
+import interface_adapters.Scoreboard.ScoreboardController;
 import use_cases.AddQuestion.SendQuestionsDataAccess;
 import use_cases.StartScreen.StartScreenNetworkDataAccessInterface;
 

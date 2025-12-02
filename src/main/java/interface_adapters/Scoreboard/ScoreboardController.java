@@ -1,9 +1,10 @@
-package interface_adapters.scoreboard;
+package interface_adapters.Scoreboard;
 
 import entities.User;
 import use_cases.Scoreboard.ScoreboardInputBoundary;
+import use_cases.Scoreboard.ScoreboardInputData;
 import use_cases.Scoreboard.ScoreboardSaveInputData;
-import use_cases.Scoreboard.ScoreboardShowInputData;
+
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class ScoreboardController {
     }
 
     public void showScoreboard(int lobbyPin) {
-        ScoreboardShowInputData inputData = new ScoreboardShowInputData(lobbyPin);
+        ScoreboardInputData inputData = new ScoreboardInputData(lobbyPin);
         interactor.showScoreboard(inputData);
     }
 
@@ -25,7 +26,5 @@ public class ScoreboardController {
         interactor.saveResults(inputData);
     }
 
-    public void endSession() {
-        interactor.endSession();
-    }
+
 }

@@ -1,9 +1,9 @@
-package view;
+package View;
 
 import interface_adapters.AddQuestion.AddQuestionController;
 import interface_adapters.AddQuestion.LobbyPrepViewModel;
 import interface_adapters.ViewManagerModel;
-import interface_adapters.scoreboard.ScoreboardController;
+import interface_adapters.Scoreboard.ScoreboardController;
 
 import javax.swing.*;
 import java.net.MalformedURLException;

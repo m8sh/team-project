@@ -1,6 +1,6 @@
 package entities;
 
-import interface_adapters.scoreboard.ScoreboardController;
+import interface_adapters.Scoreboard.ScoreboardController;
 
 import javax.swing.*;
 import java.awt.*;

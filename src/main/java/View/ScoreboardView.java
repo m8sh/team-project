@@ -1,9 +1,9 @@
-package view;
+package View;
 
-import interface_adapters.scoreboard.ScoreboardController;
-import interface_adapters.scoreboard.ScoreboardRowViewModel;
-import interface_adapters.scoreboard.ScoreboardState;
-import interface_adapters.scoreboard.ScoreboardViewModel;
+import interface_adapters.Scoreboard.ScoreboardController;
+import interface_adapters.Scoreboard.ScoreboardRowViewModel;
+import interface_adapters.Scoreboard.ScoreboardState;
+import interface_adapters.Scoreboard.ScoreboardViewModel;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -20,7 +20,7 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
     private final JTable table;
     private final ScoreboardTableModel tableModel;
     private final JLabel errorLabel;
-    private final JButton endGameButton;
+    //private final JButton endGameButton;
     private final JButton refreshButton;
     private final JLabel pinLabel;
 
@@ -57,9 +57,9 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
 
         JPanel buttonPanel = new JPanel();
         refreshButton = new JButton("Refresh");
-        endGameButton = new JButton("End Game");
+       // endGameButton = new JButton("End Game");
         buttonPanel.add(refreshButton);
-        buttonPanel.add(endGameButton);
+        //buttonPanel.add(endGameButton);
 
         bottomPanel.add(buttonPanel, BorderLayout.EAST);
 
@@ -81,11 +81,7 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
     }
 
     private void wireActions() {
-        endGameButton.addActionListener(e -> {
-            if (scoreboardController != null) {
-                scoreboardController.endSession();
-            }
-        });
+
 
         refreshButton.addActionListener(e -> {
             if (scoreboardController == null) {

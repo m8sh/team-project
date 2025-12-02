@@ -1,5 +1,5 @@
 @startuml
-class use_cases.view.AddQuestionView {
+class use_cases.View.AddQuestionView {
 - JTextArea questionArea
 - JTextArea answer1Area
 - JTextArea answer2Area
@@ -62,7 +62,7 @@ class use_cases.AddQuestion.AddQuestionInputData {
 }
 
 
-class use_cases.view.StartScreenView {
+class use_cases.View.StartScreenView {
 + {static} void main(String[])
 }
 
@@ -78,7 +78,7 @@ class data_access.InMemoryDataAccessObject {
 }
 
 
-class use_cases.view.LobbyPrepView {
+class use_cases.View.LobbyPrepView {
 - LobbyPrepViewModel viewModel
 - AddQuestionController controller
 - JLabel pinLabel
@@ -117,7 +117,7 @@ class interfaceAdapters.AddQuestion.AddQuestionPresenter {
 }
 
 
-class use_cases.view.ViewManager {
+class use_cases.View.ViewManager {
 }
 class entities.Lobby {
 
@@ -134,7 +134,7 @@ class use_cases.AddQuestion.AddQuestionOutputData {
 }
 
 
-class use_cases.view.GameFrameView {
+class use_cases.View.GameFrameView {
 
 }
 
@@ -165,10 +165,10 @@ class data_access.LobbyManager {
 
 
 
-use_cases.view.JFrame <|-- use_cases.view.AddQuestionView
+use_cases.View.JFrame <|-- use_cases.View.AddQuestionView
 use_cases.AddQuestion.AddQuestionInputBoundary <|.. use_cases.AddQuestion.AddQuestionInteractor
 use_cases.AddQuestion.AddQuestionLobbyDataAccessInterface <|.. data_access.InMemoryDataAccessObject
-use_cases.view.JFrame <|-- use_cases.view.LobbyPrepView
+use_cases.View.JFrame <|-- use_cases.View.LobbyPrepView
 use_cases.AddQuestion.AddQuestionOutputBoundary <|.. interfaceAdapters.AddQuestion.AddQuestionPresenter
-use_cases.view.JFrame <|-- use_cases.view.GameFrameView
+use_cases.View.JFrame <|-- use_cases.View.GameFrameView
 @enduml
