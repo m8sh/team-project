@@ -1,6 +1,6 @@
 package app;
 
-import api_caller.api_caller;
+import api_caller.apiCaller;
 import data_access.InMemoryDataAccessObject;
 
 import javax.swing.*;
@@ -14,9 +14,9 @@ import javax.swing.*;
 public class Game {
 
     // Shared api_caller instance, set once by AppBuilder
-    private static api_caller apiCaller;
+    private static apiCaller apiCaller;
 
-    public static void setApiCaller(api_caller caller) {
+    public static void setApiCaller(apiCaller caller) {
         apiCaller = caller;
     }
 

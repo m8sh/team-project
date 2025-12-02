@@ -1,6 +1,6 @@
 package app;
 
-import api_caller.api_caller;
+import api_caller.apiCaller;
 import data_access.InMemoryDataAccessObject;
 import data_access.SupabaseScoreboardDataAccess;
 import entities.QuestionFactory;
@@ -56,7 +56,7 @@ public class AppBuilder {
     private final InMemoryDataAccessObject lobbyDataAccessObject = new InMemoryDataAccessObject();
 
     // Shared network caller (WebSocket + HTTP)
-    private api_caller apiCaller;
+    private apiCaller apiCaller;
 
     // ---------- START SCREEN ----------
 
@@ -79,7 +79,7 @@ public class AppBuilder {
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
         try {
-            apiCaller = new api_caller();
+            apiCaller = new apiCaller();
             // Share this apiCaller instance with the Game entrypoint (player side)
             Game.setApiCaller(apiCaller);
         } catch (Exception e) {
@@ -186,7 +186,7 @@ public class AppBuilder {
     // ---------- BUILD ----------
 
     public JFrame build() {
-        final JFrame application = new JFrame("Team Project");
+        final JFrame application = new JFrame("QuizMe");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         application.add(cardPanel);
 

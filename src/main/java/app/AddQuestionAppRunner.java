@@ -1,6 +1,6 @@
 package app;
 
-import api_caller.api_caller;
+import api_caller.apiCaller;
 import data_access.InMemoryDataAccessObject;
 import entities.Lobby;
 import entities.QuestionFactory;
@@ -23,9 +23,9 @@ public class AddQuestionAppRunner {
     // Go through each use case, set everything up
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            api_caller caller;
+            apiCaller caller;
             try {
-                caller = new api_caller();
+                caller = new apiCaller();
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }

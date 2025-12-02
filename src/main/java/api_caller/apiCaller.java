@@ -23,7 +23,7 @@ import interface_adapters.Scoreboard.ScoreboardController;
 import use_cases.AddQuestion.SendQuestionsDataAccess;
 import use_cases.StartScreen.StartScreenNetworkDataAccessInterface;
 
-public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDataAccessInterface {
+public class apiCaller implements SendQuestionsDataAccess, StartScreenNetworkDataAccessInterface {
 
     private final URL urlBase = new URL("https://shrill-forest-40bb.sw-william08.workers.dev");
     private final String wsBase = "wss://shrill-forest-40bb.sw-william08.workers.dev";
@@ -48,7 +48,7 @@ public class api_caller implements SendQuestionsDataAccess, StartScreenNetworkDa
     private GameFrameView gameFrameView;
     private boolean gameStarted = false;
 
-    public api_caller() throws MalformedURLException {
+    public apiCaller() throws MalformedURLException {
     }
 
     public static void main(String[] args) throws MalformedURLException {
