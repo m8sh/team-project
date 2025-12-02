@@ -56,10 +56,6 @@ class ScoreboardInteractorTest {
             lastErrorMessage = errorMessage;
         }
 
-        @Override
-        public void endSession() {
-            endSessionCalled = true;
-        }
     }
 
     // ---------- Tests ----------
@@ -140,15 +136,28 @@ class ScoreboardInteractorTest {
         assertEquals(0, r2.getScore());
         assertEquals(3, r2.getRank());
     }
-
     @Test
-    void endSession_callsPresenter() {
+    void showScoreboard_noUsers_callsFailView() {
         FakeDao dao = new FakeDao();
         FakePresenter presenter = new FakePresenter();
         ScoreboardInteractor interactor = new ScoreboardInteractor(dao, presenter);
 
-        interactor.endSession();
+        int pin = 3333;
+        // dao.usersToReturn is empty by default
 
-        assertTrue(presenter.endSessionCalled);
+        ScoreboardInputData input = new ScoreboardInputData(pin);
+
+        interactor.showScoreboard(input);
+
+        // DAO was queried with correct pin
+        assertEquals(pin, dao.lastLoadLobbyPin);
+
+        assertFalse(presenter.successCalled);
+        assertNull(presenter.lastOutput);
+
+        assertEquals(
+                "No scores have been submitted for this lobby yet.",
+                presenter.lastErrorMessage
+        );
     }
 }

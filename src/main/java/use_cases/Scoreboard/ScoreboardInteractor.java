@@ -22,6 +22,7 @@ public class ScoreboardInteractor implements ScoreboardInputBoundary {
         dao.saveResults(inputData.getLobbyPin(), inputData.getUsers());
     }
 
+    @SuppressWarnings({"checkstyle:ReturnCount", "checkstyle:SuppressWarnings"})
     @Override
     public void showScoreboard(ScoreboardInputData inputData) {
 
@@ -32,6 +33,7 @@ public class ScoreboardInteractor implements ScoreboardInputBoundary {
 
         if (users.isEmpty()) {
             presenter.prepareFailView("No scores have been submitted for this lobby yet.");
+            return;
         }
 
         System.out.println("[ScoreboardInteractor] showScoreboard for pin "
