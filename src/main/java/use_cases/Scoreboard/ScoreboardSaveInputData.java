@@ -1,8 +1,8 @@
 package use_cases.Scoreboard;
 
-import entities.User;
-
 import java.util.List;
+
+import entities.User;
 
 public class ScoreboardSaveInputData {
 
