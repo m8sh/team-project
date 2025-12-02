@@ -97,7 +97,7 @@ public class LobbyPrepView extends JPanel {
                     "Session starting!");
         });
 
-        nextButton = new JButton("Next");
+        nextButton = new JButton("Show Scoreboard");
         nextButton.addActionListener(e -> {
             if (scoreboardController != null) {
                 // When host clicks Next, load scoreboard only for this lobbyPin
