@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="CheckStyle clean up for Scoreboard UseCase layer">
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapters/Scoreboard/ScoreboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapters/Scoreboard/ScoreboardController.java" afterDir="false" />
+    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="CheckStyle clean up for Scoreboard InterfaceAdapters layer">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/ScoreboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/ScoreboardView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +197,7 @@
       <workItem from="1764642926395" duration="1000" />
       <workItem from="1764642934096" duration="2169000" />
       <workItem from="1764646037975" duration="4014000" />
-      <workItem from="1764650146502" duration="1707000" />
+      <workItem from="1764650146502" duration="2379000" />
     </task>
     <task id="LOCAL-00001" summary="quicksave">
       <option name="closed" value="true" />
@@ -302,7 +303,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764651799355</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="CheckStyle clean up for Scoreboard InterfaceAdapters layer">
+      <option name="closed" value="true" />
+      <created>1764652108984</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1764652108984</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,6 +342,7 @@
     <MESSAGE value="Add ScoreboardInteractorTest to ensure 100% code coverage." />
     <MESSAGE value="Name Change" />
     <MESSAGE value="CheckStyle clean up for Scoreboard UseCase layer" />
-    <option name="LAST_COMMIT_MESSAGE" value="CheckStyle clean up for Scoreboard UseCase layer" />
+    <MESSAGE value="CheckStyle clean up for Scoreboard InterfaceAdapters layer" />
+    <option name="LAST_COMMIT_MESSAGE" value="CheckStyle clean up for Scoreboard InterfaceAdapters layer" />
   </component>
 </project>
