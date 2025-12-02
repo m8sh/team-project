@@ -30,6 +30,10 @@ public class ScoreboardInteractor implements ScoreboardInputBoundary {
         final List<User> loaded = dao.loadResults(lobbyPin);
         final List<User> users = new ArrayList<>(loaded);
 
+        if (users.isEmpty()) {
+            presenter.prepareFailView("No scores have been submitted for this lobby yet.");
+        }
+
         System.out.println("[ScoreboardInteractor] showScoreboard for pin "
                 + lobbyPin + ", users=" + users.size());
 
