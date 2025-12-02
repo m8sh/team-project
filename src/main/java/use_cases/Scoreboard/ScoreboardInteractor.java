@@ -1,10 +1,10 @@
 package use_cases.Scoreboard;
 
-import entities.User;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import entities.User;
 
 public class ScoreboardInteractor implements ScoreboardInputBoundary {
 
@@ -23,19 +23,19 @@ public class ScoreboardInteractor implements ScoreboardInputBoundary {
     }
 
     @Override
-    public void showScoreboard(ScoreboardInputData inputData)
-    {
-        int lobbyPin = inputData.getLobbyPin();
+    public void showScoreboard(ScoreboardInputData inputData) {
 
-        List<User> loaded = dao.loadResults(lobbyPin);
-        List<User> users = new ArrayList<>(loaded);
+        final int lobbyPin = inputData.getLobbyPin();
+
+        final List<User> loaded = dao.loadResults(lobbyPin);
+        final List<User> users = new ArrayList<>(loaded);
 
         System.out.println("[ScoreboardInteractor] showScoreboard for pin "
                 + lobbyPin + ", users=" + users.size());
 
         users.sort(Comparator.comparingInt(User::getScore).reversed());
 
-        List<ScoreboardOutputData.Row> rows = new ArrayList<>();
+        final List<ScoreboardOutputData.Row> rows = new ArrayList<>();
         int rank = 1;
         for (User u : users) {
             System.out.println("    rank " + rank + " -> " + u.getName()
@@ -44,11 +44,8 @@ public class ScoreboardInteractor implements ScoreboardInputBoundary {
         }
 
         // ★ Important: pass lobbyPin through so presenter/state can store it
-        ScoreboardOutputData outputData = new ScoreboardOutputData(rows, lobbyPin);
+        final ScoreboardOutputData outputData = new ScoreboardOutputData(rows, lobbyPin);
         presenter.prepareSuccessView(outputData);
     }
 
-    public void endSession() {
-        presenter.endSession();
-    }
 }

@@ -1,11 +1,11 @@
 package interface_adapters.Scoreboard;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import interface_adapters.ViewManagerModel;
 import use_cases.Scoreboard.ScoreboardOutputBoundary;
 import use_cases.Scoreboard.ScoreboardOutputData;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ScoreboardPresenter implements ScoreboardOutputBoundary {
 
@@ -26,11 +26,11 @@ public class ScoreboardPresenter implements ScoreboardOutputBoundary {
         }
 
         // Convert use-case rows -> view-model rows
-        List<ScoreboardRowViewModel> viewRows = new ArrayList<>();
+        final List<ScoreboardRowViewModel> viewRows = new ArrayList<>();
         for (ScoreboardOutputData.Row r : outputData.getRows()) {
             viewRows.add(new ScoreboardRowViewModel(
                     r.getRank(),
-                    r.getName(),  // or getUsername() depending on your Row class
+                    r.getName(),
                     r.getScore()
             ));
         }
@@ -57,11 +57,5 @@ public class ScoreboardPresenter implements ScoreboardOutputBoundary {
 
         scoreboardViewModel.setState(state);
         scoreboardViewModel.firePropertyChange();
-    }
-
-    @Override
-    public void endSession() {
-        viewManagerModel.setState("start");
-        viewManagerModel.firePropertyChange();
     }
 }

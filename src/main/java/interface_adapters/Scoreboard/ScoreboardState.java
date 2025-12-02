@@ -1,4 +1,5 @@
 package interface_adapters.Scoreboard;
+
 import java.util.List;
 
 public class ScoreboardState {
@@ -22,6 +23,7 @@ public class ScoreboardState {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
+
     public int getLobbyPin() {
         return lobbyPin;
     }

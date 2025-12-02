@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="Fix the issue that Game.java and AppBuilder.java not using the same DAO">
+    <list default="true" id="0e098dd1-14f4-4b5e-9072-27fdf3288738" name="Changes" comment="CheckStyle clean up for Scoreboard InterfaceAdapters layer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" afterDir="false" />
     </list>
@@ -149,9 +149,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="gui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui" />
+    <configuration name="ScoreboardInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TeamProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_cases.Scoreboard.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_cases.Scoreboard" />
+      <option name="MAIN_CLASS_NAME" value="use_cases.Scoreboard.ScoreboardInteractorTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -159,10 +167,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ScoreboardInteractorTest" />
         <item itemvalue="Application.TestScoreboard" />
         <item itemvalue="Application.TestGame" />
         <item itemvalue="Application.AddQuestionAppRunner" />
-        <item itemvalue="Application.gui" />
       </list>
     </recent_temporary>
   </component>
@@ -184,6 +192,10 @@
       <workItem from="1764383672816" duration="1262000" />
       <workItem from="1764614651374" duration="7330000" />
       <workItem from="1764622668510" duration="4787000" />
+      <workItem from="1764642926395" duration="1000" />
+      <workItem from="1764642934096" duration="2169000" />
+      <workItem from="1764646037975" duration="4014000" />
+      <workItem from="1764650146502" duration="2379000" />
     </task>
     <task id="LOCAL-00001" summary="quicksave">
       <option name="closed" value="true" />
@@ -265,7 +277,39 @@
       <option name="project" value="LOCAL" />
       <updated>1764578514318</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Add ScoreboardInteractorTest to ensure 100% code coverage.">
+      <option name="closed" value="true" />
+      <created>1764642391990</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1764642391990</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Name Change">
+      <option name="closed" value="true" />
+      <created>1764649794862</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1764649794862</updated>
+    </task>
+    <task id="LOCAL-00013" summary="CheckStyle clean up for Scoreboard UseCase layer">
+      <option name="closed" value="true" />
+      <created>1764651799355</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1764651799355</updated>
+    </task>
+    <task id="LOCAL-00014" summary="CheckStyle clean up for Scoreboard InterfaceAdapters layer">
+      <option name="closed" value="true" />
+      <created>1764652108984</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1764652108984</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,6 +337,10 @@
     <MESSAGE value="try to fix what is preventing scoreboard from showing" />
     <MESSAGE value="a bit more fix" />
     <MESSAGE value="Fix the issue that Game.java and AppBuilder.java not using the same DAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix the issue that Game.java and AppBuilder.java not using the same DAO" />
+    <MESSAGE value="Add ScoreboardInteractorTest to ensure 100% code coverage." />
+    <MESSAGE value="Name Change" />
+    <MESSAGE value="CheckStyle clean up for Scoreboard UseCase layer" />
+    <MESSAGE value="CheckStyle clean up for Scoreboard InterfaceAdapters layer" />
+    <option name="LAST_COMMIT_MESSAGE" value="CheckStyle clean up for Scoreboard InterfaceAdapters layer" />
   </component>
 </project>

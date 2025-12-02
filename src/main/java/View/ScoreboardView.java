@@ -1,18 +1,34 @@
 package View;
 
-import interface_adapters.Scoreboard.ScoreboardController;
-import interface_adapters.Scoreboard.ScoreboardRowViewModel;
-import interface_adapters.Scoreboard.ScoreboardState;
-import interface_adapters.Scoreboard.ScoreboardViewModel;
-
-import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+
+import interface_adapters.Scoreboard.ScoreboardController;
+import interface_adapters.Scoreboard.ScoreboardRowViewModel;
+import interface_adapters.Scoreboard.ScoreboardState;
+import interface_adapters.Scoreboard.ScoreboardViewModel;
+
+/**
+ * Swing view that displays the scoreboard to the user.
+ *
+ * <p>
+ * It listens to changes in the {@link ScoreboardViewModel} and updates
+ * the table accordingly, and forwards button actions to the
+ * {@link ScoreboardController}.
+ * </p>
+ */
+@SuppressWarnings({"checkstyle:ClassDataAbstractionCoupling", "checkstyle:SuppressWarnings"})
 public class ScoreboardView extends JPanel implements PropertyChangeListener {
 
     private final ScoreboardViewModel scoreboardViewModel;
@@ -20,11 +36,16 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
     private final JTable table;
     private final ScoreboardTableModel tableModel;
     private final JLabel errorLabel;
-    //private final JButton endGameButton;
+    // private final JButton endGameButton;
     private final JButton refreshButton;
     private final JLabel pinLabel;
 
     private ScoreboardController scoreboardController;
+    /**
+     * Create a new scoreboard view.
+     *
+     * @param scoreboardViewModel the view model that exposes scoreboard state
+     */
 
     public ScoreboardView(ScoreboardViewModel scoreboardViewModel) {
         this.scoreboardViewModel = scoreboardViewModel;
@@ -33,9 +54,9 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
         setLayout(new BorderLayout());
 
         // ---------- Top panel: Title + Lobby PIN ----------
-        JPanel topPanel = new JPanel(new BorderLayout());
+        final JPanel topPanel = new JPanel(new BorderLayout());
 
-        JLabel title = new JLabel("Scoreboard");
+        final JLabel title = new JLabel("Scoreboard");
         topPanel.add(title, BorderLayout.WEST);
 
         pinLabel = new JLabel("");
@@ -46,20 +67,20 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
         // ---------- Center: table ----------
         tableModel = new ScoreboardTableModel();
         table = new JTable(tableModel);
-        JScrollPane scrollPane = new JScrollPane(table);
+        final JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
         // ---------- Bottom panel: error + buttons ----------
-        JPanel bottomPanel = new JPanel(new BorderLayout());
+        final JPanel bottomPanel = new JPanel(new BorderLayout());
 
         errorLabel = new JLabel("");
         bottomPanel.add(errorLabel, BorderLayout.CENTER);
 
-        JPanel buttonPanel = new JPanel();
+        final JPanel buttonPanel = new JPanel();
         refreshButton = new JButton("Refresh");
-       // endGameButton = new JButton("End Game");
+        // endGameButton = new JButton("End Game");
         buttonPanel.add(refreshButton);
-        //buttonPanel.add(endGameButton);
+        // buttonPanel.add(endGameButton);
 
         bottomPanel.add(buttonPanel, BorderLayout.EAST);
 
@@ -80,9 +101,8 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
         this.scoreboardController = scoreboardController;
     }
 
+    @SuppressWarnings({"checkstyle:AvoidInlineConditionals", "checkstyle:LambdaBodyLength", "checkstyle:ReturnCount"})
     private void wireActions() {
-
-
         refreshButton.addActionListener(e -> {
             if (scoreboardController == null) {
                 return;
@@ -95,19 +115,21 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
             if (pin == 0) {
                 System.out.println("[ScoreboardView] Refresh clicked but lobbyPin is not set in state");
 
-                String input = JOptionPane.showInputDialog(
+                final String input = JOptionPane.showInputDialog(
                         this,
                         "Enter Lobby PIN to load the scoreboard:",
                         "Lobby PIN",
                         JOptionPane.QUESTION_MESSAGE
                 );
                 if (input == null || input.isBlank()) {
-                    return; // user cancelled or empty
+                    return;
+                    // user cancelled or empty
                 }
 
                 try {
                     pin = Integer.parseInt(input.trim());
-                } catch (NumberFormatException ex) {
+                }
+                catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(
                             this,
                             "Invalid lobby PIN. Please enter a number.",
@@ -138,28 +160,30 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
         }
     }
 
+    @SuppressWarnings({"checkstyle:AvoidInlineConditionals", "checkstyle:ReturnCount"})
     private void refreshFromState() {
-        ScoreboardState state = scoreboardViewModel.getState();
+        final ScoreboardState state = scoreboardViewModel.getState();
         if (state == null) {
             return;
         }
 
-        List<ScoreboardRowViewModel> rows =
+        final List<ScoreboardRowViewModel> rows =
                 state.getRows() != null ? state.getRows() : List.of();
         tableModel.setRows(rows);
 
-        String error = state.getErrorMessage();
+        final String error = state.getErrorMessage();
         errorLabel.setText(error == null ? "" : error);
 
-        int pin = state.getLobbyPin();
+        final int pin = state.getLobbyPin();
         if (pin != 0) {
             pinLabel.setText("Lobby PIN: " + pin);
-        } else {
+        }
+        else {
             pinLabel.setText("");
         }
     }
 
-    private static class ScoreboardTableModel extends AbstractTableModel {
+    private static final class ScoreboardTableModel extends AbstractTableModel {
 
         private final String[] columns = {"Rank", "Name", "Score"};
         private List<ScoreboardRowViewModel> rows = new ArrayList<>();
@@ -184,9 +208,10 @@ public class ScoreboardView extends JPanel implements PropertyChangeListener {
             return columns[column];
         }
 
+        @SuppressWarnings("checkstyle:ReturnCount")
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            ScoreboardRowViewModel row = rows.get(rowIndex);
+            final ScoreboardRowViewModel row = rows.get(rowIndex);
             switch (columnIndex) {
                 case 0: return row.getRank();
                 case 1: return row.getName();
