@@ -24,10 +24,10 @@ import use_cases.AddQuestion.AddQuestionInputBoundary;
 import use_cases.AddQuestion.AddQuestionInteractor;
 import use_cases.AddQuestion.AddQuestionOutputBoundary;
 
-import use_cases.Scoreboard.ScoreboardDataAccessInterface;
-import use_cases.Scoreboard.ScoreboardInputBoundary;
-import use_cases.Scoreboard.ScoreboardInteractor;
-import use_cases.Scoreboard.ScoreboardOutputBoundary;
+import use_cases.scoreboard.ScoreboardDataAccessInterface;
+import use_cases.scoreboard.ScoreboardInputBoundary;
+import use_cases.scoreboard.ScoreboardInteractor;
+import use_cases.scoreboard.ScoreboardOutputBoundary;
 
 import use_cases.StartScreen.StartScreenInputBoundary;
 import use_cases.StartScreen.StartScreenLobbyDataAccessInterface;
@@ -186,7 +186,7 @@ public class AppBuilder {
     // ---------- BUILD ----------
 
     public JFrame build() {
-        final JFrame application = new JFrame("Team Project");
+        final JFrame application = new JFrame("QuizMe");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         application.add(cardPanel);
 
